@@ -1,0 +1,131 @@
+'use strict';
+const {fs,path,crypto,clone,id,fail,readJSON,atomicJSON}=require('./util.cjs');
+const {createReadStream}=require('node:fs');
+const {freezeSkills}=require('../providers/codex-policy.cjs');
+const {materializeTextResult}=require('../providers/http.cjs');
+const styleLocks=new Map();
+function stable(value){if(Array.isArray(value))return value.map(stable);if(value&&typeof value==='object')return Object.fromEntries(Object.keys(value).sort().filter(k=>value[k]!==undefined).map(k=>[k,stable(value[k])]));return value;}
+function hash(value){return crypto.createHash('sha256').update(typeof value==='string'?value:JSON.stringify(stable(value))).digest('hex');}
+async function referenceFingerprint(reference){const semantics={type:reference.type,title:reference.title,role:reference.role,inputId:reference.inputId,outputId:reference.outputId};if(!reference.path)return {...semantics,text:reference.text||''};const digest=crypto.createHash('sha256');for await(const chunk of createReadStream(reference.path))digest.update(chunk);return {...semantics,sha256:digest.digest('hex')};}
+async function prepareStyles(snapshot,{hub,resources}={}){
+  const out=clone(snapshot);out.referenceHashes=await Promise.all((out.references||[]).map(referenceFingerprint));
+  if(out.styles?.length){const prepared=[];for(const original of out.styles){if(original.enabled===false)continue;const style=clone(original);if(style.prepared?.connection?.frozen){prepared.push(style);continue;}
+      if(style.skill){let selected=style.skill;
+        if(typeof selected==='object'&&typeof selected.content==='string'){
+          // Applied cards own their frozen method. Library edits/deletion must not replace it.
+          if(selected.id&&resources?.get){let item;try{item=await resources.get('skills',selected.id);}catch(e){if(!['RESOURCE_NOT_FOUND','NOT_FOUND','ENOENT'].includes(e.code))throw e;}if(item?.enabled===false)fail('此Skill库条目已停用；旧卡副本仍保留，可重新启用后执行','SKILL_DISABLED');}
+        }else if(typeof selected==='string'||selected.id){if(!resources)fail('风格Skill需要资源管理器核对启用状态');selected=await resources.readSkill(typeof selected==='string'?selected:selected.id);}
+        style.skill=(await freezeSkills([selected]))[0];if(!style.skill)fail('风格所选Skill已停用：'+style.title);}
+      style.instruction=style.skill?.content||style.content;if(!style.instruction?.trim())fail('风格缺少有效方法：'+style.title);
+      const provider=style.provider||'codex';const references=(out.references||[]).filter(r=>r.type==='image').map(r=>{const copy={...r};delete copy.inputId;return copy;});let workflow=style.workflow;
+      if(provider==='comfyui'&&!workflow){if(references.length>1)fail('本地风格默认工作流仅接收一张图片；多图风格请选择Codex或绑定自定义工作流');workflow=await hub.defaultWorkflows.read(references.length?'tool-image-caption':'text-qwen3');}
+      style.prepared=await hub.prepare({provider,kind:'text',model:style.model,effort:style.effort,parameters:clone(style.parameters||{max_length:1024}),workflow,connection:style.connection,references,skills:[],styles:[]});prepared.push(style);
+    }out.styles=prepared;}
+  if(out.provider==='storyboard'&&!out.analysis?.connection?.frozen){const provider=out.parameters?.provider||'codex';const workflow=provider==='comfyui'?(out.analysisWorkflow||await hub.defaultWorkflows.read('tool-image-caption')):undefined;const parameters=provider==='comfyui'?{max_length:Number(out.parameters?.max_length||1024)}:clone(out.parameters?.modelParameters||{});if(provider==='comfyui')for(const field of workflow.mapping?.inputs||[])if(field.source==='parameter'&&out.parameters?.[field.id]!==undefined)parameters[field.id]=out.parameters[field.id];out.analysis=await hub.prepare({provider,kind:'text',model:out.parameters?.model,parameters,workflow,references:[],skills:[]});}
+  return out;
+}
+function styleCacheKey(snapshot,style,prompt){const prepared=clone(style.prepared);if(prepared)delete prepared.references;return hash({version:2,originalPrompt:snapshot.prompt,currentPrompt:prompt,kind:snapshot.kind,references:snapshot.referenceHashes,style:{id:style.id,title:style.title,instruction:style.instruction||style.skill?.content||style.content,prepared}});}
+async function locked(key,work){const previous=styleLocks.get(key)||Promise.resolve();const next=previous.catch(()=>{}).then(work);styleLocks.set(key,next);try{return await next;}finally{if(styleLocks.get(key)===next)styleLocks.delete(key);}}
+function parseJSON(text){try{return JSON.parse(String(text).replace(/^```(?:json)?\s*|\s*```$/g,''));}catch{const start=String(text).indexOf('['),end=String(text).lastIndexOf(']');if(start>=0&&end>start)return JSON.parse(text.slice(start,end+1));throw new Error('模型没有返回可解析的镜头表；原回答已保留到诊断');}}
+async function styles(service,snapshot,options={}){
+  snapshot=await prepareStyles(snapshot,{hub:service.hub,resources:service.resources});let prompt=snapshot.prompt;const trace=[];
+  for(const style of snapshot.styles||[]){options.signal?.throwIfAborted();options.onProgress?.({message:'处理风格：'+style.title});const instruction=style.instruction;const key=styleCacheKey(snapshot,style,prompt);const cacheFile=path.join(service.dataDir||options.outputDir,'style-cache',key+'.json');let retainActive=false;
+    try{const input=prompt;const step=await locked(cacheFile,async()=>{options.signal?.throwIfAborted();let cache=await readJSON(cacheFile,null);if(cache?.state==='succeeded'&&cache.output?.trim())return {text:cache.output,cached:true};
+        const inference={...style.prepared,prompt:`按下面的方法改写生成指令，只返回改写后的指令。不要删除用户明确条件，不改变参考素材角色。\n原始要求：${snapshot.prompt}\n当前指令：${input}\n参考素材角色：${JSON.stringify(snapshot.referenceHashes?.map((r,i)=>({index:i+1,type:r.type,title:r.title,role:r.role}))||[])}\n非图片的音视频参考仍会交给最终生成步骤，本次只处理文字及可见图片，不推测其内容。\n方法：${instruction}`,threadId:undefined,tools:[],styles:[]};
+        const progress=p=>{if(p.remoteId||p.threadId||p.turnId){cache.remote={...cache.remote,provider:inference.provider,connection:inference.connection,...Object.fromEntries(['remoteId','threadId','turnId'].filter(k=>p[k]).map(k=>[k,p[k]]))};pendingWrite=pendingWrite.then(()=>atomicJSON(cacheFile,cache));}const {remoteId,threadId,turnId,...visible}=p;options.onProgress?.({...visible,message:'风格“'+style.title+'”：'+(p.message||'处理中'),activeOperation:{role:'style',styleId:style.id,provider:inference.provider,connection:inference.connection,...cache.remote}});};let pendingWrite=Promise.resolve();
+        const stepOptions={...options,outputDir:path.join(service.dataDir||options.outputDir,'style-cache','outputs',key),onProgress:progress,onToolCall:undefined};let response;
+        if(cache?.response){response=clone(cache.response);}
+        else if(cache&&['running','unknown'].includes(cache.state)){
+          if(!cache.remote?.remoteId){const e=new Error('上次风格提交状态未知且没有任务标识，未重复生成');e.uncertain=true;throw e;}
+          progress(cache.remote);try{response=await service.hub.reconcile(inference,cache.remote,stepOptions);}catch(error){error.uncertain=true;throw error;}if(response.state==='failed'||response.state==='cancelled'){cache.state='failed';await atomicJSON(cacheFile,cache);fail('原风格任务已'+(response.state==='failed'?'失败':'取消')+'；再次重试将仅重做此步骤');}
+          if(response.state!=='completed'){const e=new Error('原风格任务仍在处理或状态未知，未重复提交');e.uncertain=true;throw e;}
+        }else{cache={state:'running',key,styleId:style.id,createdAt:new Date().toISOString(),remote:null};await atomicJSON(cacheFile,cache);try{response=await service.hub.run(inference,stepOptions);}catch(e){await pendingWrite;if(e.remoteId)cache.remote={...cache.remote,provider:inference.provider,connection:inference.connection,remoteId:e.remoteId,threadId:e.threadId,turnId:e.turnId};if(cache.remote&&!e.confirmed&&!['EXECUTION_FAILED','SUBMISSION_REJECTED'].includes(e.code))e.uncertain=true;cache.state=e.uncertain?'unknown':'failed';cache.error=e.message;await atomicJSON(cacheFile,cache);throw e;}}
+        await pendingWrite;cache={...cache,state:'saving',response:clone(response)};await atomicJSON(cacheFile,cache);response=await materializeTextResult(response,stepOptions);
+        if(!response.text?.trim()){cache.state='failed';cache.error='风格处理返回空文本';await atomicJSON(cacheFile,cache);fail(cache.error);}cache={...cache,state:'succeeded',response:clone(response),output:response.text,completedAt:new Date().toISOString()};await atomicJSON(cacheFile,cache);return {text:response.text,cached:false};});
+      trace.push({id:style.id,title:style.title,input:prompt,output:step.text,cached:step.cached,cacheKey:key});prompt=step.text;
+    }catch(e){retainActive=!!e.uncertain&&!e.confirmed;e.message='风格步骤“'+style.title+'”失败，未提交素材生成：'+e.message;e.styleId=style.id;e.styleTrace=trace;throw e;}finally{if(!retainActive)options.onProgress?.({activeOperation:null});}}
+  return {prompt,trace};
+}
+function sourceMediaType(source,canvas){return canvas.state.assets?.find(a=>a.id===source.assetId)?.type||(source.type==='custom'?source.outputType:source.type)||'file';}
+function acceptsMedia(record,type){const allowed=Array.isArray(record.mediaType)?record.mediaType:[record.mediaType];return !record.mediaType||allowed.includes(type)||allowed.includes('any')||allowed.includes('*')||(type==='script'&&allowed.includes('text'));}
+async function submitTool(service,{nodeId,tool,toolId,parameters={}}){
+  const c=service.requireCurrent(),source=c.state.nodes.find(n=>n.id===nodeId);if(!source)fail('来源节点不存在');const sourceType=sourceMediaType(source,c);let record;
+  if(toolId){if(!service.resources)fail('卡片工具库尚未就绪');record=await service.resources.get('tools',toolId);if(record.enabled===false)fail('此卡片工具已停用','TOOL_DISABLED');if(!acceptsMedia(record,sourceType))fail('此卡片工具不支持来源的实际素材类型','TOOL_MEDIA_TYPE');tool=record.handler||tool||record.name;}
+  else if(service.resources?.list){const records=await service.resources.list('tools',{source:'builtin',includeDisabled:true});const matching=records.filter(r=>!r.invalid&&(r.handler===tool||r.name===tool)&&acceptsMedia(r,sourceType));if(matching.some(r=>r.enabled===false))fail('此内置卡片工具已停用','TOOL_DISABLED');if(matching.length===1)record=matching[0];}
+  if(!tool)fail('请选择一个有效卡片工具');parameters={...(record?.parameters||{}),...parameters};const image=source.assetId?await service.assetPath(source.assetId,c):null;
+  const local={'高清':'tool-image-upscale','尺寸调整':'tool-image-resize','裁切':'tool-image-crop','音量':'tool-audio-volume','本地反推':'tool-image-caption','人像质感':'image-zimage-edit','多角度':'image-zimage-edit','打光':'image-zimage-edit','九宫格':'image-zimage-edit','标记':'image-zimage-edit'};
+  const textTools=['反推提示词','本地反推','扩写','整理','剧本转分镜','识别资产'];const kind=record?.outputType||record?.outputKind||(['image','text','video','audio'].includes(record?.kind)?record.kind:null)||(textTools.includes(tool)?'text':tool==='片段重拍'?'video':sourceType==='script'?'text':sourceType);
+  let provider=parameters.provider||record?.provider||(['image','video','audio'].includes(kind)?'comfyui':'codex'),workflow,workflowId;
+  if(provider==='storyboard'||['逐帧拉片','拉片分析'].includes(tool)){return analyze(service,{nodeId,parameters:{...parameters,provider:parameters.analysisProvider||parameters.modelProvider||(parameters.provider!=='storyboard'&&parameters.provider)||'codex'},toolResource:record});}
+  if(provider==='media'){
+    const handler=({'截取':'trim','变速':'speed','切分':'split','取帧':'frame','抽音轨':'extract-audio'})[tool]||tool;if(!['trim','speed','split','frame','frames','extract-audio'].includes(handler))fail('此本地媒体处理器不在安全白名单中','TOOL_HANDLER_UNSUPPORTED');if(!image||!['audio','video'].includes(sourceType))fail('本地媒体工具需要真实音视频素材');if(['frame','frames','extract-audio'].includes(handler)&&sourceType!=='video')fail('此媒体工具需要视频素材');const outputDir=path.join(c.canvasDir,'media-results');await fs.mkdir(outputDir,{recursive:true});return service.queue.submit({provider:'media',kind,tool:handler,title:source.title+' · '+(record?.name||tool),parameters,references:[{path:image,type:sourceType}],canvasId:c.id,projectDir:c.projectDir,sourceNodeId:nodeId,nodeId:null,resultMode:'new',outputDir,toolResource:record?{id:record.id,revision:record.revision,handler,provider,mediaType:record.mediaType,outputType:kind}:undefined},service.identity.id);
+  }
+  const instructions={'人像质感':'增强人物自然皮肤与织物质感，保持身份和构图。','多角度':'依据参考主体生成另一机位角度，保持角色身份、服饰与环境一致。','打光':'调整参考图的照明与光影，保持身份、物体和构图。','九宫格':'依据参考图生成单张 3×3 分镜布局，每格不同景别机位，统一身份与风格。','标记':'按用户明确标注与文字要求编辑参考图，不改动无关部分。','反推提示词':'分析参考图，输出中文图像生成提示词，准确描述主体、场景、构图、镜头、光影、材质与风格。','扩写':'扩写以下创作内容，保留已知事实和约束。','片段重拍':'依据原视频与指定时间点的修改说明，生成独立的新片段。保留原人物、场景及未要求修改的内容。'};
+  if(provider==='comfyui'&&record?.workflowId){workflowId=record.workflowId;workflow=await service.workflowRead(workflowId);}
+  else if(local[tool]&&provider==='comfyui'){workflowId=service.settings.tools?.[tool]?.workflowId||'default:'+local[tool];workflow=await service.workflowRead(workflowId);}
+  else if(provider==='comfyui'){workflowId=service.settings.tools?.[tool]?.workflowId||service.settings.bindings?.[kind];if(workflowId)workflow=await service.workflowRead(workflowId);if(!workflow)fail('此卡片工具未绑定本地工作流，请在卡片工具配置中选择。');}
+  if(provider==='image2'&&kind!=='image')fail('Image2 只支持图片生成');if(['ollama','openai-compatible'].includes(provider)&&kind!=='text')fail('此API连接只提供文字能力，不能用于音视频或图片生成');if(provider==='codex'&&!['text','image'].includes(kind))fail('Codex 不提供音视频生成能力');if(['image','video','audio'].includes(sourceType)&&!image)fail('此操作需要真实素材文件');
+  const sourceText=source.content||source.prompt||((sourceType==='text'&&image)?await fs.readFile(image,'utf8'):'');const prompt=[record?.instructions||record?.promptTemplate||instructions[tool]||tool,parameters.prompt||sourceText,source.type==='script'?JSON.stringify(source.shots):''].filter(Boolean).join('\n');
+  const snapshot={provider,kind,workflow:workflow?clone(workflow):undefined,workflowId,title:source.title+' · '+(record?.name||tool),prompt,parameters,tool,references:image&&['image','video','audio'].includes(sourceType)?[{path:image,type:sourceType}]:[],sourceNodeId:nodeId,resultMode:'new',canvasId:c.id,projectDir:c.projectDir,outputDir:path.join(c.canvasDir,kind),nodeId:null,toolResource:record?{id:record.id,revision:record.revision,handler:tool,provider,mediaType:record.mediaType,outputType:kind,workflowId}:undefined};
+  if(tool==='剧本转分镜'){snapshot.resultMode='script';snapshot.prompt+='\n将上述剧本拆成可编辑分镜。只返回JSON数组，每项必须有description和prompt，另可含duration（如5s）、size、camera、light、dialogue、sound。保留原作已知事实和顺序，不输出Markdown或分析说明。';}
+  if(provider==='comfyui'&&workflowId==='default:image-zimage-edit')snapshot.metadata={localEditCapability:'generic-img2img',notice:'本地通用图生图；不保证精确遮罩、身份锁定或九宫格数量。'};
+  if(parameters.annotationAssetId){const annotation=c.state.assets?.find(a=>a.id===parameters.annotationAssetId);if(!annotation||annotation.type!=='image')fail('标注引用必须是当前画布已登记的图片素材','ANNOTATION_ASSET_INVALID');const annotationPath=await service.assetPath(annotation.id,c);snapshot.references=[{path:annotationPath,type:'image',id:annotation.id,role:'edit-guide'}];snapshot.prompt+=`\n原始来源：${JSON.stringify({assetId:source.assetId,title:source.title,type:sourceType})}。红色标线和数字是编辑指引，成品移除标线与数字，不把它们画进最终画面。`;snapshot.metadata={...snapshot.metadata,annotationAssetId:annotation.id,sourceAssetId:source.assetId};}
+  if(tool==='片段重拍'){
+    const point=Number(parameters.annotationTime??parameters.time??parameters.start??0);if(!Number.isFinite(point)||point<0)fail('视频标注时间无效');if(!parameters.annotationAssetId){const frame=await service.media.process({tool:'frame',kind:'image',parameters:{start:point,end:parameters.end},references:[{path:image,type:'video'}]},{outputDir:path.join(c.canvasDir,'image')});snapshot.references=[{path:frame.outputs[0].path,type:'image'}];}snapshot.prompt+=`\n原视频修改位置：${point.toFixed(3)} 秒。原视频保留，本次不自动回拼。`;snapshot.metadata={...snapshot.metadata,sourceVideoAsset:source.assetId,time:point};
+  }
+  await fs.mkdir(snapshot.outputDir,{recursive:true});return service.queue.submit(snapshot,service.identity.id);
+}
+async function analyze(service,{nodeId,parameters={},toolResource}){
+  const c=service.requireCurrent(),source=c.state.nodes.find(n=>n.id===nodeId);if(!source||sourceMediaType(source,c)!=='video'||!source.assetId)fail('逐帧拉片需要视频文件');const file=await service.assetPath(source.assetId,c);const outputDir=path.join(c.canvasDir,'storyboard-results');await fs.mkdir(outputDir,{recursive:true});
+  const provider=parameters.provider||'codex',analysisWorkflowId=parameters.workflowId||toolResource?.workflowId;let analysisWorkflow;if(provider==='comfyui'&&analysisWorkflowId){analysisWorkflow=clone(await service.workflowRead(analysisWorkflowId));const mapping=analysisWorkflow.mapping;if(!mapping?.outputs?.some(o=>o.type==='text')||!mapping.inputs?.some(i=>i.source==='reference'&&['image',undefined].includes(i.mediaType)))fail('拉片工作流必须接收代表图片并返回文字分析','ANALYSIS_WORKFLOW_INVALID');}
+  return service.queue.submit({provider:'storyboard',kind:'text',nodeId:null,sourceNodeId:source.id,sourceAssetId:source.assetId,resultMode:'storyboard',title:source.title+' · 拉片分析',prompt:parameters.prompt||'',parameters:{...parameters,provider},analysisWorkflow,analysisWorkflowId:provider==='comfyui'?analysisWorkflowId:undefined,canvasId:c.id,projectDir:c.projectDir,references:[{path:file,type:'video'}],outputDir,toolResource:toolResource?{id:toolResource.id,revision:toolResource.revision,handler:toolResource.handler,provider:'storyboard',workflowId:analysisWorkflowId}:undefined},service.identity.id);
+}
+function analysisCacheKey(snapshot){return hash({version:1,canvasId:snapshot.canvasId,sourceNodeId:snapshot.sourceNodeId,sourceAssetId:snapshot.sourceAssetId,prompt:snapshot.prompt,parameters:snapshot.parameters,references:snapshot.referenceHashes,analysis:snapshot.analysis});}
+function analysisResult(checkpoint,snapshot,file,state='completed'){
+  const frames=checkpoint.extraction.outputs,end=Number(snapshot.parameters?.end??checkpoint.extraction.metadata.end),shots=[],errors=[];
+  for(const batch of checkpoint.batches){if(batch.status==='succeeded'){shots.push(...batch.shots);continue;}const message=batch.error||({pending:'尚未分析',running:'执行状态待核对',unknown:'执行状态待核对',cancelled:'已取消本批分析',failed:'本批分析失败'})[batch.status]||'分析未完成';errors.push({start:frames[batch.startIndex]?.time,end:frames[batch.startIndex+batch.count]?.time??end,message,status:batch.status});for(let j=0;j<batch.count;j++){const index=batch.startIndex+j,time=frames[index].time,next=frames[index+1]?.time??end;shots.push({index,start:time,end:next,duration:(next-time).toFixed(3)+'s',frame:frames[index].path,description:'该范围分析未完成：'+message,prompt:'',missing:true,status:batch.status});}}
+  shots.sort((a,b)=>a.index-b.index);return {provider:'storyboard',state,outputs:frames,text:JSON.stringify(shots),storyboard:{shots,sourceNodeId:snapshot.sourceNodeId,sourceAssetId:snapshot.sourceAssetId,errors,version:checkpoint.createdAt,samplingInterval:Number(snapshot.parameters?.interval||3)},partial:errors.length>0,cancelled:checkpoint.batches.some(b=>b.status==='cancelled'),checkpoint:{id:checkpoint.key,path:file},metadata:checkpoint.extraction.metadata};
+}
+function analysisRows(response,batch,frames,end){const rows=parseJSON(response.text);if(!Array.isArray(rows))throw new Error('镜头分析返回的不是数组');const shots=[];for(let j=0;j<batch.count;j++){const row=rows.find(r=>Number(r.index)===j)||rows[j];if(!row?.description)throw new Error('镜头分析缺少第 '+j+' 帧描述');const index=batch.startIndex+j,time=frames[index].time,next=frames[index+1]?.time??end;shots.push({index,start:time,end:next,duration:(next-time).toFixed(3)+'s',frame:frames[index].path,description:String(row.description),prompt:String(row.prompt||''),size:String(row.size||''),camera:row.camera?'代表帧推测，待视频核对：'+String(row.camera):'仅代表帧，尚未核对运镜',light:String(row.light||''),sound:'未分析音轨，无法从代表帧判断',dialogue:'',sampling:true});}return shots;}
+async function runAnalysis(service,snapshot,options={}){
+  snapshot=await prepareStyles(snapshot,{hub:service.hub,resources:service.resources});const key=analysisCacheKey(snapshot),file=path.join(service.dataDir||options.outputDir,'analysis-cache',key+'.json');
+  return locked(file,async()=>{
+    let checkpoint=await readJSON(file,null),writes=Promise.resolve();const persist=()=>{const copy=clone(checkpoint);writes=writes.then(()=>atomicJSON(file,copy));return writes;};
+    if(!checkpoint?.extraction){options.signal?.throwIfAborted();checkpoint={version:1,key,createdAt:Date.now(),status:'extracting',batches:[]};await persist();const extraction=await service.media.process({...snapshot,tool:'frames',kind:'image'},options);if(!extraction.outputs?.length)fail('未取得可分析的视频代表帧');const size=snapshot.analysis.provider==='comfyui'?1:8;checkpoint.extraction=extraction;for(let i=0;i<extraction.outputs.length;i+=size)checkpoint.batches.push({startIndex:i,count:Math.min(size,extraction.outputs.length-i),status:'pending',remote:null,shots:[]});checkpoint.status='running';await persist();}
+    const frames=checkpoint.extraction.outputs,end=Number(snapshot.parameters?.end??checkpoint.extraction.metadata.end);for(const frame of frames)await fs.access(frame.path);
+    const retryFailed=options.retryFailed===true||!options.recovery;let stopped=false;
+    for(const batch of checkpoint.batches){
+      if(batch.status==='succeeded')continue;
+      if(options.signal?.aborted||stopped){if(!['unknown','running'].includes(batch.status)){batch.status='cancelled';batch.error='分析已停止，保留前面已完成的镜头';}continue;}
+      if(['failed','cancelled'].includes(batch.status)&&!retryFailed&&!batch.response)continue;
+      const refs=frames.slice(batch.startIndex,batch.startIndex+batch.count).map(f=>({path:f.path,type:'image'}));
+      const inference={...snapshot.analysis,kind:'text',prompt:`分析按时间顺序提供的视频代表帧。每帧给一条镜头记录。只输出 JSON 数组，每项字段 index(本批从0开始)、description(主体/场景/动作/景别/构图/运镜描述)、prompt(可用分镜提示词)、size、camera、light、sound。无法从静帧判断运动或声音时说明不确定，不编造。不要自行生成时间戳。分析重点：${snapshot.prompt}`,references:refs};
+      const progress=p=>{for(const k of ['remoteId','threadId','turnId'])if(p[k])batch.remote={...batch.remote,[k]:p[k]};if(batch.remote){batch.remote.provider=inference.provider;batch.remote.connection=inference.connection;persist().catch(()=>{});}const {remoteId,threadId,turnId,...visible}=p;options.onProgress?.({...visible,activeOperation:{role:'storyboard',batchIndex:batch.startIndex,checkpointId:key,provider:inference.provider,connection:inference.connection,...batch.remote}});};
+      const batchOptions={...options,outputDir:path.join(path.dirname(file),'outputs',key,String(batch.startIndex)),onToolCall:undefined,onProgress:progress};
+      options.onProgress?.({message:`正在分析代表帧 ${batch.startIndex+1}–${batch.startIndex+batch.count} / ${frames.length}`});
+      const recovering=['running','unknown'].includes(batch.status);let remoteConfirmed=false;
+      try{
+        let response;
+        if(batch.response){response=clone(batch.response);remoteConfirmed=true;}
+        else if(['running','unknown'].includes(batch.status)){
+          progress({});if(!batch.remote?.remoteId){batch.status='unknown';batch.error='原批次发送状态未知且没有任务标识，未重复生成';checkpoint.status='unknown';await persist();checkpoint.result=analysisResult(checkpoint,snapshot,file,'unknown');await persist();return checkpoint.result;}
+          response=await service.hub.reconcile(inference,batch.remote,batchOptions);
+          if(['failed','cancelled'].includes(response.state)){batch.status=response.state;batch.error=response.message||'原批次已'+(response.state==='failed'?'失败':'取消');if(response.state==='cancelled')stopped=true;await persist();options.onProgress?.({activeOperation:null});continue;}
+          if(response.state!=='completed'){batch.status='unknown';batch.error=response.message||'原批次仍在运行或状态未知，未重复提交';checkpoint.status='unknown';await persist();checkpoint.result=analysisResult(checkpoint,snapshot,file,'unknown');await persist();return checkpoint.result;}remoteConfirmed=true;
+        }else{
+          batch.status='running';batch.remote=null;delete batch.error;await persist();progress({});response=await service.hub.run(inference,batchOptions);
+          if(response.state==='cancelled'){batch.status='cancelled';batch.error='来源已确认本批取消';stopped=true;await persist();options.onProgress?.({activeOperation:null});continue;}
+          if(response.state&&response.state!=='completed'){const error=new Error(response.message||'分析批次尚未确认完成');error.uncertain=true;throw error;}remoteConfirmed=true;
+        }
+        await writes;batch.response=clone(response);batch.status='saving';await persist();response=await materializeTextResult(response,batchOptions);batch.response=clone(response);await persist();batch.shots=analysisRows(response,batch,frames,end);batch.status='succeeded';batch.completedAt=Date.now();delete batch.error;await persist();options.onProgress?.({activeOperation:null});
+      }catch(error){
+        await writes;for(const k of ['remoteId','threadId','turnId'])if(error[k])batch.remote={...batch.remote,provider:inference.provider,connection:inference.connection,[k]:error[k]};batch.error=error.message;
+        if(batch.response){batch.status=batch.response.pendingTextSave?'saving':'failed';await persist();options.onProgress?.({activeOperation:null});continue;}
+        if(!error.confirmed&&(error.uncertain||(recovering&&!remoteConfirmed)||(batch.remote&&!remoteConfirmed&&!['EXECUTION_FAILED','SUBMISSION_REJECTED'].includes(error.code))||options.signal?.aborted)){batch.status='unknown';checkpoint.status='unknown';await persist();progress({});await writes;checkpoint.result=analysisResult(checkpoint,snapshot,file,'unknown');await persist();return checkpoint.result;}
+        batch.status=(error.confirmed||options.signal?.aborted||error.name==='AbortError')?'cancelled':'failed';if(batch.status==='cancelled')stopped=true;await persist();options.onProgress?.({activeOperation:null});
+      }
+    }
+    checkpoint.status=checkpoint.batches.some(b=>['unknown','running'].includes(b.status))?'unknown':checkpoint.batches.every(b=>b.status==='succeeded')?'completed':'partial';checkpoint.result=analysisResult(checkpoint,snapshot,file,checkpoint.status==='unknown'?'unknown':'completed');await persist();return checkpoint.result;
+  });
+}
+module.exports={styles,submitTool,analyze,runAnalysis,parseJSON,prepareStyles,styleCacheKey,referenceFingerprint,analysisCacheKey};

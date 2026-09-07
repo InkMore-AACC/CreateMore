@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CreateMore</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: createmore-media:; media-src 'self' data: blob: createmore-media:; connect-src 'self'; frame-src http://127.0.0.1:* http://localhost:*; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <link rel="stylesheet" href="canvas.css">
+  <link rel="stylesheet" href="desktop.css">
+  <script defer src="canvas-model.js"></script><script defer src="canvas.js"></script><script defer src="state-merge.js"></script><script defer src="annotation.js"></script><script defer src="desktop.js"></script>
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar" class="sidebar">
+    <div class="brand-row"><button class="brand" data-action="navigation" aria-label="打开主导航"><span class="brand-mark">C<span>↗</span></span><span>CreateMore</span><span class="chevron">⌄</span></button><button class="icon" data-action="left" title="收起侧栏" aria-label="收起侧栏" data-icon="panel"></button></div>
+    <div class="project-row"><button data-action="project">项目</button><span>/</span><button data-action="canvases">画布 <small>⌄</small></button></div>
+    <div class="tabs"><button data-tab="canvas" class="active">画布</button><button data-tab="assets">素材</button><button data-tab="history">历史</button></div>
+    <div class="side-filter"><span data-icon="search"></span><input id="search" placeholder="搜索节点" aria-label="搜索节点"><button class="icon" data-action="filter" aria-label="筛选节点" data-icon="filter"></button></div>
+    <div id="side-content" class="side-content"></div>
+    <div class="sidebar-foot"><span id="node-count"></span><button class="icon" data-action="import" title="导入素材" data-icon="upload"></button></div>
+  </aside>
+  <main id="workspace" tabindex="0" aria-label="无限画布">
+    <div id="viewport"><div id="world"><svg id="wires" aria-label="节点连线"></svg><div id="groups"></div><div id="nodes"></div></div><div id="marquee" hidden></div></div>
+    <div class="top-left float"><button id="reopen-left" class="icon" data-action="left" aria-label="展开侧栏" data-icon="panel" hidden></button><button data-action="workflow" class="active" data-icon="workflow" title="工作流"></button><button data-action="storyboard-view" data-icon="table" title="查看分镜表"></button><i></i><button data-action="tasks" class="task-trigger"><span data-icon="queue"></span>任务 <span id="queue-count">0</span></button></div>
+    <div class="top-right"><span id="save-status" class="save-status">正在连接本机服务</span><div class="float"><button class="icon" data-action="save" data-icon="save" title="保存画布" aria-label="保存画布"></button><button data-action="share" data-icon="share">共享</button><button data-action="agent" data-icon="agent">Agent</button><button class="icon" data-action="navigation" data-icon="more" aria-label="更多导航"></button></div><span class="avatar" title="当前操作者：我">我</span></div>
+    <div id="selection-tools" class="float selection-tools" hidden><span id="selection-count"></span><button data-action="group" data-icon="group">分组</button><button data-action="duplicate" data-icon="copy">复制</button><button data-action="delete" data-icon="trash">删除</button></div>
+    <div class="bottom-left float"><button class="icon" data-action="arrange" data-icon="arrange" title="整理画布" aria-label="整理画布"></button><button class="icon" data-action="minimap" data-icon="map" title="小地图" aria-label="小地图"></button><button class="icon active" data-action="wires" data-icon="link" title="显示或隐藏连线" aria-label="显示或隐藏连线"></button><button class="icon" data-action="snap" data-icon="grid" title="网格吸附" aria-label="网格吸附"></button><i></i><button id="zoom-value" data-action="zoom">100% <small>⌄</small></button></div>
+    <div class="bottom-center float"><button data-action="library-presets" data-icon="workflow">预设</button><button data-action="library-styles" data-icon="spark">风格</button><button data-action="library-characters" data-icon="person">角色</button><i></i><button class="icon" data-action="keys" data-icon="keyboard" title="快捷键" aria-label="快捷键"></button><button class="icon" data-action="help" data-icon="help" title="帮助与诊断" aria-label="帮助与诊断"></button></div>
+    <div class="canvas-hint">双击添加节点 <span>·</span> 空格拖动平移 <span>·</span> 滚轮缩放</div>
+    <svg id="minimap" class="minimap" viewBox="0 0 220 140" hidden aria-label="画布小地图"></svg>
+  </main>
+  <aside id="agent" class="agent">
+    <header><strong>新对话</strong><div><button class="icon" data-action="agent-share" data-icon="share" title="主动分享到画布"></button><button class="icon" data-action="agent-stop" data-icon="stop" title="停止本次对话（不取消独立生成任务）"></button><button class="icon" data-action="agent-new" data-icon="plus" title="新对话"></button><button class="icon" data-action="agent-history" data-icon="history" title="历史对话"></button><button class="icon" data-action="connections" data-icon="settings" title="连接设置"></button><button class="icon" data-action="agent" data-icon="close" aria-label="关闭 Agent"></button></div></header>
+    <div class="agent-body"><div id="agent-context" class="notice" hidden></div><div class="row" id="agent-recovery" hidden><button data-action="agent-reconcile">核对原回合</button><small>读取原记录，不重新发送</small></div><div class="agent-empty"><div class="agent-symbol" data-icon="agent"></div><h2>从一个想法开始</h2><p>连接素材、组织镜头，<br>让创作在同一张画布里发生。</p></div><div id="chat-messages"></div><div class="skill-section"><div class="section-label"><span>让 Skill 帮你迈出第一步</span><button data-action="library-skills">查看全部 ↗</button></div><div class="skill-grid"><button data-skill="电影画面提示词"><span class="skill-art blue"></span><strong>电影画面提示词</strong><small>/cinematic-image</small></button><button data-skill="剧本转分镜"><span class="skill-art amber"></span><strong>剧本转分镜</strong><small>/storyboard</small></button><button data-skill="角色一致性"><span class="skill-art sage"></span><strong>角色一致性</strong><small>/character</small></button><button data-skill="视觉风格探索"><span class="skill-art violet"></span><strong>视觉风格探索</strong><small>/visual-style</small></button></div></div></div>
+    <div class="agent-composer"><div id="agent-refs"></div><textarea id="chat-input" aria-label="Agent 输入" placeholder="开始你的创作，@ 引用节点，/ 调用 Skill"></textarea><div class="composer-bottom"><button class="icon" data-action="import" data-icon="plus" title="添加素材"></button><button data-action="connections">Codex <small>⌄</small></button><button data-action="library-skills">/ Skill</button><span class="grow"></span><button class="send" data-action="send" data-icon="up" aria-label="发送"></button></div></div><div class="agent-status"><span class="status-dot"></span>本机 Codex · 尚未连接</div>
+  </aside>
+</div>
+<div id="menu" class="menu" hidden></div>
+<section id="panel" class="panel" hidden aria-label="编辑面板"><header><div><small id="panel-eyebrow">CreateMore</small><h2 id="panel-title"></h2></div><button class="icon" data-action="close-panel" data-icon="close" aria-label="关闭面板"></button></header><div id="panel-body"></div></section>
+<div id="toast" role="status" hidden></div>
+<input type="file" id="file-input" accept="image/png,image/jpeg,image/webp,audio/*,video/*" multiple hidden>
+</body></html>

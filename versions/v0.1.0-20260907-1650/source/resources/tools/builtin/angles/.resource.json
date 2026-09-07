@@ -1,0 +1,21 @@
+{
+  "format": "createmore-resource",
+  "version": 1,
+  "id": "builtin-tool-angles",
+  "kind": "tools",
+  "name": "多角度",
+  "handler": "多角度",
+  "mediaType": "image",
+  "outputType": "image",
+  "provider": "image2",
+  "icon": "eye",
+  "order": 1,
+  "enabled": true,
+  "batch": false,
+  "revision": 1,
+  "source": "builtin",
+  "description": "处理结果保存为新卡片，保留原素材。",
+  "workflowId": "default:image-zimage-edit",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "updatedAt": "2026-09-07T00:00:00Z"
+}

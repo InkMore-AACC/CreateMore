@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Preserve byte-exact archived versions and their SHA-256 manifests.
+versions/** -text
