@@ -6,11 +6,11 @@ CreateMore 是连接 ComfyUI 本地生成、Codex 和 Image2 的创作画布，�
 
 ## 获取与运行
 
-最新源码：[v0.4.1](versions/v0.4.1-20260908-1946/source)。在安装 Node.js 和 npm 的 Windows 电脑上：
+最新源码：[v0.5.0](versions/v0.5.0-20260909-0508/source)。在安装 Node.js 和 npm 的 Windows 电脑上：
 
 ```powershell
 git clone https://github.com/InkMore-AACC/CreateMore.git
-cd CreateMore/versions/v0.4.1-20260908-1946/source
+cd CreateMore/versions/v0.5.0-20260909-0508/source
 npm ci
 npm start
 ```
@@ -27,7 +27,9 @@ ComfyUI、Python、模型、第三方节点及 Codex/API 登录由每位用户�
 
 ## 当前备份
 
-`versions/v0.4.1-20260908-1946/`（最新重构阶段版）；之前各版原样保留。此版本未复制私人项目，旧工程备份不受影响。该版 38 项正式 EXE 界面回归通过；功能实跑与待确认范围见版本内《验收结果》。19:37 的同版本目录是修复导航竞态前的阶段快照，不作为最终回归通过版本使用。
+`versions/v0.5.0-20260909-0508/`（最新交互与卡片架构版）；之前各版原样保留。该版完成普通／生成卡片分离、全局本地工作流自动路由、固定式生成框和图片／视频比例自适应。355 项完整自动测试与 38 项正式 EXE 界面回归通过；聚焦高清工作流已在当前本机 ComfyUI 真实输出 1024×1024 PNG。功能实跑与待确认范围见版本内文档。
+
+本机 `local-only/` 还保存了当前“画布测试”工程的原样副本和可迁移副本；打包前按工程已存 SHA-256 找回了一张移动到 AAA 的同内容素材。私人项目和完整 Windows-app 仍受忽略规则保护，不上传 GitHub。
 
 - `source/`：软件源码、已批准的 V5 草图、默认工作流、测试、说明和公开范围内的验收示例；同步到 GitHub。
 - `source-manifest.json`：每个源文件的大小和 SHA-256，用于检查备份是否完整。

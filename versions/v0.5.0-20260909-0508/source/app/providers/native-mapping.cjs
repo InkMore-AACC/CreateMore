@@ -1,0 +1,63 @@
+'use strict';
+
+// Runs only inside CreateMore's dedicated, sandboxed ComfyUI window.
+function installNativeMapping(app, initial = {inputs:[],outputs:[]}) {
+  window.__createMoreMapper?.dispose();
+  const host=document.createElement('aside');host.id='createmore-mapping';
+  Object.assign(host.style,{position:'fixed',right:'12px',top:'68px',bottom:'18px',width:'370px',zIndex:'9999'});
+  document.body.append(host);const root=host.attachShadow({mode:'open'});
+  const state={mapping:structuredClone(initial),selected:null,signature:'',api:{},defs:{},revision:0};
+  state.mapping.inputs||=[];state.mapping.outputs||=[];
+  const escape=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const options=(values,current)=>values.map(v=>{const [value,label]=Array.isArray(v)?v:[v,v];return `<option value="${escape(value)}" ${String(value)===String(current)?'selected':''}>${escape(label)}</option>`;}).join('');
+  const input=(name,label,value,type='text')=>`<label>${label}<input name="${name}" type="${type}" value="${escape(value)}"></label>`;
+  root.innerHTML=`<style>:host{font:13px/1.5 system-ui;color:#eee}*{box-sizing:border-box}.panel{height:100%;display:flex;flex-direction:column;background:#232526;border:1px solid #50575a;border-radius:14px;box-shadow:0 16px 50px #0009}header{padding:16px;border-bottom:1px solid #444}h2{font-size:16px;margin:0}small{color:#aeb9bd}main{overflow:auto;padding:14px;flex:1}label{display:block;margin:10px 0;color:#bac7ca}input,select,button{font:inherit;color:#eee;background:#303536;border:1px solid #586063;border-radius:7px;padding:8px;width:100%}button{cursor:pointer;margin:5px 0}button:hover{border-color:#70dce5}button.primary{background:#73d9df;color:#112326;font-weight:600}.row{display:flex;gap:8px}.row>*{flex:1}h3{font-size:14px;margin:18px 0 8px}.entry{padding:9px;border:1px solid #485356;border-radius:8px;margin:6px 0}.error{color:#ffb4a9;white-space:pre-wrap}footer{padding:12px;border-top:1px solid #444}input[type=checkbox]{width:auto}details{margin:10px 0}</style><div class="panel"><header><h2>工作流映射</h2><small>在左侧 ComfyUI 画布点击节点，再选择参数。</small></header><main><div id="selected"></div><div id="editor"></div><h3>已公开到卡片</h3><div id="mapped"></div><details open><summary>卡片控件预览</summary><div id="card-preview" class="entry"></div></details><p id="message" role="status"></p></main><footer><button id="sync-back" class="primary" type="button">同步并返回画布</button><small>修改暂存于此窗口。按 Ctrl+S 同步回 CreateMore，再点击保存工作流。关闭窗口会保留草稿，不会停止后台。</small></footer></div>`;
+  const $=s=>root.querySelector(s);
+  $('#sync-back').onclick=()=>{if(window.createMoreNative)window.createMoreNative.sync();else message('请使用 CreateMore 的正式映射窗口同步，或按 Ctrl+S。',true);};
+  function message(text,error=false){$('#message').textContent=text;$('#message').className=error?'error':'';}
+  function renderMappings(){const entries=[...state.mapping.inputs.map((m,i)=>({m,i,kind:'inputs'})),...state.mapping.outputs.map((m,i)=>({m,i,kind:'outputs'}))];$('#mapped').innerHTML=entries.map(({m,i,kind})=>`<div class="entry"><strong>${escape(m.label||m.id)}</strong><small> · ${kind==='outputs'?'输出':m.source==='reference'?'素材输入':m.source==='prompt'?'提示词':'参数'}<br>${escape(m.nodeId)} · ${escape(m.input||m.key)}</small><div class="row"><button data-locate="${escape(m.nodeId)}">定位节点</button><button data-remove="${i}" data-kind="${kind}">取消公开</button></div></div>`).join('')||'<small>尚未公开参数或输出。</small>';renderPreview();}
+  function renderPreview(){
+    $('#card-preview').innerHTML='<small>仅预览公开控件，不提交生成。</small>'+state.mapping.inputs.filter(m=>m.source!=='constant').map(m=>{
+      const label=escape(m.label||m.id)+(m.required?' *':'');
+      if(m.source==='reference')return '<label>'+label+'<button disabled>＋ '+escape(m.mediaType||'素材')+'</button></label>';
+      if(m.source==='prompt')return '<label>'+label+'<textarea disabled placeholder="输入提示词"></textarea></label>';
+      if(m.type==='boolean')return '<label><input disabled type="checkbox" '+(m.default?'checked':'')+'>'+label+'</label>';
+      if(m.options)return '<label>'+label+'<select disabled>'+options(m.options,m.default)+'</select></label>';
+      return '<label>'+label+'<input disabled value="'+escape(m.default??'')+'"></label>';
+    }).join('')+state.mapping.outputs.map(m=>'<small>→ '+escape(m.label||m.id)+' · '+escape(m.type)+(m.primary?' · 主预览':'')+'</small><br>').join('');
+  }
+  function renderSelected(){const node=state.selected;if(!node){$('#selected').textContent='请在工作流画布中选择一个节点';$('#editor').innerHTML='';return;}
+    const id=String(node.id),api=state.api[id],def=state.defs[api?.class_type||node.type]||{};
+    $('#selected').innerHTML=`<h3>${escape(node.title||node.type)} <small>#${escape(id)}</small></h3>`;
+    if(!api){$('#editor').innerHTML='<p class="error">该节点未出现在原生执行数据中。可能被禁用、未连接输出或位于子图；请在原生画布检查，不能映射到猜测的编号。</p>';return;}
+    const keys=Object.entries(api.inputs||{}).filter(([,v])=>!Array.isArray(v)).map(([key])=>key);
+    $('#editor').innerHTML=`<label>映射目标<select id="direction">${options([['inputs','输入 / 公开参数'],['outputs','保存结果输出']],'inputs')}</select></label><div id="fields"></div>`;
+    $('#direction').onchange=()=>renderFields(keys,def);renderFields(keys,def);
+  }
+  function renderFields(keys,def){const output=$('#direction').value==='outputs';
+    if(output){const old=state.mapping.outputs.find(m=>String(m.nodeId)===String(state.selected.id));$('#fields').innerHTML=`<small>${def.output_node?'此节点声明为输出节点。':'此节点未声明为输出节点，内部张量不能直接当作图片或视频保存。'}</small><form id="mapping-form"><label>结果字段<input name="key" list="result-fields" value="${escape(old?.key||'images')}"><datalist id="result-fields">${['images','audio','videos','gifs','text','files'].map(key=>'<option value="'+key+'">').join('')}</datalist></label>${input('id','固定端口标识',old?.id||'output-'+state.selected.id)}${input('label','卡片显示名称',old?.label||state.selected.title||'生成结果')}<label>素材类型<select name="type">${options(['image','video','audio','text'],old?.type||'image')}</select></label><label><input name="primary" type="checkbox" ${old?.primary?'checked':''}> 作为主预览</label><label><input name="required" type="checkbox" ${old?.required!==false?'checked':''}> 此输出必须存在</label><small>可选择常见字段或填写节点实际历史字段。字段不是内部张量端口；保存配置不代表已生成验证。修改字段会新增输出，旧映射请在下方取消公开。</small><button class="primary" ${def.output_node?'':'disabled'}>公开此输出</button></form>`;
+    }else{if(!keys.length){$('#fields').innerHTML='<small>没有可直接映射的值参数。连线输入请选中其上游加载或参数节点，避免破坏工作流连接。</small>';return;}
+      $('#fields').innerHTML=`<label>选择节点参数<select id="parameter">${options(keys,keys[0])}</select></label><div id="parameter-fields"></div>`;
+      $('#parameter').onchange=()=>parameterFields(def);parameterFields(def);return;
+    }
+    $('#mapping-form').onsubmit=saveField;
+  }
+  function parameterFields(def){const key=$('#parameter').value,id=String(state.selected.id),value=state.api[id].inputs[key],old=state.mapping.inputs.find(m=>String(m.nodeId)===id&&m.input===key),spec=def.input?.required?.[key]||def.input?.optional?.[key]||[],meta=spec[1]||{};
+    const type=old?.type||({INT:'integer',FLOAT:'number',BOOLEAN:'boolean'}[spec[0]]||typeof value),choices=Array.isArray(spec[0])?spec[0]:spec[0]==='COMBO'?meta.options:null;
+    const defaultValue=old?.source==='constant'?old.value:old?.default??value;
+    $('#parameter-fields').innerHTML=`<form id="mapping-form"><label>用途<select name="source">${options([['parameter','公开到卡片的可调参数'],['prompt','卡片提示词'],['reference','素材输入端口'],['constant','固定值']],old?.source||'parameter')}</select></label>${input('id','固定端口标识',old?.id||'n'+id+'-'+key)}${input('label','卡片显示名称',old?.label||key)}${input('description','说明',old?.description||'')}<label>数值类型<select name="type">${options(['string','integer','number','boolean'],type)}</select></label>${choices?`<label>默认选项<select name="default">${options(choices,defaultValue)}</select></label>`:type==='boolean'?`<label>默认值<select name="default">${options(['true','false'],defaultValue)}</select></label>`:input('default','默认值',defaultValue)}<div class="row">${input('min','最小值',old?.min??meta.min??'','number')}${input('max','最大值',old?.max??meta.max??'','number')}</div><label>素材端口类型<select name="mediaType">${options(['image','video','audio','text'],old?.mediaType||'image')}</select></label>${input('index','未指定端口素材的顺序（从 0 开始）',old?.index??0,'number')}<label><input name="multiple" type="checkbox" ${old?.multiple?'checked':''}> 此参数接受素材数组（加载节点须支持）</label><label><input name="required" type="checkbox" ${old?.required?'checked':''}> 必填</label><button class="primary">${old?'更新':'公开'}这个参数</button></form>`;
+    $('#mapping-form').onsubmit=event=>saveField(event,choices);
+  }
+  function saveField(event,choices){event.preventDefault();try{const f=new FormData(event.target),kind=$('#direction').value,id=String(f.get('id')||'').trim();if(!id)throw new Error('固定标识不能为空');const nodeId=String(state.selected.id),inputKey=$('#parameter')?.value,key=String(f.get('key')||'');const existing=state.mapping[kind].findIndex(m=>kind==='inputs'?String(m.nodeId)===nodeId&&m.input===inputKey:String(m.nodeId)===nodeId&&m.key===key);if(state.mapping[kind].some((m,i)=>i!==existing&&String(m.id)===id))throw new Error('固定标识重复，请使用不同标识');
+      const previous=existing<0?{}:state.mapping[kind][existing];let result;
+      if(kind==='outputs'){result={...previous,id,nodeId,key,label:String(f.get('label')||id),type:String(f.get('type')),primary:f.has('primary'),required:f.has('required')};if(!key.trim())throw new Error('结果字段不能为空');if(result.primary)state.mapping.outputs.forEach(m=>m.primary=false);}
+      else{const type=String(f.get('type')),source=String(f.get('source')),raw=f.get('default');let value=['number','integer'].includes(type)?Number(raw):type==='boolean'?raw==='true':String(raw??'');if(type==='boolean'&&!['true','false'].includes(raw))throw new Error('布尔值必须是 true 或 false');if(['number','integer'].includes(type)&&(!Number.isFinite(value)||(type==='integer'&&!Number.isInteger(value))))throw new Error('默认数值无效');result={...previous,id,nodeId,input:inputKey,label:String(f.get('label')||id),description:String(f.get('description')||''),source,type,default:value,required:f.has('required')};for(const stale of ['value','min','max','options','mediaType','index','multiple'])delete result[stale];if(source==='constant')result.value=value;if(source==='reference'){if(['$prompt','$style'].includes(id))throw new Error('此端口标识由画布保留，请更换');result.mediaType=String(f.get('mediaType'));result.index=Number(f.get('index')||0);result.multiple=f.has('multiple');if(!Number.isInteger(result.index)||result.index<0||result.index>63)throw new Error('素材索引须为 0–63 的整数');}if(['number','integer'].includes(type))for(const bound of ['min','max'])if(f.get(bound)!==''){result[bound]=Number(f.get(bound));if(!Number.isFinite(result[bound]))throw new Error('范围必须是有效数字');}if(result.min!=null&&result.max!=null&&result.min>result.max)throw new Error('最小值不能大于最大值');if((result.min!=null&&value<result.min)||(result.max!=null&&value>result.max))throw new Error('默认值不能超出范围');if(choices&&source==='parameter')result.options=choices;}
+      if(existing<0)state.mapping[kind].push(result);else state.mapping[kind][existing]=result;state.revision++;renderMappings();message('已暂存。Ctrl+S 同步回 CreateMore 后保存工作流。');
+    }catch(e){message(e.message,true);}}
+  root.addEventListener('click',event=>{const b=event.target.closest('button');if(!b)return;if(b.dataset.remove!=null){state.mapping[b.dataset.kind].splice(Number(b.dataset.remove),1);state.revision++;renderMappings();}if(b.dataset.locate){const node=app.graph.getNodeById(b.dataset.locate);if(node){app.canvas.selectNode(node);app.canvas.centerOnNode(node);}else message('节点已删除或位于其他子图，请核对映射。',true);}});
+  let busy=false;async function poll(){if(busy)return;const selected=Object.values(app.canvas?.selected_nodes||{}),node=selected.length===1?selected[0]:null,sig=node?String(node.id)+':'+node.type:'none';if(sig===state.signature)return;busy=true;try{const converted=await app.graphToPrompt();state.api=converted.output||{};state.selected=node;state.signature=sig;renderSelected();}catch(e){message('原生转换失败：'+e.message,true);}finally{busy=false;}}
+  const timer=setInterval(poll,350);const controller={state,dispose(){clearInterval(timer);host.remove();}};window.__createMoreMapper=controller;
+  fetch('/object_info').then(r=>{if(!r.ok)throw new Error('无法读取节点定义');return r.json();}).then(defs=>{state.defs=defs;state.signature='';poll();}).catch(e=>message(e.message,true));renderMappings();poll();
+  return true;
+}
+module.exports={installNativeMapping};

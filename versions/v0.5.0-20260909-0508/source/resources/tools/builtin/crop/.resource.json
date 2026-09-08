@@ -1,0 +1,21 @@
+{
+  "format": "createmore-resource",
+  "version": 1,
+  "id": "builtin-tool-crop",
+  "kind": "tools",
+  "name": "裁切",
+  "handler": "裁切",
+  "mediaType": "image",
+  "outputType": "image",
+  "provider": "comfyui",
+  "icon": "scissors",
+  "order": 7,
+  "enabled": true,
+  "batch": false,
+  "revision": 1,
+  "source": "builtin",
+  "description": "处理结果保存为新卡片，保留原素材。",
+  "workflowId": "default:tool-image-crop",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "updatedAt": "2026-09-07T00:00:00Z"
+}

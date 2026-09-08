@@ -1,0 +1,5 @@
+'use strict';
+const fs=require('node:fs/promises');const path=require('node:path');
+async function request(method,args={}){const dataDir=process.env.CREATEMORE_DATA_DIR||path.join(process.env.APPDATA||process.cwd(),'CreateMore');const config=JSON.parse(await fs.readFile(path.join(dataDir,'automation.json'),'utf8'));const response=await fetch(config.url,{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+config.token},body:JSON.stringify({method,args}),signal:AbortSignal.timeout(120000)});const body=await response.json();if(body.error)throw Object.assign(new Error(body.error.message),body.error);return body.result;}
+if(require.main===module){const [method,arg='{}']=process.argv.slice(2);if(!method){process.stdout.write('CreateMore CLI：node app/cli.cjs canvas.get\n或 node app/cli.cjs agent.tool "{...}"\n软件需先启动。不会修改 Codex 全局设置。\n');}else request(method,JSON.parse(arg)).then(result=>process.stdout.write(JSON.stringify(result,null,2)+'\n')).catch(e=>{process.stderr.write(e.message+'\n');process.exitCode=1;});}
+module.exports={request};
