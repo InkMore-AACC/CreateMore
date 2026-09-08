@@ -1,0 +1,64 @@
+{
+  "inputs": [
+    {
+      "id": "prompt",
+      "label": "提示词",
+      "source": "prompt",
+      "nodeId": "4",
+      "input": "text",
+      "required": true
+    },
+    {
+      "id": "width",
+      "label": "width",
+      "source": "parameter",
+      "nodeId": "6",
+      "input": "width",
+      "type": "integer",
+      "default": 1024,
+      "min": 64,
+      "max": 2048
+    },
+    {
+      "id": "height",
+      "label": "height",
+      "source": "parameter",
+      "nodeId": "6",
+      "input": "height",
+      "type": "integer",
+      "default": 1024,
+      "min": 64,
+      "max": 2048
+    },
+    {
+      "id": "seed",
+      "label": "seed",
+      "source": "parameter",
+      "nodeId": "8",
+      "input": "seed",
+      "type": "integer",
+      "default": 42,
+      "min": 0,
+      "max": 9007199254740991
+    },
+    {
+      "id": "steps",
+      "label": "steps",
+      "source": "parameter",
+      "nodeId": "8",
+      "input": "steps",
+      "type": "integer",
+      "default": 8,
+      "min": 1,
+      "max": 30
+    }
+  ],
+  "outputs": [
+    {
+      "id": "image",
+      "nodeId": "10",
+      "key": "images",
+      "type": "image"
+    }
+  ]
+}

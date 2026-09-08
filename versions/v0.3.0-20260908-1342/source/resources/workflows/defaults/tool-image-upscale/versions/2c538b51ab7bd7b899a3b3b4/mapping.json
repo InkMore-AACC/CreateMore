@@ -1,0 +1,22 @@
+{
+  "inputs": [
+    {
+      "id": "image",
+      "label": "参考图片",
+      "source": "reference",
+      "nodeId": "1",
+      "input": "image",
+      "index": 0,
+      "required": true,
+      "mediaType": "image"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "image",
+      "nodeId": "9",
+      "key": "images",
+      "type": "image"
+    }
+  ]
+}

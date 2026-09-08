@@ -34,11 +34,11 @@ async function main(){
   let canvas=null;
   if(projectDir){
     const project=path.resolve(projectDir);if(inside(project,destination)||inside(destination,project)||project===source)throw new Error('Project/source backup locations overlap');
-    await fs.access(path.join(project,'.createmore.json'));
-    await copyTree(project,path.join(localDir,'current-project-original'),localFiles,localDir);
     const {ProjectStore}=require(path.join(source,'app/core/storage.cjs'));const store=new ProjectStore({dataDir:path.join(localDir,'packaging-state'),appDir:source});
+    await store.openProject(project);
+    await copyTree(project,path.join(localDir,'current-project-original'),localFiles,localDir);
     await store.packageProject(project,path.join(localDir,'current-project-portable'));
-    const packaged=JSON.parse(await fs.readFile(path.join(localDir,'current-project-portable','.createmore.json'),'utf8'));let nodes=0,assets=0;
+    const packaged=await store.openProject(path.join(localDir,'current-project-portable'));let nodes=0,assets=0;
     for(const item of packaged.canvases){const loaded=await store.loadCanvas(path.join(localDir,'current-project-portable'),item.id);nodes+=loaded.state.nodes.length;for(const asset of loaded.state.assets){const file=await store.resolveAssetPath(path.join(localDir,'current-project-portable'),item.id,asset);if(asset.sha256&&await sha(file)!==asset.sha256)throw new Error('Portable project asset verification failed');assets++;}}
     canvas={source:project,canvases:packaged.canvases.length,nodes,assets,portableAssetsVerified:true};
   }
