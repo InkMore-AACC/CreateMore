@@ -1,0 +1,20 @@
+'use strict';
+const fs=require('node:fs/promises'),path=require('node:path'),crypto=require('node:crypto');
+const {ProjectStore}=require('../app/core/storage.cjs');
+const hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
+async function main(){
+  const root=path.resolve(__dirname,'..'),manifest=JSON.parse(await fs.readFile(path.join(root,'dist','latest-build.json'),'utf8')),release=manifest.releases?.[0];
+  if(!release)throw new Error('没有当前交付记录');const destination=path.resolve(release.directory);if(!destination.startsWith(path.join(root,'dist')+path.sep))throw new Error('交付目录越界');
+  if(hash(await fs.readFile(release.exe))!==release.sha256)throw new Error('EXE校验不匹配');const files=[];
+  async function compare(dir,target){for(const entry of await fs.readdir(path.join(root,dir),{withFileTypes:true})){if(entry.name==='.trash')continue;const rel=path.join(dir,entry.name),output=path.join(target,entry.name);if(dir.startsWith('app'+path.sep+'providers')&&/(?:probe|live-recipes)/.test(entry.name))continue;if(entry.isDirectory())await compare(rel,output);else if(entry.isFile()){const sourceHash=hash(await fs.readFile(path.join(root,rel))),outputHash=hash(await fs.readFile(output));if(sourceHash!==outputHash)throw new Error('交付文件与源文件不同：'+rel);files.push({path:path.relative(destination,output).replaceAll(path.sep,'/'),sha256:outputHash});}}}
+  await compare('app',path.join(destination,'resources','app','app'));
+  const preserved=[];
+  async function verifyResources(source,target){for(const entry of await fs.readdir(source,{withFileTypes:true})){if(entry.name==='.trash')continue;const from=path.join(source,entry.name),to=path.join(target,entry.name);if(entry.isDirectory())await verifyResources(from,to);else if(entry.isFile()){const digest=hash(await fs.readFile(from));if(hash(await fs.readFile(to))!==digest)throw new Error('用户资源未完整保留：'+from);preserved.push({path:path.relative(destination,to),sha256:digest});}}}
+  if(release.preservedResourcesFrom)for(const kind of ['skills','tools','workflows'])await verifyResources(path.join(release.preservedResourcesFrom,'resources',kind),path.join(destination,'resources',kind));
+  const catalog=JSON.parse(await fs.readFile(path.join(destination,'resources','workflows','catalog.json'),'utf8'));for(const item of catalog){if(path.isAbsolute(item.path))throw new Error('工作流目录含本机绝对路径');await fs.access(path.join(destination,'resources','workflows',item.path,'workflow.api.json'));}
+  const projectDir=path.join(destination,'examples','新工程示例'),store=new ProjectStore({dataDir:path.join(root,'.test-output','release-readonly-check')}),project=JSON.parse(await fs.readFile(path.join(projectDir,'项目.createmore'),'utf8'));let assets=0,nodes=0;
+  for(const item of project.canvases){const canvas=await store.loadCanvas(projectDir,item.id);if(canvas.state.sharing||canvas.state.sharedCanvasId)throw new Error('示例未脱离原共享身份');for(const node of canvas.state.nodes){nodes++;if(node.owner!=='me'||node.execution||node.taskId)throw new Error('示例携带旧成员或执行任务');}for(const asset of canvas.state.assets){const file=await store.resolveAssetPath(projectDir,item.id,asset.id);if(!file)throw new Error('示例缺素材：'+asset.id);const bytes=await fs.readFile(file);if(asset.sha256&&hash(bytes)!==asset.sha256)throw new Error('示例素材损坏');assets++;}}
+  const evidence={at:new Date().toISOString(),release:destination,exeHash:release.sha256,files:files.length,applicationHash:hash(JSON.stringify(files)),preservedResources:preserved.length,workflows:catalog.length,example:{nodes,assets,format:project.version},verified:true,scope:'逐字节对照应用代码与上一版用户资源；新建空白工程示例可读取；启动和功能运行另记'};
+  await fs.mkdir(path.join(root,'testing-output'),{recursive:true});await fs.writeFile(path.join(root,'testing-output','release-integrity.json'),JSON.stringify({...evidence,manifest:files},null,2));process.stdout.write(JSON.stringify(evidence,null,2)+'\n');
+}
+main().catch(error=>{process.stderr.write(error.stack+'\n');process.exitCode=1;});

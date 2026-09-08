@@ -1,0 +1,15 @@
+{
+  "format": "createmore-resource",
+  "version": 1,
+  "id": "builtin-storyboard",
+  "kind": "skills",
+  "name": "剧本转分镜",
+  "description": "按叙事信息和真实表演容量拆成可编辑镜头表。",
+  "category": "general",
+  "source": "builtin",
+  "revision": 1,
+  "enabled": true,
+  "cover": "cover.svg",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "updatedAt": "2026-09-07T00:00:00Z"
+}

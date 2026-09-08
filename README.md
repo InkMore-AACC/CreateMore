@@ -4,13 +4,13 @@
 
 ## 当前备份
 
-`versions/v0.3.0-20260908-1342/`（新版）；旧版 `versions/v0.1.0-20260907-1650/` 原样保留。
+`versions/v0.3.1-20260908-1422/`（新版）；之前各版原样保留。此版本未另行复制私人项目，之前版本中的工程备份不受影响。
 
 - `source/`：软件源码、已批准的 V5 草图、默认工作流、测试、说明和公开范围内的验收示例；同步到 GitHub。
 - `source-manifest.json`：每个源文件的大小和 SHA-256，用于检查备份是否完整。
 - `local-only/Windows-app/`：可直接运行的 Windows 软件完整目录；仅保留在本机，不提交 GitHub。
-- `local-only/current-project-original/`：本次已保存的当前工程原样副本，仅本地。
-- `local-only/current-project-portable/`：重新分配独立工程身份、收齐外部引用素材的可迁移副本，仅本地。
+- `local-only/current-project-original/`：选择备份工程时保存的原样副本，仅本地；不是每个版本都有。
+- `local-only/current-project-portable/`：选择备份工程时创建的可迁移副本，仅本地；不是每个版本都有。
 - `打开备份软件.cmd`：在本机运行该版本；从 GitHub 单独下载的源码不含运行程序。
 
 ## 给设计师的使用方法
