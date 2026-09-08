@@ -1,0 +1,264 @@
+{
+  "format": "createmore-canvas",
+  "version": 1,
+  "id": "a3d9d126-dc60-4a0d-8113-b1cce2475204",
+  "copiedFromCanvasId": "fa15e15e-03ee-4cc4-97dd-61d9a4843554",
+  "name": "主画布",
+  "createdAt": "2026-09-06T23:51:57.002Z",
+  "updatedAt": "2026-09-07T00:29:47.011Z",
+  "autosaveHash": "5215ffe531ba5c2b5695ffdc9278e0445799365aa8776ff9ab367fd8905352f9",
+  "state": {
+    "version": 5,
+    "nodes": [
+      {
+        "id": "n-909385c1-f06d-49f6-a3aa-cd6b9bc0eeb9",
+        "type": "image",
+        "title": "本地图片 · 两份真实结果",
+        "x": 110,
+        "y": 150,
+        "w": 380,
+        "h": 254,
+        "owner": "me",
+        "prompt": "A matte teal ceramic cup on a warm gray table, soft natural side light, quiet minimal studio photograph, no letters.",
+        "content": "",
+        "source": "本地 ComfyUI",
+        "ratio": "1:1",
+        "quality": "256px",
+        "count": 2,
+        "shots": [],
+        "parameters": {
+          "width": 256,
+          "height": 256,
+          "steps": 4,
+          "seed": 70321
+        },
+        "asset": "image/55d6c5272a9f7665802d.png",
+        "assetId": "371aaf9a-45fa-4691-b05e-14111b3556be",
+        "outputAssets": [
+          "371aaf9a-45fa-4691-b05e-14111b3556be",
+          "f4cb6caf-4d14-4283-8b26-223208438121"
+        ],
+        "outputBindings": {
+          "image": {
+            "assetId": "371aaf9a-45fa-4691-b05e-14111b3556be",
+            "assetIds": [
+              "371aaf9a-45fa-4691-b05e-14111b3556be",
+              "f4cb6caf-4d14-4283-8b26-223208438121"
+            ]
+          }
+        },
+        "generations": [
+          {
+            "index": 0,
+            "seed": 70321,
+            "seedStatus": "submitted",
+            "completedAt": "2026-09-06T23:52:01.422Z",
+            "partial": false
+          },
+          {
+            "index": 1,
+            "seed": 70322,
+            "seedStatus": "submitted",
+            "completedAt": "2026-09-06T23:52:02.634Z",
+            "partial": false
+          }
+        ],
+        "generationErrors": [],
+        "lastResultAt": "2026-09-06T23:52:02.657Z",
+        "copiedFromOwner": "53f0cb6a3d76c258b44c76e56bc6b649"
+      },
+      {
+        "id": "n-2c911818-b9ee-4893-b8c5-5426daa64d18",
+        "type": "text",
+        "title": "本机 Codex · 创作说明",
+        "x": 560,
+        "y": 150,
+        "w": 310,
+        "h": 230,
+        "owner": "me",
+        "prompt": "请用中文写一句不超过30字的摄影意图：青绿色陶杯、温灰背景、自然侧光。只输出这句话，不调用工具。",
+        "content": "以自然侧光勾勒青绿色陶杯，在温灰背景中呈现温润质感。",
+        "source": "Codex",
+        "ratio": "16:9",
+        "quality": "1K",
+        "count": 1,
+        "shots": [],
+        "asset": "text/ec628cb940ab04cb1b8b.txt",
+        "assetId": "e9b9d7c6-e7b9-4e99-acaf-1f301fd1fb73",
+        "outputAssets": [
+          "e9b9d7c6-e7b9-4e99-acaf-1f301fd1fb73"
+        ],
+        "outputBindings": {},
+        "lastResultAt": "2026-09-06T23:52:08.360Z",
+        "copiedFromOwner": "53f0cb6a3d76c258b44c76e56bc6b649"
+      },
+      {
+        "id": "n-7228b73c-e1a1-4b09-bc58-fff1731c1a7c",
+        "type": "image",
+        "title": "Codex Image2 · 实机生成",
+        "x": 1000,
+        "y": 150,
+        "w": 380,
+        "h": 254,
+        "owner": "me",
+        "prompt": "Create a polished still-life photograph of one small matte teal ceramic cup on a warm gray stone table. A pale linen drape in the background. Soft side light, subtle tactile ceramic detail, generous negative space, restrained cinematic color. Square composition. No lettering, no logo, no collage.",
+        "content": "我将使用内置 image_gen 工具生成这张 1:1 静物照片。\n\n",
+        "source": "Codex Image2",
+        "ratio": "1:1",
+        "quality": "1K",
+        "count": 1,
+        "shots": [],
+        "asset": "image/5c932ad3a8489a9b959f.png",
+        "assetId": "5b4ca0c1-84bd-4dcc-95d3-52b2d6181790",
+        "outputAssets": [
+          "5b4ca0c1-84bd-4dcc-95d3-52b2d6181790"
+        ],
+        "outputBindings": {},
+        "generations": [
+          {
+            "index": 0,
+            "seed": 610754284,
+            "seedStatus": "unsupported-or-not-reported",
+            "completedAt": "2026-09-06T23:52:40.012Z",
+            "partial": false
+          }
+        ],
+        "generationErrors": [],
+        "lastResultAt": "2026-09-06T23:52:40.025Z",
+        "copiedFromOwner": "53f0cb6a3d76c258b44c76e56bc6b649"
+      },
+      {
+        "id": "n-c42b128b-97fa-4472-b702-0a3049525317",
+        "type": "video",
+        "title": "本地 H3 · 含音轨短片",
+        "x": 110,
+        "y": 620,
+        "w": 380,
+        "h": 214,
+        "owner": "me",
+        "prompt": "A small teal ceramic cup rests on a gray stone table in soft morning light. The camera slowly moves closer. Quiet ambient room tone, no music, no speech, no text.",
+        "content": "",
+        "source": "本地 ComfyUI",
+        "ratio": "1:1",
+        "quality": "256px",
+        "count": 1,
+        "shots": [],
+        "parameters": {
+          "width": 256,
+          "height": 256,
+          "length": 22,
+          "steps": 4,
+          "seed": 70324
+        },
+        "asset": "video/b7f95c0d8b89acd1a98f.mp4",
+        "assetId": "4226621c-c2b8-4f2b-be96-0445bb0d7da1",
+        "outputAssets": [
+          "4226621c-c2b8-4f2b-be96-0445bb0d7da1"
+        ],
+        "outputBindings": {
+          "video": {
+            "assetId": "4226621c-c2b8-4f2b-be96-0445bb0d7da1",
+            "assetIds": [
+              "4226621c-c2b8-4f2b-be96-0445bb0d7da1"
+            ]
+          }
+        },
+        "lastResultAt": "2026-09-06T23:52:50.843Z",
+        "copiedFromOwner": "53f0cb6a3d76c258b44c76e56bc6b649"
+      }
+    ],
+    "edges": [],
+    "groups": [],
+    "assets": [
+      {
+        "id": "371aaf9a-45fa-4691-b05e-14111b3556be",
+        "title": "fee637a4-6354-4c16-9cc6-e7aa28669711-image_00003_.png",
+        "type": "image",
+        "asset": "image/55d6c5272a9f7665802d.png",
+        "path": "image/55d6c5272a9f7665802d.png",
+        "external": false,
+        "generated": true,
+        "size": 76826,
+        "sha256": "55d6c5272a9f7665802d7129c1a09a6da01000f6b7f575e42eaba8cfc0d660d0",
+        "createdAt": "2026-09-06T23:52:02.647Z",
+        "outputId": "image",
+        "generationIndex": 0,
+        "seed": 70321,
+        "missing": false
+      },
+      {
+        "id": "f4cb6caf-4d14-4283-8b26-223208438121",
+        "title": "72187634-508f-4cc4-a515-6f5ecde57f65-image_00004_.png",
+        "type": "image",
+        "asset": "image/a2dfee025630ca697585.png",
+        "path": "image/a2dfee025630ca697585.png",
+        "external": false,
+        "generated": true,
+        "size": 78929,
+        "sha256": "a2dfee025630ca697585d85a266f22995b96f422f3f3bfb2752e2f69a18aa7f3",
+        "createdAt": "2026-09-06T23:52:02.654Z",
+        "outputId": "image",
+        "generationIndex": 1,
+        "seed": 70322,
+        "missing": false
+      },
+      {
+        "id": "e9b9d7c6-e7b9-4e99-acaf-1f301fd1fb73",
+        "title": "codex-40e657c2-4878-46e0-8366-bc8aa9ca7a52.txt",
+        "type": "text",
+        "asset": "text/ec628cb940ab04cb1b8b.txt",
+        "path": "text/ec628cb940ab04cb1b8b.txt",
+        "external": false,
+        "generated": true,
+        "size": 78,
+        "sha256": "ec628cb940ab04cb1b8b6537a14b8863eddd3af52ccf217b62b36536e1357d33",
+        "createdAt": "2026-09-06T23:52:08.358Z",
+        "missing": false
+      },
+      {
+        "id": "5b4ca0c1-84bd-4dcc-95d3-52b2d6181790",
+        "title": "image2-99938f42-d8bb-4485-a4ad-5b3ac2c90178.png",
+        "type": "image",
+        "asset": "image/5c932ad3a8489a9b959f.png",
+        "path": "image/5c932ad3a8489a9b959f.png",
+        "external": false,
+        "generated": true,
+        "size": 1915609,
+        "sha256": "5c932ad3a8489a9b959f2eb9de79aea5449a3967af653b63f19b6c69bb1b8f69",
+        "createdAt": "2026-09-06T23:52:40.022Z",
+        "generationIndex": 0,
+        "missing": false
+      },
+      {
+        "id": "4226621c-c2b8-4f2b-be96-0445bb0d7da1",
+        "title": "2ec64e05-2eaf-43ba-a112-ea2cf2637159-video_00003_.mp4",
+        "type": "video",
+        "asset": "video/b7f95c0d8b89acd1a98f.mp4",
+        "path": "video/b7f95c0d8b89acd1a98f.mp4",
+        "external": false,
+        "generated": true,
+        "size": 62497,
+        "sha256": "b7f95c0d8b89acd1a98fa19daaa6f5fbcefe6f148ba2efa20be7b8cf15c1bbd4",
+        "createdAt": "2026-09-06T23:52:50.840Z",
+        "outputId": "video",
+        "missing": false
+      }
+    ],
+    "view": {
+      "x": 50,
+      "y": 40,
+      "k": 0.72
+    },
+    "seq": 0,
+    "settings": {
+      "saveMinutes": 5,
+      "maxSnapshots": 100
+    },
+    "appliedTaskIds": [
+      "task-5da4f5c6-88dc-4583-acaf-0e4319a9ac72",
+      "task-050545be-4569-4a24-9223-14b506ada907",
+      "task-4e908c8a-6bb0-4a31-9933-9399bb3f880b",
+      "task-25b557ff-ac4a-483a-b865-f58a12f9abec"
+    ]
+  }
+}

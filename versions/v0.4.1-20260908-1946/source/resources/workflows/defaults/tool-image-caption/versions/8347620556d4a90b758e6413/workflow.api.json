@@ -1,0 +1,57 @@
+{
+  "1": {
+    "inputs": {
+      "clip_name": "qwen3vl_8b_fp8_scaled.safetensors",
+      "type": "qwen_image",
+      "device": "default"
+    },
+    "class_type": "CLIPLoader",
+    "_meta": {
+      "title": "Load CLIP"
+    }
+  },
+  "2": {
+    "inputs": {
+      "prompt": "请写一句中文风景描述。",
+      "max_length": 256,
+      "sampling_mode": "off",
+      "thinking": false,
+      "use_default_template": true,
+      "clip": [
+        "1",
+        0
+      ],
+      "image": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "TextGenerate",
+    "_meta": {
+      "title": "Generate Text"
+    }
+  },
+  "3": {
+    "inputs": {
+      "filename_prefix": "CreateMore/llm",
+      "format": "txt",
+      "text": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "SaveText",
+    "_meta": {
+      "title": "Save Text"
+    }
+  },
+  "4": {
+    "inputs": {
+      "image": "example.png"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  }
+}

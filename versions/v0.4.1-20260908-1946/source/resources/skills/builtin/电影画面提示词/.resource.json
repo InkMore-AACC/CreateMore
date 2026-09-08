@@ -1,0 +1,15 @@
+{
+  "format": "createmore-resource",
+  "version": 1,
+  "id": "builtin-cinematic-image",
+  "kind": "skills",
+  "name": "电影画面提示词",
+  "description": "把创作意图整理成可直接生成的镜头与画面描述。",
+  "category": "general",
+  "source": "builtin",
+  "revision": 1,
+  "enabled": true,
+  "cover": "cover.svg",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "updatedAt": "2026-09-07T00:00:00Z"
+}

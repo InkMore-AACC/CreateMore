@@ -1,0 +1,19 @@
+{
+  "inputs": [
+    {
+      "id": "prompt",
+      "source": "prompt",
+      "nodeId": "1",
+      "input": "value",
+      "required": true
+    }
+  ],
+  "outputs": [
+    {
+      "id": "text",
+      "nodeId": "2",
+      "key": "text",
+      "type": "text"
+    }
+  ]
+}

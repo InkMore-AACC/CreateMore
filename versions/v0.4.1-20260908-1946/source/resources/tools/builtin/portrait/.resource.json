@@ -1,0 +1,21 @@
+{
+  "format": "createmore-resource",
+  "version": 1,
+  "id": "builtin-tool-portrait",
+  "kind": "tools",
+  "name": "人像质感",
+  "handler": "人像质感",
+  "mediaType": "image",
+  "outputType": "image",
+  "provider": "image2",
+  "icon": "person",
+  "order": 0,
+  "enabled": true,
+  "batch": false,
+  "revision": 2,
+  "source": "builtin",
+  "description": "处理结果保存为新卡片，保留原素材。",
+  "workflowId": "default:tool-qwen-portrait",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "updatedAt": "2026-09-08T07:45:00Z"
+}

@@ -1,0 +1,62 @@
+'use strict';
+const {ProviderError}=require('./util.cjs');
+// These are authored, fixed recipes for core nodes, NOT a GUI-to-API importer.
+const node=(class_type,inputs)=>({class_type,inputs});
+const parameter=(id,nodeId,input,defaultValue,min,max)=>({id,label:id,source:'parameter',nodeId,input,type:'integer',default:defaultValue,min,max});
+const imageInput={id:'image',label:'参考图片',source:'reference',nodeId:'1',input:'image',index:0,required:true,mediaType:'image'};
+const imageOutput=(id='9')=>({id:'image',nodeId:id,key:'images',type:'image'});
+function recipes(){const z={
+  '1':node('UNETLoader',{unet_name:'z_image_turbo_bf16.safetensors',weight_dtype:'default'}),
+  '2':node('CLIPLoader',{clip_name:'qwen_3_4b.safetensors',type:'lumina2',device:'default'}),
+  '3':node('VAELoader',{vae_name:'ae.safetensors'}),
+  '4':node('CLIPTextEncode',{text:'A quiet mountain landscape at sunrise.',clip:['2',0]}),
+  '5':node('ConditioningZeroOut',{conditioning:['4',0]}),
+  '6':node('EmptySD3LatentImage',{width:1024,height:1024,batch_size:1}),
+  '7':node('ModelSamplingAuraFlow',{model:['1',0],shift:3}),
+  '8':node('KSampler',{model:['7',0],seed:42,steps:8,cfg:1,sampler_name:'res_multistep',scheduler:'simple',positive:['4',0],negative:['5',0],latent_image:['6',0],denoise:1}),
+  '9':node('VAEDecode',{samples:['8',0],vae:['3',0]}),
+  '10':node('SaveImage',{images:['9',0],filename_prefix:'CreateMore/image'})};
+  const zInputs=[{id:'prompt',label:'提示词',source:'prompt',nodeId:'4',input:'text',required:true},parameter('width','6','width',1024,64,2048),parameter('height','6','height',1024,64,2048),parameter('seed','8','seed',42,0,Number.MAX_SAFE_INTEGER),parameter('steps','8','steps',8,1,30)];
+  const img2img=structuredClone(z);img2img['11']=node('LoadImage',{image:'example.png'});img2img['6']=node('VAEEncode',{pixels:['11',0],vae:['3',0]});img2img['8'].inputs.denoise=0.55;
+  const textApi={'1':node('CLIPLoader',{clip_name:'qwen_3_4b.safetensors',type:'flux2',device:'default'}),'2':node('TextGenerate',{clip:['1',0],prompt:'请写一句中文风景描述。',max_length:256,sampling_mode:'off',thinking:false,use_default_template:true}),'3':node('SaveText',{text:['2',0],filename_prefix:'CreateMore/llm',format:'txt'})};
+  const visionApi=structuredClone(textApi);visionApi['1'].inputs={clip_name:'qwen3vl_8b_fp8_scaled.safetensors',type:'qwen_image',device:'default'};visionApi['4']=node('LoadImage',{image:'example.png'});visionApi['2'].inputs.image=['4',0];
+  const textMapping={inputs:[{id:'prompt',label:'指令',source:'prompt',nodeId:'2',input:'prompt',required:true},parameter('max_length','2','max_length',256,1,2048)],outputs:[{id:'text',nodeId:'3',key:'text',type:'text'}]};
+  const videoApi={
+    '1':node('UNETLoader',{unet_name:'minimax_h3_fl2va_pruned_int8_convrot.safetensors',weight_dtype:'default'}),
+    '2':node('CLIPLoader',{clip_name:'qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors',type:'minimax',device:'default'}),
+    '3':node('VAELoader',{vae_name:'minimax_h3_video_vae_fp16.safetensors'}),'4':node('VAELoader',{vae_name:'minimax_h3_audio_vae_fp32.safetensors'}),
+    '5':node('MiniMaxH3TurboLoRA',{model:['1',0],lora_name:'minimax_h3_turbo_v4_step600_ema.safetensors',strength:1,low_vram:false}),
+    '6':node('MiniMaxH3SigmaShift',{model:['5',0],shift_video:12,shift_audio:3}),
+    '7':node('MiniMaxH3ImageToVideo',{clip:['2',0],vae:['3',0],prompt:'A ceramic cup on a table. Static camera, soft natural light. Quiet room tone.',width:512,height:512,length:124}),
+    '8':node('RandomNoise',{noise_seed:42}),'9':node('KSamplerSelect',{sampler_name:'euler'}),'10':node('BasicScheduler',{model:['6',0],scheduler:'beta',steps:6,denoise:1}),
+    '11':node('BasicGuider',{model:['6',0],conditioning:['7',0]}),'12':node('SamplerCustomAdvanced',{noise:['8',0],guider:['11',0],sampler:['9',0],sigmas:['10',0],latent_image:['7',1]}),
+    '13':node('VAEDecode',{samples:['12',0],vae:['3',0]}),'14':node('VAEDecodeAudio',{samples:['12',0],vae:['4',0]}),'15':node('CreateVideo',{images:['13',0],audio:['14',0],fps:24}),'16':node('SaveVideo',{video:['15',0],filename_prefix:'CreateMore/video',format:'mp4','format.codec':'auto'})};
+  const videoInputs=[{id:'prompt',label:'视频描述',source:'prompt',nodeId:'7',input:'prompt',required:true},parameter('width','7','width',512,128,1344),parameter('height','7','height',512,128,1344),parameter('length','7','length',124,5,362),parameter('seed','8','noise_seed',42,0,Number.MAX_SAFE_INTEGER),parameter('steps','10','steps',6,1,30)];
+  const i2v=structuredClone(videoApi);i2v['17']=node('LoadImage',{image:'example.png'});i2v['7'].inputs.first_frame=['17',0];
+  const ambience=structuredClone(videoApi);for(const id of ['13','15','16'])delete ambience[id];ambience['17']=node('SaveAudio',{audio:['14',0],filename_prefix:'CreateMore/ambience'});ambience['7'].inputs.width=256;ambience['7'].inputs.height=256;
+  return [
+    {id:'audio-h3-ambience',label:'音频生成 · H3 环境音',kind:'audio',api:ambience,mapping:{inputs:videoInputs.map(i=>({...i,...(['width','height'].includes(i.id)?{default:256}:{})})),outputs:[{id:'audio',nodeId:'17',key:'audio',type:'audio'}]},note:'使用已安装 H3 联合声画模型仅保存音轨，适合环境音/音效；不是精确语音配音，不保证逐字朗读。内部仍计算视频潜变量，属于重型本地任务。'},
+    {id:'video-h3-turbo',label:'视频生成 · MiniMax H3 Turbo',kind:'video',api:videoApi,mapping:{inputs:videoInputs,outputs:[{id:'video',nodeId:'16',key:'images',type:'video'}]},note:'使用本机已有 H3 INT8 + Turbo LoRA，默认约5秒；重模型占用显存，不能与其他本地任务并发。'},
+    {id:'video-h3-i2v',label:'图生视频 · MiniMax H3 Turbo',kind:'video',api:i2v,mapping:{inputs:[...videoInputs,{...imageInput,nodeId:'17'}],outputs:[{id:'video',nodeId:'16',key:'images',type:'video'}]},note:'参考图作为首帧。片段重拍的新视频可使用此流程；不自动替换、拼接原片。'},
+    {id:'text-qwen3',label:'文本生成 · 本地 Qwen3 4B',kind:'text',api:textApi,mapping:textMapping,note:'通过 ComfyUI 原生 TextGenerate 与本机 Qwen3 4B，需真实输出验证。'},
+    {id:'tool-image-caption',label:'图片工具 · 本地 Qwen3-VL 看图',kind:'text',api:visionApi,mapping:{...structuredClone(textMapping),inputs:[...textMapping.inputs,{...imageInput,nodeId:'4'}]},note:'通过本机 Qwen3-VL 8B；反推提示词与图像分析使用同一底层能力。'},
+    {id:'image-zimage',label:'图片生成 · Z-Image Turbo',kind:'image',api:z,mapping:{inputs:zInputs,outputs:[imageOutput('10')]},note:'已按本机官方 Z-Image Turbo 模板与实存模型构建。无参考图；有参考图时请选择图生图或 Image2。'},
+    {id:'image-zimage-edit',label:'图片重绘 · Z-Image 图生图',kind:'image',api:img2img,mapping:{inputs:[...zInputs.filter(i=>!['width','height'].includes(i.id)),{...imageInput,nodeId:'11'},{id:'denoise',label:'重绘强度',source:'parameter',nodeId:'8',input:'denoise',type:'number',default:0.55,min:0,max:1}],outputs:[imageOutput('10')]},note:'通用图生图，不声称具备精准局部编辑或角色锁定能力。'},
+    {id:'tool-image-upscale',label:'图片工具 · UltraSharp 放大',kind:'image',api:{'1':node('LoadImage',{image:'example.png'}),'2':node('UpscaleModelLoader',{model_name:'4x-UltraSharp.pth'}),'3':node('ImageUpscaleWithModel',{upscale_model:['2',0],image:['1',0]}),'9':node('SaveImage',{images:['3',0],filename_prefix:'CreateMore/upscale'})},mapping:{inputs:[imageInput],outputs:[imageOutput()]},note:'使用本机 4x-UltraSharp；大图占用更多显存。'},
+    {id:'tool-image-resize',label:'图片工具 · 尺寸调整',kind:'image',api:{'1':node('LoadImage',{image:'example.png'}),'2':node('ImageScale',{image:['1',0],upscale_method:'lanczos',width:1024,height:1024,crop:'disabled'}),'9':node('SaveImage',{images:['2',0],filename_prefix:'CreateMore/resize'})},mapping:{inputs:[imageInput,parameter('width','2','width',1024,1,8192),parameter('height','2','height',1024,1,8192)],outputs:[imageOutput()]},note:'本地插值尺寸调整，不是 AI 超分。'},
+    {id:'tool-image-crop',label:'图片工具 · 裁切',kind:'image',api:{'1':node('LoadImage',{image:'example.png'}),'2':node('ImageCrop',{image:['1',0],width:512,height:512,x:0,y:0}),'9':node('SaveImage',{images:['2',0],filename_prefix:'CreateMore/crop'})},mapping:{inputs:[imageInput,parameter('width','2','width',512,1,8192),parameter('height','2','height',512,1,8192),parameter('x','2','x',0,0,8192),parameter('y','2','y',0,0,8192)],outputs:[imageOutput()]},note:'结果独立保存，不覆盖原图。'},
+    {id:'tool-text-save',label:'文本工具 · 保存文字',kind:'text',api:{'1':node('PrimitiveStringMultiline',{value:'CreateMore'}),'2':node('SaveText',{text:['1',0],filename_prefix:'CreateMore/text',format:'txt'})},mapping:{inputs:[{id:'prompt',source:'prompt',nodeId:'1',input:'value',required:true}],outputs:[{id:'text',nodeId:'2',key:'text',type:'text'}]},note:'文字保存，不冒充本地 LLM 生成。'},
+    {id:'tool-audio-volume',label:'音频工具 · 音量调整',kind:'audio',api:{'1':node('LoadAudio',{audio:'example.wav'}),'2':node('AudioAdjustVolume',{audio:['1',0],volume:0}),'3':node('SaveAudio',{audio:['2',0],filename_prefix:'CreateMore/audio-volume'})},mapping:{inputs:[{id:'audio',source:'reference',nodeId:'1',input:'audio',required:true,mediaType:'audio'},{id:'volume',label:'增益（dB）',source:'parameter',nodeId:'2',input:'volume',type:'integer',default:0,min:-100,max:100}],outputs:[{id:'audio',nodeId:'3',key:'audio',type:'audio'}]},note:'增益以分贝计，0 为不变；正数增大、负数降低。'}
+  ];
+}
+function authoredGui(api,registry){const links=[];const nodes=[];let linkId=0;
+  for(const [id,entry] of Object.entries(api)){const def=registry[entry.class_type];if(!def)throw new ProviderError(`缺少 ${entry.class_type}`,'ENVIRONMENT_MISMATCH');const inputDefs={...def.input?.required,...def.input?.optional};const inputs=[];const widgets=[];for(const [key,spec]of Object.entries(inputDefs)){if(!Object.hasOwn(entry.inputs,key))continue;const val=entry.inputs[key];const type=Array.isArray(spec[0])?'COMBO':spec[0];if(Array.isArray(val)&&typeof val[0]==='string'&&Number.isInteger(val[1])){const source=api[val[0]];if(!source)throw new Error('recipe link missing');const sourceType=registry[source.class_type].output[val[1]];
+      const converted=!spec[1]?.forceInput&&['INT','FLOAT','STRING','BOOLEAN','COMBO'].includes(type);
+      inputs.push({name:key,type:sourceType,link:++linkId,...(converted?{widget:{name:key}}:{})});
+      if(converted){widgets.push(spec[1]?.default??(Array.isArray(spec[0])?spec[0][0]:type==='STRING'?'':type==='BOOLEAN'?false:0));if(spec[1]?.control_after_generate)widgets.push('fixed');}
+      links.push([linkId,Number(val[0]),val[1],Number(id),inputs.length-1,sourceType]);}else{widgets.push(val);if(spec[1]?.control_after_generate)widgets.push('fixed');if(spec[1]?.forceInput)inputs.push({name:key,type,link:null});}}
+    nodes.push({id:Number(id),type:entry.class_type,pos:[(nodes.length%3)*370,Math.floor(nodes.length/3)*310],size:[320,220],flags:{},order:nodes.length,mode:0,inputs,outputs:(def.output || []).map((type,i)=>({name:def.output_name?.[i] || type,type,links:[],slot_index:i})),properties:{'Node name for S&R':entry.class_type},widgets_values:widgets});}
+  for(const link of links)nodes.find(n=>n.id===link[1]).outputs[link[2]].links.push(link[0]);return {last_node_id:Math.max(...nodes.map(n=>n.id)),last_link_id:linkId,nodes,links,groups:[],config:{},extra:{ds:{scale:0.8,offset:[60,60]}},version:0.4};
+}
+async function installRecipes(store,provider){const {nodes}=await provider.inspect();const results=[];for(const recipe of recipes()){try{const probe=structuredClone(recipe.api);for(const input of recipe.mapping.inputs.filter(i=>i.source==='reference')){const spec=nodes[probe[input.nodeId].class_type]?.input?.required?.[input.input];const options=Array.isArray(spec?.[0])?spec[0]:spec?.[1]?.options;if(options?.length)probe[input.nodeId].inputs[input.input]=options[0];}await provider.validate(probe);const gui=authoredGui(recipe.api,nodes);const saved=await store.save(recipe.id,{gui,api:recipe.api,mapping:recipe.mapping});results.push({...saved,label:recipe.label,kind:recipe.kind,note:recipe.note,validated:'environment'});}catch(e){results.push({id:recipe.id,label:recipe.label,kind:recipe.kind,validated:false,reason:e.message,details:e.details});}}return results;}
+module.exports={recipes,authoredGui,installRecipes};
