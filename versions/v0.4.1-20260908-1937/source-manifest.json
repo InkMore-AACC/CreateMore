@@ -1,0 +1,2197 @@
+{
+  "version": "v0.4.1-20260908-1937",
+  "createdAt": "2026-09-08T11:38:14.617Z",
+  "scope": "software source, approved V5 sketch, default workflows, tests, docs and generated demonstration project; excludes credentials, runtime profiles and private working projects",
+  "files": [
+    {
+      "path": "source/app/automation.cjs",
+      "size": 2268,
+      "sha256": "28363b70ad4ca291ebb69f827817ce55ad2cb092667c0fba29c5a34247e3f135"
+    },
+    {
+      "path": "source/app/cli.cjs",
+      "size": 1112,
+      "sha256": "74842dd2092fdc93b7a2ce8d8f19292206e14f56515d3a20fdf47a96021d6561"
+    },
+    {
+      "path": "source/app/core/agent-tools.cjs",
+      "size": 1729,
+      "sha256": "7dbf3707b58cdadf226f55eb548034af5cb24e7d9c278b48e9a7f5192d99e307"
+    },
+    {
+      "path": "source/app/core/annotation.cjs",
+      "size": 2191,
+      "sha256": "d0448c4076e11e41ad463ec1dc65768468ac60386cc9e653182df40225491501"
+    },
+    {
+      "path": "source/app/core/chat-session.cjs",
+      "size": 9536,
+      "sha256": "fc60be18d1c3234dd1a3c057f2733d521b8835651e66a4449627f2835d6e3f87"
+    },
+    {
+      "path": "source/app/core/clipboard.cjs",
+      "size": 2127,
+      "sha256": "f102e0afea725991e49f878d7601308fcd611de28a24e735cd93621838515014"
+    },
+    {
+      "path": "source/app/core/collaboration.cjs",
+      "size": 56030,
+      "sha256": "7168bef262705d1dae33f8cf4664cb1b099c234d068627c6c4dfcca48160c5de"
+    },
+    {
+      "path": "source/app/core/creative.cjs",
+      "size": 31590,
+      "sha256": "19ffe0a0472b6cb35c4601d8f7da3cdade501090d4512a2a70ffacf3140525da"
+    },
+    {
+      "path": "source/app/core/diagnostic-export.cjs",
+      "size": 1144,
+      "sha256": "1d2cf421bfb2ba87bfa0a99b78b579c455024e8afa1c9e257ea4d917094c887d"
+    },
+    {
+      "path": "source/app/core/diagnostics.cjs",
+      "size": 2131,
+      "sha256": "8d57ee1ec13282d7ac8cf0f63514c9da8dec24b5a63636c5c39bfb32726e896a"
+    },
+    {
+      "path": "source/app/core/execution-actions.cjs",
+      "size": 17589,
+      "sha256": "49b4b6f32089af67e5b7376d973d155647432622b84495b438ee39b79692c9c6"
+    },
+    {
+      "path": "source/app/core/exit-check.cjs",
+      "size": 479,
+      "sha256": "57a620070d45842dd343b9817dd3401c733d91a9a0fb0f7b1ad6ee14a5256f8c"
+    },
+    {
+      "path": "source/app/core/generation-batch.cjs",
+      "size": 12161,
+      "sha256": "1245933fd1483250cb84a34f42bc45a26f9805f2e3a4e0760803826780388f8d"
+    },
+    {
+      "path": "source/app/core/library-actions.cjs",
+      "size": 25977,
+      "sha256": "fedc165b2323f6a4af89789cd2e5bc68e8154d21bd0f22d29e35a6981147ff10"
+    },
+    {
+      "path": "source/app/core/media.cjs",
+      "size": 7799,
+      "sha256": "eb6af961d766bdbce893332c4ff46babbcbdd45e392abba7ba829bceea33f14e"
+    },
+    {
+      "path": "source/app/core/queue.cjs",
+      "size": 10435,
+      "sha256": "ff1df28664de00917c4b529db4210866bfaf714b10ae122f4b87913d0f82125b"
+    },
+    {
+      "path": "source/app/core/resource-upgrade.cjs",
+      "size": 1424,
+      "sha256": "e6836c1c6fb1e21c265528b645ea649d338942e47dc76389831d25ab379b7415"
+    },
+    {
+      "path": "source/app/core/resources.cjs",
+      "size": 13492,
+      "sha256": "aa145d369b5e9295a577b7e1052150443b76b2f2373cec87aee65cb80f6a28ee"
+    },
+    {
+      "path": "source/app/core/service.cjs",
+      "size": 54423,
+      "sha256": "e05abb5c623cc3579a2eda8aad4558f0834e4aa1558bf71f7517936f0e1ba8e7"
+    },
+    {
+      "path": "source/app/core/shared-execution.cjs",
+      "size": 26799,
+      "sha256": "0397b8b83e8f5651ab3b1072f77688ed2f2fae71baeaae3b6c14f724172d5dba"
+    },
+    {
+      "path": "source/app/core/snapshot-inputs.cjs",
+      "size": 5220,
+      "sha256": "a4ff27603701ff4b9c10bdba314fc4e2a6b6ac6f5da89f76066b5ed12762f3b3"
+    },
+    {
+      "path": "source/app/core/storage-management.cjs",
+      "size": 3185,
+      "sha256": "f6838b1077840ce794ed26e8b914c579d2a6789f029237b13afd405143be9512"
+    },
+    {
+      "path": "source/app/core/storage.cjs",
+      "size": 37677,
+      "sha256": "24b43024e5a022281f14b515e0b2fef23dae5d7946f564d57c8fa6b7c17b1ced"
+    },
+    {
+      "path": "source/app/core/util.cjs",
+      "size": 1804,
+      "sha256": "ede95668c2607984bf7e7f9d88dec10d3d968aff8ef5dbecd783759dcbafdc92"
+    },
+    {
+      "path": "source/app/e2e.cjs",
+      "size": 76987,
+      "sha256": "5f927fb39913f00b4c0858c4f299f5b8449d31532c01f95f11f81fca064a8dc3"
+    },
+    {
+      "path": "source/app/file-association.cjs",
+      "size": 2191,
+      "sha256": "7373a59af0b3652f72af18e0800055756409733b3f64ff09a5d5cae8580ea23e"
+    },
+    {
+      "path": "source/app/main.cjs",
+      "size": 14402,
+      "sha256": "f49ff7cd677a9ccb53ca431219c0f296d7b8fff82d398a7e3b5986a26addfe70"
+    },
+    {
+      "path": "source/app/mcp.cjs",
+      "size": 1420,
+      "sha256": "242fa58ec7a271b11338ccad2dcb6c8f9d229f1b91452ae2d9240f8a3a084a26"
+    },
+    {
+      "path": "source/app/media-protocol.cjs",
+      "size": 2312,
+      "sha256": "a25bebffa5188b08e365a12723a7ef39083c68bc0b937477d6278bd2173bf174"
+    },
+    {
+      "path": "source/app/preload.cjs",
+      "size": 1397,
+      "sha256": "7a558334458cb6ab48187f7b40dea4911552e93b1480cb6458874e9d2925d016"
+    },
+    {
+      "path": "source/app/production-local-check.cjs",
+      "size": 6286,
+      "sha256": "127867379d1c6d76961cba305ed7bb6c320b4cca3f2a412f141d93f71b1044fe"
+    },
+    {
+      "path": "source/app/providers/account-identity.cjs",
+      "size": 400,
+      "sha256": "f9cea286370bde809a9468e621040a06041cc12baedd840c9aa08620d1cd99d9"
+    },
+    {
+      "path": "source/app/providers/codex-policy.cjs",
+      "size": 1944,
+      "sha256": "0a27d9991407f388e8b12f1b53237ce446d01769e1ca9a4706d3c304127ffab8"
+    },
+    {
+      "path": "source/app/providers/codex.cjs",
+      "size": 16322,
+      "sha256": "1e6e7b1bb75642538c43abbc841a61ac059b6fbd0916b149976e1c66deb82e50"
+    },
+    {
+      "path": "source/app/providers/comfy-lane.cjs",
+      "size": 2373,
+      "sha256": "74272183f3a80c78d7bad4a2487e205e69a7ab9eabf515488f7b363bfd758074"
+    },
+    {
+      "path": "source/app/providers/comfyui.cjs",
+      "size": 18141,
+      "sha256": "f0a4bae14e4fec55921ba42621819eb547907dd8e2559fcc9b82e5f71b2ef503"
+    },
+    {
+      "path": "source/app/providers/http.cjs",
+      "size": 4369,
+      "sha256": "1925e13172025576fb26715c14bbad28cb3ec49a8fa6a8dfc3e70050dfa61162"
+    },
+    {
+      "path": "source/app/providers/index.js",
+      "size": 8265,
+      "sha256": "8d55070970610d0308df3208ded08d18a328061580f94bea22de22a6028abdee"
+    },
+    {
+      "path": "source/app/providers/native-editor.cjs",
+      "size": 5517,
+      "sha256": "f567e982be95977f91fdbd6f714001c15b63fada0bc1bcf312d7c7e9e0dd8de6"
+    },
+    {
+      "path": "source/app/providers/native-mapping.cjs",
+      "size": 13927,
+      "sha256": "6fb4e19a565e281c3589e005cf7b2afbdcd3eaa99c75005b9c84d97eaaf9ce39"
+    },
+    {
+      "path": "source/app/providers/native-preload.cjs",
+      "size": 281,
+      "sha256": "bdb79d4d7737061b66b050c716df562414c6dd9ba5d65d65dc6630a17e3c28dd"
+    },
+    {
+      "path": "source/app/providers/recipes.cjs",
+      "size": 12600,
+      "sha256": "39c0f26ea9fa19459a6cdbcbbd2f18f9a811bec9a5eefb318efa0fd1d7886800"
+    },
+    {
+      "path": "source/app/providers/runninghub.cjs",
+      "size": 5161,
+      "sha256": "f67462df9c6d6a3c79615f4760878467b41a04266837b28261be94d3f6ce2123"
+    },
+    {
+      "path": "source/app/providers/specialized-recipes.cjs",
+      "size": 10545,
+      "sha256": "3578b9240818b174c39872af30a7cb6d73ad9c248fc7e91dd3a2f5b9d559ed26"
+    },
+    {
+      "path": "source/app/providers/util.cjs",
+      "size": 5203,
+      "sha256": "2cde969ca7317107580d2019d61a89797873d1d67784f1273205f9abf757b949"
+    },
+    {
+      "path": "source/app/providers/workflows.cjs",
+      "size": 7117,
+      "sha256": "8beceee444e4e94c3763d42486426c9e858779eebffa09c773b211d12a15cf21"
+    },
+    {
+      "path": "source/app/ui/annotation.js",
+      "size": 5345,
+      "sha256": "0e3eccb6221833096a2a5ca75af0ac1f8364889e8d3fd89ca7c52415005edb31"
+    },
+    {
+      "path": "source/app/ui/assets/brand/oo-logo-master.png",
+      "size": 952561,
+      "sha256": "b8d68657564a5f9dd5f77417bc8d73d3d628588b1656fbf9dc3b769776a5591c"
+    },
+    {
+      "path": "source/app/ui/assets/brand/oo-logo.ico",
+      "size": 65965,
+      "sha256": "b9b3af5f1c4520d343f6e3e85122828312a8e1cf6abb35d4255d78d88771f1eb"
+    },
+    {
+      "path": "source/app/ui/assets/brand/oo-logo.png",
+      "size": 43260,
+      "sha256": "ff37466fbc0350e250a4c2b878d30075ac8ed40354ac7930957297202bb14972"
+    },
+    {
+      "path": "source/app/ui/assets/brand/oo-project-master.png",
+      "size": 976674,
+      "sha256": "7067d9dda3287fc93706a5523022a3601ad3098a317834985981181db5becd76"
+    },
+    {
+      "path": "source/app/ui/assets/brand/oo-project.ico",
+      "size": 76047,
+      "sha256": "788db46993da620d6d4eb5bdc6976401b9d29f2d0d11cb19f3e33d7616b572e5"
+    },
+    {
+      "path": "source/app/ui/assets/brand/oo-project.png",
+      "size": 50705,
+      "sha256": "701c26f2632df3c588075aa66a5192545aa69de2bc93c07958c138691fa9c7ef"
+    },
+    {
+      "path": "source/app/ui/assets/mountain.svg",
+      "size": 1509,
+      "sha256": "b89afde70c34420ce0e3e549e0148d2ac064639358775d07d6300509e0e56d42"
+    },
+    {
+      "path": "source/app/ui/assets/traveler.svg",
+      "size": 1840,
+      "sha256": "728d3252746acdada302fbd1e6f4ad2ff034dd798c9da0cdf61381bd1d76516c"
+    },
+    {
+      "path": "source/app/ui/canvas-model.js",
+      "size": 13640,
+      "sha256": "1667f8b788e584639b7a9481464c15ddc848e38e3a2865460b68947bdccf4449"
+    },
+    {
+      "path": "source/app/ui/canvas.css",
+      "size": 18903,
+      "sha256": "cfa2170d92ecc097a52b2751fd302b955d0865d4bbc26d68c5db46c751d9d676"
+    },
+    {
+      "path": "source/app/ui/canvas.js",
+      "size": 64628,
+      "sha256": "48330376f992c282157b8fca5910cab6dff6b406e0b0980d5a56ebb0bada3f91"
+    },
+    {
+      "path": "source/app/ui/desktop.css",
+      "size": 7542,
+      "sha256": "b7cad986908d992bb7d5ad3fa73a391694a9251ede016981a77beae2d9a53b7b"
+    },
+    {
+      "path": "source/app/ui/desktop.js",
+      "size": 112716,
+      "sha256": "0391213b98553eefebc58dc127e041781faa026f472a38c84f248a1845df30fd"
+    },
+    {
+      "path": "source/app/ui/index.html",
+      "size": 8399,
+      "sha256": "3a8f32f30739699bbf3886dda5aa4ff37ef0c9bc6262dbf2a88efd5bdb1fda57"
+    },
+    {
+      "path": "source/app/ui/state-merge.js",
+      "size": 2055,
+      "sha256": "c5cbb606a8f3130a12a440d660afee8377afd8684b850c40f2b9e3a06fc97b24"
+    },
+    {
+      "path": "source/docs/LAN验证记录.md",
+      "size": 19515,
+      "sha256": "286180a322cb97a879fb96a9dbe523bb7dd76035c88239838840df98a37512c5"
+    },
+    {
+      "path": "source/docs/LibTV交互补测-2026-09-08.md",
+      "size": 3634,
+      "sha256": "e432f37400a622966ebb32cd45d5e53915069a9cd2bf7613c3315499b435d4b2"
+    },
+    {
+      "path": "source/docs/LibTV画布观察记录-2026-09-07.md",
+      "size": 7380,
+      "sha256": "f35729656f2c3727ba0ef7b2a1cdcda40f5f3916e3232fa62470238f33298942"
+    },
+    {
+      "path": "source/docs/O.o品牌图标修改.md",
+      "size": 2578,
+      "sha256": "98f9167de85673347f09e06913f19bbfc6a5f9840fdb16617f68174d58bd5526"
+    },
+    {
+      "path": "source/docs/v0.3.0-本轮修复与待确认.md",
+      "size": 6827,
+      "sha256": "7251a8beb397f7b5b5fe64e0cdc706fc3ffcbfb62ee964dd153150aeabfcd643"
+    },
+    {
+      "path": "source/docs/v0.4.1-重构阶段交付.md",
+      "size": 3479,
+      "sha256": "c209d246668bd46fbd9b19084fce5c6b447ee794325fb4a68ca8a90738d399e8"
+    },
+    {
+      "path": "source/docs/使用说明.md",
+      "size": 9011,
+      "sha256": "17bd6e1f554a329d2f187102c92d33b50ea926c53c2fdbd1ad33a2e39c2ee4bc"
+    },
+    {
+      "path": "source/docs/实施进度与待确认.md",
+      "size": 4689,
+      "sha256": "e0d1bb30577161f98b0126a72435e0f5bde440b7d4bd4307b73ae6750234e8d5"
+    },
+    {
+      "path": "source/docs/工程文件说明.md",
+      "size": 1719,
+      "sha256": "3a1b584db26f69fce8decdd89c7df0a93b4391e69150ef3555438aedad0b43da"
+    },
+    {
+      "path": "source/docs/已确认需求与遗漏核对.md",
+      "size": 44919,
+      "sha256": "0f96528b54523138d56f98a79e56c34190b51740618fc649f75c64682e083a71"
+    },
+    {
+      "path": "source/docs/当前执行约定与工作流复核.md",
+      "size": 9897,
+      "sha256": "805216d4b2104db8fa2be6a9bfb031484600757b678ad522efdd67fb6adc77c7"
+    },
+    {
+      "path": "source/docs/新对话交接说明.md",
+      "size": 2633,
+      "sha256": "2db6f82a7918f09fb3ba602f307583c3a083ad10fe116a7624cc1e5f189e4c9f"
+    },
+    {
+      "path": "source/docs/本地专用工作流实施记录-20260908.md",
+      "size": 7732,
+      "sha256": "960687d4cbddf16fa174af9cde9bfea4f847d37fa583f42c08f7fbbe146c618a"
+    },
+    {
+      "path": "source/docs/本地功能接入清单.md",
+      "size": 11194,
+      "sha256": "0748dda1b55c4fd007c23a19b21a7c71a074e59b70228fd98ae0630157f1caf5"
+    },
+    {
+      "path": "source/docs/生成接入验证记录.md",
+      "size": 14099,
+      "sha256": "8d2c57c5247944e40496145f2659c0ce1ba39d4c11b2d667b5efff8ae88e8e1e"
+    },
+    {
+      "path": "source/docs/画布草图V5重构说明.md",
+      "size": 4242,
+      "sha256": "b1685ffa6f72f0f7babb04c2f4f8cc46ea0d16666db6a0ef56754f7ae7cc476b"
+    },
+    {
+      "path": "source/docs/重构-LibTV交互对照表.md",
+      "size": 6928,
+      "sha256": "e350be1f6937109847da39979b639b44369a5de8ee597b2ab5a7580b816e1d95"
+    },
+    {
+      "path": "source/docs/重构-已确认要求.md",
+      "size": 2156,
+      "sha256": "6cb107f8389b46e1a5ff12e9e51edf23676f74425da17c5c1575eb99be46bb69"
+    },
+    {
+      "path": "source/docs/重构-问题与验收表.md",
+      "size": 10468,
+      "sha256": "e1e6954629af520231676ee184238c50ce7f231e95219dd94f0961a8ba523d1e"
+    },
+    {
+      "path": "source/docs/验收与审核记录.md",
+      "size": 8772,
+      "sha256": "2085d790a3e40f14234c57e777bbda8bc3ef4e6ed472852512ca4e98760ec124"
+    },
+    {
+      "path": "source/resources/builtin-upgrade-base.json",
+      "size": 548,
+      "sha256": "9511a496554a8d577a4d46c49f286d22c1d2a460f5d17d799656b7cfa97d10bf"
+    },
+    {
+      "path": "source/resources/comfy-nodes/createmore_qwen_tts/camera.py",
+      "size": 774,
+      "sha256": "62b04482ea4e0a3d44c6098a27562ac484e7f0936f6cf731a2a54b992650f882"
+    },
+    {
+      "path": "source/resources/comfy-nodes/createmore_qwen_tts/README.md",
+      "size": 1846,
+      "sha256": "f4ef3f19e052a3625530f7a0ecad97c1b1850b6e31f188d8f3f6f9780de61a0c"
+    },
+    {
+      "path": "source/resources/comfy-nodes/createmore_qwen_tts/setup_runtime.py",
+      "size": 2570,
+      "sha256": "3cb38a59d79d5f3800992253777f2a628c7a116c976e6a8b64226f7e85d45fe1"
+    },
+    {
+      "path": "source/resources/comfy-nodes/createmore_qwen_tts/worker.py",
+      "size": 1468,
+      "sha256": "83c0202907353784eae5419aee81701cad104230d8d95db9795594a529aae27d"
+    },
+    {
+      "path": "source/resources/comfy-nodes/createmore_qwen_tts/__init__.py",
+      "size": 6731,
+      "sha256": "3efc79a7c3fd12a7de36dd5723d75c264c15d2a0fff051f09b5293bbe8502d16"
+    },
+    {
+      "path": "source/resources/skills/builtin/克制电影风格/.resource.json",
+      "size": 415,
+      "sha256": "cb0ab2b86b23e94d37034c7576007babc2b3e93ae83c555608697aaf3237f037"
+    },
+    {
+      "path": "source/resources/skills/builtin/克制电影风格/cover.svg",
+      "size": 613,
+      "sha256": "1b3ee7d88a58161f67238867949315fc9736a78cc851dbc6199ef56d46c21aa6"
+    },
+    {
+      "path": "source/resources/skills/builtin/克制电影风格/SKILL.md",
+      "size": 482,
+      "sha256": "515140bce806b60d65e9cbe975a8739c81330ea00b8c1966e57bb72214a5c636"
+    },
+    {
+      "path": "source/resources/skills/builtin/剧本转分镜/.resource.json",
+      "size": 403,
+      "sha256": "d041ce5ae45117d140b8e2c7716f434f5c2950cc61018ae61fe037fadfaeaf69"
+    },
+    {
+      "path": "source/resources/skills/builtin/剧本转分镜/cover.svg",
+      "size": 610,
+      "sha256": "dbb03c46cb1c14f137fb7ae5680227bf2a4bcaf18078a8514d942529c945a498"
+    },
+    {
+      "path": "source/resources/skills/builtin/剧本转分镜/SKILL.md",
+      "size": 486,
+      "sha256": "34da52e024145986e882387fcc14646c0309501886b831425b0d4fc112691117"
+    },
+    {
+      "path": "source/resources/skills/builtin/电影画面提示词/.resource.json",
+      "size": 417,
+      "sha256": "1395b04b47dbc982c8d7033809afcc6613ee48a333c99a3b8b3c24dee76566a4"
+    },
+    {
+      "path": "source/resources/skills/builtin/电影画面提示词/cover.svg",
+      "size": 616,
+      "sha256": "f8ff99e39e619bab0dd70d43d856d09f5abd9f372c93e0690660c330681a7611"
+    },
+    {
+      "path": "source/resources/skills/builtin/电影画面提示词/SKILL.md",
+      "size": 506,
+      "sha256": "b711f7210cf966481b5f853a68def9a1fad29549678a9d554fbec8e50cedcfd4"
+    },
+    {
+      "path": "source/resources/skills/builtin/角色一致性/.resource.json",
+      "size": 416,
+      "sha256": "a5f1775878008beafb1673fdd8d3b13c5defcd146e4b2ab560a689f4f1e8ce1f"
+    },
+    {
+      "path": "source/resources/skills/builtin/角色一致性/cover.svg",
+      "size": 610,
+      "sha256": "2a39517b27d20a0b0b3c785199ee8fc9539e54a8361b14aab18dd12b9a13f41f"
+    },
+    {
+      "path": "source/resources/skills/builtin/角色一致性/SKILL.md",
+      "size": 472,
+      "sha256": "9f8d6f7a3dc19442f77288264f60eb1239c8753f1d9d48a191618a378055f121"
+    },
+    {
+      "path": "source/resources/tools/builtin/analysis/.resource.json",
+      "size": 544,
+      "sha256": "62cd27cd15578efa712ec14fb3ece697f295aef279ff7774addeafba116d6567"
+    },
+    {
+      "path": "source/resources/tools/builtin/angles/.resource.json",
+      "size": 528,
+      "sha256": "eacd3f6c22e965ed3bbb125b41ede20f2e28b6c7d302a108b8efb0cdadafce41"
+    },
+    {
+      "path": "source/resources/tools/builtin/audio-speed/.resource.json",
+      "size": 484,
+      "sha256": "6ebe818834d6654b3c357da465e78bc2056fb11bdae948d2277aefea7aa6e068"
+    },
+    {
+      "path": "source/resources/tools/builtin/audio-split/.resource.json",
+      "size": 487,
+      "sha256": "e288c7eba5b43e085ba89847b5c028546e09f363f7b5a14ed0d4a4f6ce52b500"
+    },
+    {
+      "path": "source/resources/tools/builtin/audio-trim/.resource.json",
+      "size": 486,
+      "sha256": "683ff74def0b722c2fbecd19faa74108252381bd00029bdfb9b89de2ba96bd47"
+    },
+    {
+      "path": "source/resources/tools/builtin/audio-volume/.resource.json",
+      "size": 533,
+      "sha256": "0545d31cd85f1a1b5646a538eecd78c62254c7e0bdbbdc8c40f2307a9b96fb6c"
+    },
+    {
+      "path": "source/resources/tools/builtin/caption/.resource.json",
+      "size": 542,
+      "sha256": "0b50f09af6b9c35899771987bff19da31a3ded7c2da55d3afc7256fbe8ca85ae"
+    },
+    {
+      "path": "source/resources/tools/builtin/crop/.resource.json",
+      "size": 525,
+      "sha256": "e1ff3ac011d0942fb3ecb3a1224d163f1ab3829cc557933deb569e2cca0a2f7b"
+    },
+    {
+      "path": "source/resources/tools/builtin/expand/.resource.json",
+      "size": 514,
+      "sha256": "c55f28a681149a2dff9358b497d4cf277aaf1df676956912689636e79240c462"
+    },
+    {
+      "path": "source/resources/tools/builtin/extract-audio/.resource.json",
+      "size": 492,
+      "sha256": "f0e6db7a8e9970f76ad8912e3dd7faa5c9d437949c9f356915253da42d19a25f"
+    },
+    {
+      "path": "source/resources/tools/builtin/frame/.resource.json",
+      "size": 478,
+      "sha256": "ff0af3872028316515da67a7930c1a30b9349b22bdf549808c251faf69ede69d"
+    },
+    {
+      "path": "source/resources/tools/builtin/grid/.resource.json",
+      "size": 525,
+      "sha256": "18f6c70905aa43aeb7a745ce73bae9b18338bfb12223a1e8f2760265a0aa3a24"
+    },
+    {
+      "path": "source/resources/tools/builtin/identify/.resource.json",
+      "size": 533,
+      "sha256": "5c21238a6e023de4c4bdaa13c5bda966caeed5a13c5d042d0850f1a59c241921"
+    },
+    {
+      "path": "source/resources/tools/builtin/lighting/.resource.json",
+      "size": 528,
+      "sha256": "7e9a9501a04db8a8f50385edddaacac0b878a06206793920cdfcd8b3b78d3a27"
+    },
+    {
+      "path": "source/resources/tools/builtin/mark/.resource.json",
+      "size": 518,
+      "sha256": "4687d1d1ee3861aab31f5724424c822d5e22732b5022968531153481b44985c2"
+    },
+    {
+      "path": "source/resources/tools/builtin/organize/.resource.json",
+      "size": 517,
+      "sha256": "3b6ae0a4193cfce3a839d53b699d06449ccd4415dc30d33be9c826d92bc22166"
+    },
+    {
+      "path": "source/resources/tools/builtin/portrait/.resource.json",
+      "size": 541,
+      "sha256": "fd7f830f4dcd671e096a8b3cee9f483c1df9f695ac60919bbf457f902f37ba14"
+    },
+    {
+      "path": "source/resources/tools/builtin/reshoot/.resource.json",
+      "size": 535,
+      "sha256": "54df0102c35da6d818775dabd7a3c4849606f0609b8a9f0003b8332e43d2fe6d"
+    },
+    {
+      "path": "source/resources/tools/builtin/resize/.resource.json",
+      "size": 539,
+      "sha256": "fb72706cfaca8b9f5fa5d33d610167184980b8e7c53db4b1cd7788f121c9b44f"
+    },
+    {
+      "path": "source/resources/tools/builtin/storyboard/.resource.json",
+      "size": 538,
+      "sha256": "9129e62511e5ba4c7a01a5de04f14a7fd5c1ad7206e9c294c819f3a441c375cd"
+    },
+    {
+      "path": "source/resources/tools/builtin/upscale/.resource.json",
+      "size": 528,
+      "sha256": "fff79348002f4bb1bf5bb3c35ff1edd2d1dbc63cbb0cc8db604fc6a68b1648fe"
+    },
+    {
+      "path": "source/resources/tools/builtin/video-speed/.resource.json",
+      "size": 484,
+      "sha256": "7426dd021d3f323f7cef977fba75e4de2b2af0d50f262de9fa60db7a0ca8e66d"
+    },
+    {
+      "path": "source/resources/tools/builtin/video-split/.resource.json",
+      "size": 487,
+      "sha256": "9433d83405b23f9b42c9e67e961b0018dc7f80d46cdc1242ed472d4295dfb24a"
+    },
+    {
+      "path": "source/resources/tools/builtin/video-trim/.resource.json",
+      "size": 486,
+      "sha256": "c6b017ef1afffcf078d101b74be177994dfe8fb029cbf68815bc1cda21ac447d"
+    },
+    {
+      "path": "source/resources/workflows/catalog.json",
+      "size": 7802,
+      "sha256": "3abf3a61d55d2a880bec80f31729d508dd38c881b1aa0dd36bbe480361911432"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-h3-ambience/current.json",
+      "size": 77,
+      "sha256": "da7a01f9fc579fd10cefbd42e9c93bc26f2fafbdec7e021e2dad2b0738b6bd83"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-h3-ambience/versions/8507d6a60172d2459f640506/mapping.json",
+      "size": 1385,
+      "sha256": "ef10337c24cc3203398b91c7020b7ad4b7ec3aff601ea72305d198d366b5cc23"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-h3-ambience/versions/8507d6a60172d2459f640506/workflow.api.json",
+      "size": 2578,
+      "sha256": "feeaff25e97da417bbf5f62bf33bd70d83bb771de6e921ee0673566a83302e2e"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-h3-ambience/versions/8507d6a60172d2459f640506/workflow.json",
+      "size": 10987,
+      "sha256": "ffa5491809fb2d00928900ad93f1fb3440a26550f376b699e0d810eb3d0cb074"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-h3-ambience/versions/ab9b400b89dcf31e3e5d3e38/mapping.json",
+      "size": 1385,
+      "sha256": "ef10337c24cc3203398b91c7020b7ad4b7ec3aff601ea72305d198d366b5cc23"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-h3-ambience/versions/ab9b400b89dcf31e3e5d3e38/workflow.api.json",
+      "size": 3369,
+      "sha256": "b080354ab180650cfb2a95050da90561a03151d0ce0d8e4a83354ed941a97c15"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-h3-ambience/versions/ab9b400b89dcf31e3e5d3e38/workflow.json",
+      "size": 12653,
+      "sha256": "1821b0468321e6e1ddfb840bc8212dbbe5ea3415ee675895af2b62f5fd4bd86b"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-clone/current.json",
+      "size": 77,
+      "sha256": "ee73059f1c81363239706a4c76d3d3965f2d91f292495597194a9e3a002b6c73"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-clone/versions/01b2d7dfb020397f095480be/mapping.json",
+      "size": 1856,
+      "sha256": "5c89c57f5d2bfd4193816deaa3fa0985df8c2f0dbee1e2fa18a3fdf875557c79"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-clone/versions/01b2d7dfb020397f095480be/workflow.api.json",
+      "size": 688,
+      "sha256": "fa84c8f85fecfe9afe9fec8d1324291c0d4a2123f7da42a6eb41a289ed9c75bf"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-clone/versions/01b2d7dfb020397f095480be/workflow.json",
+      "size": 2375,
+      "sha256": "90022c5ddf63692ed8de39f2eb7da093d3d95d6e7e16b2fbac182e4a596364df"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-clone/versions/353929f217310517e85e7a50/mapping.json",
+      "size": 1856,
+      "sha256": "5c89c57f5d2bfd4193816deaa3fa0985df8c2f0dbee1e2fa18a3fdf875557c79"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-clone/versions/353929f217310517e85e7a50/workflow.api.json",
+      "size": 688,
+      "sha256": "fa84c8f85fecfe9afe9fec8d1324291c0d4a2123f7da42a6eb41a289ed9c75bf"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-clone/versions/353929f217310517e85e7a50/workflow.json",
+      "size": 2358,
+      "sha256": "6afba865d7ea4bbe0d0b262b663d3aa2d853f09665e12f10476cfa27f6980b85"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-design/current.json",
+      "size": 77,
+      "sha256": "4876bf380e1180a4b59dfbf366db215ae2c21232b9408bb6b167e34d68f7bdfa"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-design/versions/a4e1e6c8361be5bc163314ea/mapping.json",
+      "size": 1756,
+      "sha256": "1106d7bd37f27d51be2474678bad47c1ccee1e22b818efa01505bd5f8d7097f9"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-design/versions/a4e1e6c8361be5bc163314ea/workflow.api.json",
+      "size": 613,
+      "sha256": "16e04077a6459d9fbbb6d84b5cb45f99f9d6e6996a716f6cfd476db311709cad"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-design/versions/a4e1e6c8361be5bc163314ea/workflow.json",
+      "size": 1742,
+      "sha256": "83f9ed9465facad9165e858250618a359e4b44ce62c70354da54a4edfe0d1d6d"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-design/versions/acd8083df79f87ab82458f1f/mapping.json",
+      "size": 1756,
+      "sha256": "1106d7bd37f27d51be2474678bad47c1ccee1e22b818efa01505bd5f8d7097f9"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-design/versions/acd8083df79f87ab82458f1f/workflow.api.json",
+      "size": 613,
+      "sha256": "16e04077a6459d9fbbb6d84b5cb45f99f9d6e6996a716f6cfd476db311709cad"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-design/versions/acd8083df79f87ab82458f1f/workflow.json",
+      "size": 1725,
+      "sha256": "809d3649573e910372c51699ac4b7ef65cc6ec12e97b25a15039795417801f60"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-emotion/current.json",
+      "size": 77,
+      "sha256": "044d64387ec3c3851938e5bfc2fadb0ab8f31e4f5c52001e8c2f25dd019c09ff"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-emotion/versions/4cf0720f3ab7fa0e3e200a4d/mapping.json",
+      "size": 2029,
+      "sha256": "3357670318c2ba4824b27b259d4dec2c3e5320841d7b572a40499a15302efff6"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-emotion/versions/4cf0720f3ab7fa0e3e200a4d/workflow.api.json",
+      "size": 573,
+      "sha256": "df03fc800de1cefae95bc697ea1111de6d280792b383a07033c3e9804316c766"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-emotion/versions/4cf0720f3ab7fa0e3e200a4d/workflow.json",
+      "size": 1685,
+      "sha256": "6a4f53f2ca007c09974fc0a58a3265df1ed4df2644fcfd74291cc92f316693bf"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-emotion/versions/96c537773d6a003ef2e046bc/mapping.json",
+      "size": 2029,
+      "sha256": "3357670318c2ba4824b27b259d4dec2c3e5320841d7b572a40499a15302efff6"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-emotion/versions/96c537773d6a003ef2e046bc/workflow.api.json",
+      "size": 573,
+      "sha256": "df03fc800de1cefae95bc697ea1111de6d280792b383a07033c3e9804316c766"
+    },
+    {
+      "path": "source/resources/workflows/defaults/audio-qwen-emotion/versions/96c537773d6a003ef2e046bc/workflow.json",
+      "size": 1702,
+      "sha256": "9671109004bc596a9a068e7259bcb8b12acaf8874002ce4e55ea8046db5075a2"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-qwen-edit-1/current.json",
+      "size": 77,
+      "sha256": "edbd4baed4bf4af6c8123e853b62256fdfe419955f3639c86da3633a87384ac3"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-qwen-edit-1/versions/600868f5f06c56e0c5ecbbfd/mapping.json",
+      "size": 933,
+      "sha256": "ba472c55990b2d1114c27a6ce62e6baa9d7ca2d78f2ba8d54339a95038d306f7"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-qwen-edit-1/versions/600868f5f06c56e0c5ecbbfd/workflow.api.json",
+      "size": 3192,
+      "sha256": "9d6ce3f1411ff906d28002fc365648916120a905c659e299076d7af39c321caf"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-qwen-edit-1/versions/600868f5f06c56e0c5ecbbfd/workflow.json",
+      "size": 13224,
+      "sha256": "e30b846de12b3fe1e538e3dd60df37476f879851d05190071c8d67270560ad76"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-qwen-edit-2/current.json",
+      "size": 77,
+      "sha256": "1fb2a59d6e932abf7b4c05911e018ee2d26da6eca9d4a15968ca11b27ba76165"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-qwen-edit-2/versions/583460eff07ba640433eb11a/mapping.json",
+      "size": 1149,
+      "sha256": "40612c3e4915df0f1a14044d22d2b11b551ea61e1ef2e539d06cf8c9056e1754"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-qwen-edit-2/versions/583460eff07ba640433eb11a/workflow.api.json",
+      "size": 3395,
+      "sha256": "3b5bfd8e110265324f19be8d98c1396003d4d3de6ed7f395c7f43dd80c13cb56"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-qwen-edit-2/versions/583460eff07ba640433eb11a/workflow.json",
+      "size": 14245,
+      "sha256": "623c80b88ea0a9770390e712ab481f91435be9291f97d0e9bc78090ac46e554b"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage/current.json",
+      "size": 77,
+      "sha256": "ba554f1f05e702d99818915ec372ab2e6810b1b468c11a9581edfa1de4559ffe"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage/versions/19d94a2ae7a2f579b90078e5/mapping.json",
+      "size": 1159,
+      "sha256": "ded8440388c7933eb498ff45e1df5fc8510a246ac57345df43bac07ef2543bc7"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage/versions/19d94a2ae7a2f579b90078e5/workflow.api.json",
+      "size": 2305,
+      "sha256": "368d8ee3ae800affdf6c58f43d999612942dc86caa644ecb528409b745297a6c"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage/versions/19d94a2ae7a2f579b90078e5/workflow.json",
+      "size": 8583,
+      "sha256": "fbfde8b995f2a20e46e50c14e663c2abd1f4784fb3661c27cbf167acafed054b"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage/versions/77a4365cf053f70a3422ddd1/mapping.json",
+      "size": 1159,
+      "sha256": "ded8440388c7933eb498ff45e1df5fc8510a246ac57345df43bac07ef2543bc7"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage/versions/77a4365cf053f70a3422ddd1/workflow.api.json",
+      "size": 2305,
+      "sha256": "368d8ee3ae800affdf6c58f43d999612942dc86caa644ecb528409b745297a6c"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage/versions/77a4365cf053f70a3422ddd1/workflow.json",
+      "size": 8583,
+      "sha256": "667b36d246ab3cc38f1f1457dc0d2e5117c6781004f45750359147990fbb7f6f"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage/versions/a8aeb1df4d7e3e08e4dc02a3/mapping.json",
+      "size": 1159,
+      "sha256": "ded8440388c7933eb498ff45e1df5fc8510a246ac57345df43bac07ef2543bc7"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage/versions/a8aeb1df4d7e3e08e4dc02a3/workflow.api.json",
+      "size": 1754,
+      "sha256": "c3cd7ad360f809a6190003745688c70f3da19fb1e58c730d38e7ed30d613c72d"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage/versions/a8aeb1df4d7e3e08e4dc02a3/workflow.json",
+      "size": 7554,
+      "sha256": "bfcd13805b676d0c714b9e40b64f4f325fbfe8ce411e0b036980b3c9a59bfe96"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage/versions/a922f37ac9e9c448a82467aa/mapping.json",
+      "size": 1159,
+      "sha256": "ded8440388c7933eb498ff45e1df5fc8510a246ac57345df43bac07ef2543bc7"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage/versions/a922f37ac9e9c448a82467aa/workflow.api.json",
+      "size": 2305,
+      "sha256": "368d8ee3ae800affdf6c58f43d999612942dc86caa644ecb528409b745297a6c"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage/versions/a922f37ac9e9c448a82467aa/workflow.json",
+      "size": 8583,
+      "sha256": "1a241b157dae914d40beba3daab7f74f6f90559323ee3c1dd5c3c4dd665cb5c4"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage-edit/current.json",
+      "size": 77,
+      "sha256": "919c2ce0e0b53c31d5850e75f9b6f7556c2d0ca8185acf9e17135278a75ddae5"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage-edit/versions/2f8d0eff68135d22c749e4db/mapping.json",
+      "size": 1156,
+      "sha256": "7e591dd9ea49b090dd4ec79af64f91b3ec0f37b24fa0f91c983005d473115fe3"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage-edit/versions/2f8d0eff68135d22c749e4db/workflow.api.json",
+      "size": 2468,
+      "sha256": "670e83ca056ffa548706bf3e485c2962daf127f595cd5e450e511eeee18d562e"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage-edit/versions/2f8d0eff68135d22c749e4db/workflow.json",
+      "size": 9513,
+      "sha256": "6e9234729d3b21db333bad8cc9e6d7ade74fa141f19a53fd0252b70b16872c6c"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage-edit/versions/5ddc6b68c812b312aa1a0e20/mapping.json",
+      "size": 1156,
+      "sha256": "7e591dd9ea49b090dd4ec79af64f91b3ec0f37b24fa0f91c983005d473115fe3"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage-edit/versions/5ddc6b68c812b312aa1a0e20/workflow.api.json",
+      "size": 1876,
+      "sha256": "67e960c8470ffe3c4083c01a0cad5520542150b7adef70c4aa7d7cc527a67bc2"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage-edit/versions/5ddc6b68c812b312aa1a0e20/workflow.json",
+      "size": 8505,
+      "sha256": "eaea3567b05a5b8594d960b4e9b14dfdb2ad7af6500f61acef8e99bd161be6c1"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage-edit/versions/8b2a7dd1746b3c0118b608f8/mapping.json",
+      "size": 1156,
+      "sha256": "7e591dd9ea49b090dd4ec79af64f91b3ec0f37b24fa0f91c983005d473115fe3"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage-edit/versions/8b2a7dd1746b3c0118b608f8/workflow.api.json",
+      "size": 2468,
+      "sha256": "670e83ca056ffa548706bf3e485c2962daf127f595cd5e450e511eeee18d562e"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage-edit/versions/8b2a7dd1746b3c0118b608f8/workflow.json",
+      "size": 9513,
+      "sha256": "08e2581c962a256338e56124118d1339f2fe999ea6124d351b4f33e2ca1c1701"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage-edit/versions/f224343922585ed45945a8e3/mapping.json",
+      "size": 1156,
+      "sha256": "7e591dd9ea49b090dd4ec79af64f91b3ec0f37b24fa0f91c983005d473115fe3"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage-edit/versions/f224343922585ed45945a8e3/workflow.api.json",
+      "size": 2468,
+      "sha256": "670e83ca056ffa548706bf3e485c2962daf127f595cd5e450e511eeee18d562e"
+    },
+    {
+      "path": "source/resources/workflows/defaults/image-zimage-edit/versions/f224343922585ed45945a8e3/workflow.json",
+      "size": 9513,
+      "sha256": "df577c6d831bdf8ec881260641e8714a7fc4d554c0d1a35d62cd98dc6ad0c82d"
+    },
+    {
+      "path": "source/resources/workflows/defaults/text-qwen3/current.json",
+      "size": 77,
+      "sha256": "64f990ad65bb7b312cd1d6477de675ae21bf7161b6704acdb56a4ea4e74c807f"
+    },
+    {
+      "path": "source/resources/workflows/defaults/text-qwen3/versions/1ca2e60d44eb19dfc1c1f76b/mapping.json",
+      "size": 518,
+      "sha256": "eb735415c282fb69c153595155c5700adde43e122bc78f9973b8fa3355013a98"
+    },
+    {
+      "path": "source/resources/workflows/defaults/text-qwen3/versions/1ca2e60d44eb19dfc1c1f76b/workflow.api.json",
+      "size": 630,
+      "sha256": "b76adaf3c74712e0407756017fcfad9d45c665b8814d9b7d306d5961dfd82b96"
+    },
+    {
+      "path": "source/resources/workflows/defaults/text-qwen3/versions/1ca2e60d44eb19dfc1c1f76b/workflow.json",
+      "size": 2299,
+      "sha256": "3d706f716d1a7fde160ac189344743c6d116ef351cb043ade807eef8f39af00e"
+    },
+    {
+      "path": "source/resources/workflows/defaults/text-qwen3/versions/57d9ffebdec32df888fec3cc/mapping.json",
+      "size": 518,
+      "sha256": "eb735415c282fb69c153595155c5700adde43e122bc78f9973b8fa3355013a98"
+    },
+    {
+      "path": "source/resources/workflows/defaults/text-qwen3/versions/57d9ffebdec32df888fec3cc/workflow.api.json",
+      "size": 779,
+      "sha256": "4ba2f8fcf6440c706c48bf5d816c923170cb83a36322324f837950ce21a56bb2"
+    },
+    {
+      "path": "source/resources/workflows/defaults/text-qwen3/versions/57d9ffebdec32df888fec3cc/workflow.json",
+      "size": 3269,
+      "sha256": "72f37efc5d860f20e93e043bf2e30f5f292c77b29fa472f6f5ab424ec80f151c"
+    },
+    {
+      "path": "source/resources/workflows/defaults/text-qwen3/versions/704c84d79ffc2ca7e90a7388/mapping.json",
+      "size": 518,
+      "sha256": "eb735415c282fb69c153595155c5700adde43e122bc78f9973b8fa3355013a98"
+    },
+    {
+      "path": "source/resources/workflows/defaults/text-qwen3/versions/704c84d79ffc2ca7e90a7388/workflow.api.json",
+      "size": 779,
+      "sha256": "4ba2f8fcf6440c706c48bf5d816c923170cb83a36322324f837950ce21a56bb2"
+    },
+    {
+      "path": "source/resources/workflows/defaults/text-qwen3/versions/704c84d79ffc2ca7e90a7388/workflow.json",
+      "size": 3269,
+      "sha256": "2d41a01b230bed4e82f967ba5c331b3fc0b3b99a96cd3f33a8002ba05e3ce61e"
+    },
+    {
+      "path": "source/resources/workflows/defaults/text-qwen3/versions/e1d6772911fe796cb1839f43/mapping.json",
+      "size": 518,
+      "sha256": "eb735415c282fb69c153595155c5700adde43e122bc78f9973b8fa3355013a98"
+    },
+    {
+      "path": "source/resources/workflows/defaults/text-qwen3/versions/e1d6772911fe796cb1839f43/workflow.api.json",
+      "size": 779,
+      "sha256": "4ba2f8fcf6440c706c48bf5d816c923170cb83a36322324f837950ce21a56bb2"
+    },
+    {
+      "path": "source/resources/workflows/defaults/text-qwen3/versions/e1d6772911fe796cb1839f43/workflow.json",
+      "size": 3269,
+      "sha256": "66cdaf2bfaed09bd7ac5f3016c1c1cfd5eb3480ba0681d43895ad88d0aa68d36"
+    },
+    {
+      "path": "source/resources/workflows/defaults/text-qwen3/versions/e5f8aec153e6b237908a6a3f/mapping.json",
+      "size": 518,
+      "sha256": "eb735415c282fb69c153595155c5700adde43e122bc78f9973b8fa3355013a98"
+    },
+    {
+      "path": "source/resources/workflows/defaults/text-qwen3/versions/e5f8aec153e6b237908a6a3f/workflow.api.json",
+      "size": 628,
+      "sha256": "344aae27584a430d8f007ca332b8939df51eb72353af121d6e63b964842f30f3"
+    },
+    {
+      "path": "source/resources/workflows/defaults/text-qwen3/versions/e5f8aec153e6b237908a6a3f/workflow.json",
+      "size": 2297,
+      "sha256": "53c2a8997c6becf5e1ff0fd967f3edd21850f75f9657c5f5dd675b0827741ef3"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-audio-volume/current.json",
+      "size": 77,
+      "sha256": "9b56d6056bb9cd8c07101af2a1e3100861b4ac85a089718c4d05775e55ecaee9"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-audio-volume/versions/7c8a81088e68acaea65540f9/mapping.json",
+      "size": 521,
+      "sha256": "8a24abc13d2de1f6b63c426554e25d1f71df2db11849fd99f997a3c4d94aa744"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-audio-volume/versions/7c8a81088e68acaea65540f9/workflow.api.json",
+      "size": 586,
+      "sha256": "4d438b82435c2aa70d0609339391e4cf4f1524cd674d9011fc0dfd78b8d46b5a"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-audio-volume/versions/7c8a81088e68acaea65540f9/workflow.json",
+      "size": 2576,
+      "sha256": "d01dd378c81667a8313b3c074b68f2840e445766c8963176d5593bbdf6caf9cb"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-audio-volume/versions/8fc88ce2393677c68d1d2c72/mapping.json",
+      "size": 521,
+      "sha256": "8a24abc13d2de1f6b63c426554e25d1f71df2db11849fd99f997a3c4d94aa744"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-audio-volume/versions/8fc88ce2393677c68d1d2c72/workflow.api.json",
+      "size": 586,
+      "sha256": "4d438b82435c2aa70d0609339391e4cf4f1524cd674d9011fc0dfd78b8d46b5a"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-audio-volume/versions/8fc88ce2393677c68d1d2c72/workflow.json",
+      "size": 2576,
+      "sha256": "8f27524ac8b2a229cec3ee6c5fc91bfed68d496853ca6b6e3239a11299739321"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-audio-volume/versions/9c02acafb8f78362c785bdb6/mapping.json",
+      "size": 521,
+      "sha256": "8a24abc13d2de1f6b63c426554e25d1f71df2db11849fd99f997a3c4d94aa744"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-audio-volume/versions/9c02acafb8f78362c785bdb6/workflow.api.json",
+      "size": 407,
+      "sha256": "144aaecd8036a0b1eceb60fc392b791a107ce5a0184ac2fc2928848829b79fad"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-audio-volume/versions/9c02acafb8f78362c785bdb6/workflow.json",
+      "size": 2158,
+      "sha256": "a05ebdb39ec46b1da025edf672b6d3217525ce0631b9c77489fc4598c93fae21"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-audio-volume/versions/c1d670c8e1a43f1911d780bf/mapping.json",
+      "size": 521,
+      "sha256": "8a24abc13d2de1f6b63c426554e25d1f71df2db11849fd99f997a3c4d94aa744"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-audio-volume/versions/c1d670c8e1a43f1911d780bf/workflow.api.json",
+      "size": 586,
+      "sha256": "4d438b82435c2aa70d0609339391e4cf4f1524cd674d9011fc0dfd78b8d46b5a"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-audio-volume/versions/c1d670c8e1a43f1911d780bf/workflow.json",
+      "size": 2576,
+      "sha256": "db10a25314ff5a7ae1cb6e8a5b2b4c77646550080c19418c6705dd41d098de2f"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-audio-volume/versions/e7445dc34a1576a1753607a0/mapping.json",
+      "size": 483,
+      "sha256": "dc1b768467c5eef182fe441ce570364438f15cd89f535b3f40bdd3f7279054b5"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-audio-volume/versions/e7445dc34a1576a1753607a0/workflow.api.json",
+      "size": 407,
+      "sha256": "068bea6d701e815ba6cfcd61d2110e5db9f40a8948b65c939d00733d11da342f"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-audio-volume/versions/e7445dc34a1576a1753607a0/workflow.json",
+      "size": 2158,
+      "sha256": "3f35d6ee90d677b10ef1fa0c3284f72f5ff476ca62c7980b66c3ca9512e77d6b"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-caption/current.json",
+      "size": 77,
+      "sha256": "afec87e67db470b147e0557a01927ab71ddb1449d2d21db7d809a6b547cbcd65"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-caption/versions/42f09bb7d4a887ccc657caa7/mapping.json",
+      "size": 726,
+      "sha256": "0086f8fdff4e8d285662ebce95c5ccb625ca45b06eee9855ffc3aceb331d71b3"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-caption/versions/42f09bb7d4a887ccc657caa7/workflow.api.json",
+      "size": 790,
+      "sha256": "edec91d963267b6213819c56a5dffc8672521a10173957a1161b42eb0718eeb8"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-caption/versions/42f09bb7d4a887ccc657caa7/workflow.json",
+      "size": 3133,
+      "sha256": "edc3cfbcf657788f282edfbab98c203b2dd822f40a4e350cb37a4a22155701fe"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-caption/versions/63b9e96a056890848065b5a2/mapping.json",
+      "size": 726,
+      "sha256": "0086f8fdff4e8d285662ebce95c5ccb625ca45b06eee9855ffc3aceb331d71b3"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-caption/versions/63b9e96a056890848065b5a2/workflow.api.json",
+      "size": 991,
+      "sha256": "5e78b894fcb6b22d46c5f577ecc26ba3a7c61bdff0ee412c8320438f2a82cb9d"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-caption/versions/63b9e96a056890848065b5a2/workflow.json",
+      "size": 4140,
+      "sha256": "f406d6d89802935a3aefba67ca5cca7fec05ceec1d0e34921f4f37954e2678b7"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-caption/versions/8347620556d4a90b758e6413/mapping.json",
+      "size": 726,
+      "sha256": "0086f8fdff4e8d285662ebce95c5ccb625ca45b06eee9855ffc3aceb331d71b3"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-caption/versions/8347620556d4a90b758e6413/workflow.api.json",
+      "size": 991,
+      "sha256": "5e78b894fcb6b22d46c5f577ecc26ba3a7c61bdff0ee412c8320438f2a82cb9d"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-caption/versions/8347620556d4a90b758e6413/workflow.json",
+      "size": 4140,
+      "sha256": "4f7adf110314850dae7504fee27b2384735fe51135e5fed1d2b84d906702737f"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-caption/versions/ba673039ac59707ad5e572e3/mapping.json",
+      "size": 726,
+      "sha256": "0086f8fdff4e8d285662ebce95c5ccb625ca45b06eee9855ffc3aceb331d71b3"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-caption/versions/ba673039ac59707ad5e572e3/workflow.api.json",
+      "size": 991,
+      "sha256": "5e78b894fcb6b22d46c5f577ecc26ba3a7c61bdff0ee412c8320438f2a82cb9d"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-caption/versions/ba673039ac59707ad5e572e3/workflow.json",
+      "size": 4140,
+      "sha256": "caaa6bce19b044ecac80d029162d555fb17ccbb3f4501c246f7fbd6bb04d94e2"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-crop/current.json",
+      "size": 77,
+      "sha256": "05d034af3e869d3c60441c106d2a4f5a6f41d30bef9250eaa39760ebe149a9c2"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-crop/versions/6d2c53f4da43f76ac755f071/mapping.json",
+      "size": 1174,
+      "sha256": "55c46d00cd46008d55b1c07ff8c1a34ff620f284963eb9abd0a358e2baeb291e"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-crop/versions/6d2c53f4da43f76ac755f071/workflow.api.json",
+      "size": 605,
+      "sha256": "a92d3e0d55e4fd93c1100edad7c36920a8747579c703a8f3bb47d98b397e3146"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-crop/versions/6d2c53f4da43f76ac755f071/workflow.json",
+      "size": 2757,
+      "sha256": "846423bc3e9881fd5aaba6006806a590cab975ee479f8b0d1399b3f29777b902"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-crop/versions/6dd3854652130e2c3f2598fa/mapping.json",
+      "size": 1174,
+      "sha256": "55c46d00cd46008d55b1c07ff8c1a34ff620f284963eb9abd0a358e2baeb291e"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-crop/versions/6dd3854652130e2c3f2598fa/workflow.api.json",
+      "size": 605,
+      "sha256": "a92d3e0d55e4fd93c1100edad7c36920a8747579c703a8f3bb47d98b397e3146"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-crop/versions/6dd3854652130e2c3f2598fa/workflow.json",
+      "size": 2757,
+      "sha256": "f363708ea0044b7f28361047c1a4efeb46df4857a8b3a4068b5cb0331c99c41d"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-crop/versions/9c123da0308bcfc903d6dd84/mapping.json",
+      "size": 1174,
+      "sha256": "55c46d00cd46008d55b1c07ff8c1a34ff620f284963eb9abd0a358e2baeb291e"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-crop/versions/9c123da0308bcfc903d6dd84/workflow.api.json",
+      "size": 605,
+      "sha256": "a92d3e0d55e4fd93c1100edad7c36920a8747579c703a8f3bb47d98b397e3146"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-crop/versions/9c123da0308bcfc903d6dd84/workflow.json",
+      "size": 2757,
+      "sha256": "ab7cd64b71c5c82e0e20df22e3409ba0dca2c16874b26780898807b3d46685ae"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-crop/versions/fbc6d98488981badf3ffbcd3/mapping.json",
+      "size": 1174,
+      "sha256": "55c46d00cd46008d55b1c07ff8c1a34ff620f284963eb9abd0a358e2baeb291e"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-crop/versions/fbc6d98488981badf3ffbcd3/workflow.api.json",
+      "size": 442,
+      "sha256": "e608ae41e955052a2b712755d7c83a78935d9c21b70100d29b47625652f93fd5"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-crop/versions/fbc6d98488981badf3ffbcd3/workflow.json",
+      "size": 2295,
+      "sha256": "b54bbae633c8b3c52cc6222fec9d82c0f72b525a380790549e40b70a74e7de1e"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-resize/current.json",
+      "size": 77,
+      "sha256": "6e345b757b1227ca9217e30c24b4bacdb63abff7eaabcf4451953e903a47a7a0"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-resize/versions/2264e2a61dce633707638e42/mapping.json",
+      "size": 778,
+      "sha256": "73e3adc29f55d265fc6e1caa13a4bf02d36093917ccd659472dbedbd1383a2ac"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-resize/versions/2264e2a61dce633707638e42/workflow.api.json",
+      "size": 480,
+      "sha256": "7509fa763c288c90f10688948aafaa282efbe0229500e5952faf80efcddf4b6a"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-resize/versions/2264e2a61dce633707638e42/workflow.json",
+      "size": 2318,
+      "sha256": "f2d288102943d4f5cd224838f61c50e4d0311ad2eeead0061193825087c8f56e"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-resize/versions/4bea750115c60ba82c82ff6b/mapping.json",
+      "size": 778,
+      "sha256": "73e3adc29f55d265fc6e1caa13a4bf02d36093917ccd659472dbedbd1383a2ac"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-resize/versions/4bea750115c60ba82c82ff6b/workflow.api.json",
+      "size": 633,
+      "sha256": "7a0dfe7bcac6896fcd135b63fc434f15a379449f56aa822bb82b410ae60ce8e9"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-resize/versions/4bea750115c60ba82c82ff6b/workflow.json",
+      "size": 2817,
+      "sha256": "09beedd4df921a7a34a452109a63b170376d2d1bb76fafae9f6a8b062c6a9d26"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-resize/versions/e5deedeffc3a5d5764c95371/mapping.json",
+      "size": 778,
+      "sha256": "73e3adc29f55d265fc6e1caa13a4bf02d36093917ccd659472dbedbd1383a2ac"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-resize/versions/e5deedeffc3a5d5764c95371/workflow.api.json",
+      "size": 633,
+      "sha256": "7a0dfe7bcac6896fcd135b63fc434f15a379449f56aa822bb82b410ae60ce8e9"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-resize/versions/e5deedeffc3a5d5764c95371/workflow.json",
+      "size": 2817,
+      "sha256": "08556f793456f6f262a1e31e38ca9c8711acdb7d07911e62862eee15228e8487"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-resize/versions/f11b4ffd896a813bad6f900d/mapping.json",
+      "size": 778,
+      "sha256": "73e3adc29f55d265fc6e1caa13a4bf02d36093917ccd659472dbedbd1383a2ac"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-resize/versions/f11b4ffd896a813bad6f900d/workflow.api.json",
+      "size": 633,
+      "sha256": "7a0dfe7bcac6896fcd135b63fc434f15a379449f56aa822bb82b410ae60ce8e9"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-resize/versions/f11b4ffd896a813bad6f900d/workflow.json",
+      "size": 2817,
+      "sha256": "69b64aa0224dd2a340ad46ac550621a97e08b6289dac800302fdfdd0fea10d05"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-upscale/current.json",
+      "size": 77,
+      "sha256": "7b95bebc0d0de964f2658b31abb347ed57ac3f00f77756ea983cf9352f9c66cf"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-upscale/versions/2c538b51ab7bd7b899a3b3b4/mapping.json",
+      "size": 347,
+      "sha256": "07ee792644df843f1ff6b7df59af13088aa9db35f7c91e16c0dd5588447b81ef"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-upscale/versions/2c538b51ab7bd7b899a3b3b4/workflow.api.json",
+      "size": 786,
+      "sha256": "23d5a5d369f1127fe2122adc837d1b0352d629c14f1c91e20be11667790a7ef2"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-upscale/versions/2c538b51ab7bd7b899a3b3b4/workflow.json",
+      "size": 3432,
+      "sha256": "ac6510c6e2191c8dfed9a06583cc99ca65cec574ab7d01a20f3680d5ac0826cd"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-upscale/versions/5f5b710efccb6798bb4458f8/mapping.json",
+      "size": 347,
+      "sha256": "07ee792644df843f1ff6b7df59af13088aa9db35f7c91e16c0dd5588447b81ef"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-upscale/versions/5f5b710efccb6798bb4458f8/workflow.api.json",
+      "size": 561,
+      "sha256": "3f293937f6a790e4e4c6e4dfd4255849f58d107f1380db9e7206a095a73115ac"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-upscale/versions/5f5b710efccb6798bb4458f8/workflow.json",
+      "size": 3029,
+      "sha256": "b6e05c2b65710bfa04921f1de750075655ef9f7c63e48b1eb9d1ce5250f7f256"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-upscale/versions/b4b9d12ebd5918081dc078a0/mapping.json",
+      "size": 347,
+      "sha256": "07ee792644df843f1ff6b7df59af13088aa9db35f7c91e16c0dd5588447b81ef"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-upscale/versions/b4b9d12ebd5918081dc078a0/workflow.api.json",
+      "size": 786,
+      "sha256": "23d5a5d369f1127fe2122adc837d1b0352d629c14f1c91e20be11667790a7ef2"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-upscale/versions/b4b9d12ebd5918081dc078a0/workflow.json",
+      "size": 3432,
+      "sha256": "18d5ee299b46d031dbd61e4f592248dc1062c0b1410c99ecb376cb9580f366b2"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-upscale/versions/e834512ac9e3868e19c8f1f4/mapping.json",
+      "size": 347,
+      "sha256": "07ee792644df843f1ff6b7df59af13088aa9db35f7c91e16c0dd5588447b81ef"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-upscale/versions/e834512ac9e3868e19c8f1f4/workflow.api.json",
+      "size": 786,
+      "sha256": "23d5a5d369f1127fe2122adc837d1b0352d629c14f1c91e20be11667790a7ef2"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-image-upscale/versions/e834512ac9e3868e19c8f1f4/workflow.json",
+      "size": 3432,
+      "sha256": "9e38bdd389843fe650018ab8332f54315ca435bc880aea3c41501f4d99c3cf61"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-angles/current.json",
+      "size": 77,
+      "sha256": "244bb471f4fb2eb4aead8b6c7b833ee7fdc11714ea0a9a6015d9f757768f37ba"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-angles/versions/64540aa2294d322cd0ec5c5f/mapping.json",
+      "size": 2735,
+      "sha256": "e2774de00c861ec7c2b1f81bf862a2cded5742b1c4972bc30ccff7f82bc2dda8"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-angles/versions/64540aa2294d322cd0ec5c5f/workflow.api.json",
+      "size": 3591,
+      "sha256": "ec858c9dbc4580e1e819b38ed06786c2904667c2c9e3559fc8e4a0b7b5018ba4"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-angles/versions/64540aa2294d322cd0ec5c5f/workflow.json",
+      "size": 14809,
+      "sha256": "9fcfe7151c43148f453265defed005b3cc60ae23dd32cf88267d669fed16a096"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-angles/versions/cd83069e64fb5de8f84ef3b5/mapping.json",
+      "size": 2735,
+      "sha256": "e2774de00c861ec7c2b1f81bf862a2cded5742b1c4972bc30ccff7f82bc2dda8"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-angles/versions/cd83069e64fb5de8f84ef3b5/workflow.api.json",
+      "size": 3591,
+      "sha256": "ec858c9dbc4580e1e819b38ed06786c2904667c2c9e3559fc8e4a0b7b5018ba4"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-angles/versions/cd83069e64fb5de8f84ef3b5/workflow.json",
+      "size": 14727,
+      "sha256": "a356419a054fb287ff9202296b3393bd7a7c8655c1921b0c7611f9d17a762eef"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-grid/current.json",
+      "size": 77,
+      "sha256": "c4bbad06adae2df57f70798aa892c1d0640bcbae842670baffbebcef17b2585b"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-grid/versions/274c91f4dae578f6f38ed97b/mapping.json",
+      "size": 936,
+      "sha256": "d85ef714658fcce576aad99104797a30b3faa0d5bef13dabc98c0f99b37f1bcc"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-grid/versions/274c91f4dae578f6f38ed97b/workflow.api.json",
+      "size": 16345,
+      "sha256": "0171c376090e188b23a24f473b773846488d563a040fc674ce6cc094a5b6d530"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-grid/versions/274c91f4dae578f6f38ed97b/workflow.json",
+      "size": 68439,
+      "sha256": "4e34e775b8635e5e7713f867b998fd4ad15acea45033b88a3a1d742ca537219c"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-grid/versions/5590349908cfd39f42712f8d/mapping.json",
+      "size": 936,
+      "sha256": "d85ef714658fcce576aad99104797a30b3faa0d5bef13dabc98c0f99b37f1bcc"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-grid/versions/5590349908cfd39f42712f8d/workflow.api.json",
+      "size": 16748,
+      "sha256": "72ff7fdc117be44c2760b136fc4a03d7ba6a12bb780ec20afc9c8123c313dfd0"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-grid/versions/5590349908cfd39f42712f8d/workflow.json",
+      "size": 73575,
+      "sha256": "471fd66c14985ca401e9b6cd834a6ed07c825309fde1502569bd0a8feeee195c"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-grid/versions/9f8cbe588e53a3a9dfcb0885/mapping.json",
+      "size": 936,
+      "sha256": "d85ef714658fcce576aad99104797a30b3faa0d5bef13dabc98c0f99b37f1bcc"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-grid/versions/9f8cbe588e53a3a9dfcb0885/workflow.api.json",
+      "size": 16748,
+      "sha256": "72ff7fdc117be44c2760b136fc4a03d7ba6a12bb780ec20afc9c8123c313dfd0"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-grid/versions/9f8cbe588e53a3a9dfcb0885/workflow.json",
+      "size": 70514,
+      "sha256": "d1755d7fd095bc0ac58a86e22a5a9f540c6540db1db7400ff532b410e647bba6"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-lighting/current.json",
+      "size": 77,
+      "sha256": "675da814358b39119743dfd2c7780fc6a04cd15734b21389d2a70b64f9fe4aef"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-lighting/versions/332d3dcee3ff865658310b7d/mapping.json",
+      "size": 933,
+      "sha256": "ba472c55990b2d1114c27a6ce62e6baa9d7ca2d78f2ba8d54339a95038d306f7"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-lighting/versions/332d3dcee3ff865658310b7d/workflow.api.json",
+      "size": 3193,
+      "sha256": "df33985840aed2c6a3bf1799adbc273bb2d837ae48742a91913bcda04ea9f172"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-lighting/versions/332d3dcee3ff865658310b7d/workflow.json",
+      "size": 13225,
+      "sha256": "66f30eba9f8c4d06c109f043ed1e647d24cef7ae756e080308d47f1373a04720"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-mark/current.json",
+      "size": 77,
+      "sha256": "c52e24423f5d120b1edca52d0001bab7a2263e5d35254d07f8dfa131f606e613"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-mark/versions/67d700ecfe18a11eff00c851/mapping.json",
+      "size": 1378,
+      "sha256": "273a0e05ae594d754422813bae2bbdce354c3e48a6b82db9e89a458008128b98"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-mark/versions/67d700ecfe18a11eff00c851/workflow.api.json",
+      "size": 5599,
+      "sha256": "58c9bcec0cc42086935f95d3d9cb8db7a736f6aa651056f30d064a0c6f1efeb1"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-mark/versions/67d700ecfe18a11eff00c851/workflow.json",
+      "size": 24482,
+      "sha256": "2cc2fd0ddc9c718cdeb36ec74702ffd9f03c2050afa422e26007b6511b26dda4"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-mark/versions/f39115849ca02520c4885548/mapping.json",
+      "size": 1378,
+      "sha256": "273a0e05ae594d754422813bae2bbdce354c3e48a6b82db9e89a458008128b98"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-mark/versions/f39115849ca02520c4885548/workflow.api.json",
+      "size": 5599,
+      "sha256": "58c9bcec0cc42086935f95d3d9cb8db7a736f6aa651056f30d064a0c6f1efeb1"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-mark/versions/f39115849ca02520c4885548/workflow.json",
+      "size": 24788,
+      "sha256": "8d98caff972a85d001f0cdd9bcf583582847123048f0b4b5a44f870cb50625b3"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-portrait/current.json",
+      "size": 77,
+      "sha256": "764a01cc72dc649256a96224926751733c4d0226fd927ed9a03558d4685409a5"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-portrait/versions/64e75d5f2f2fb85b9943524e/mapping.json",
+      "size": 1166,
+      "sha256": "5f86eb01c7c406efaf0804c13602004b806d32bcfec894f3829fdb22350da7bf"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-portrait/versions/64e75d5f2f2fb85b9943524e/workflow.api.json",
+      "size": 3196,
+      "sha256": "4eca84203e47541399b15a27c07da19adc39ef5832531e2a1855266bc0dbc196"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-qwen-portrait/versions/64e75d5f2f2fb85b9943524e/workflow.json",
+      "size": 13228,
+      "sha256": "83b69d009846856943bcfcd98a697c9bb21b433463ce6046ff009cc95f19ddde"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-text-save/current.json",
+      "size": 77,
+      "sha256": "56fc9196705ace1a28cc6f2cda3945ad2c3b14299ac9fb7f9a8c58260e62ca60"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-text-save/versions/1783ff02e5f5959f2bc75a92/mapping.json",
+      "size": 264,
+      "sha256": "3a49341116439155e34d07e58387b18f6be30528c5f2dcee15d3a5898aefaa75"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-text-save/versions/1783ff02e5f5959f2bc75a92/workflow.api.json",
+      "size": 397,
+      "sha256": "a76dbea5628045090406a32f15359ea91ad00d556d46e9fc2d5d4f8508b8f118"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-text-save/versions/1783ff02e5f5959f2bc75a92/workflow.json",
+      "size": 1813,
+      "sha256": "4cea3861c366fa9eb332ac2f2ca2156e938aac39838f95547ac9660d658b51b4"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-text-save/versions/3f4f750499600fba7d18f861/mapping.json",
+      "size": 264,
+      "sha256": "3a49341116439155e34d07e58387b18f6be30528c5f2dcee15d3a5898aefaa75"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-text-save/versions/3f4f750499600fba7d18f861/workflow.api.json",
+      "size": 397,
+      "sha256": "a76dbea5628045090406a32f15359ea91ad00d556d46e9fc2d5d4f8508b8f118"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-text-save/versions/3f4f750499600fba7d18f861/workflow.json",
+      "size": 1813,
+      "sha256": "9bd27dc8f95d55d5d772662a96581bef30bedb5cd157d0a32daf100f1fa49cf0"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-text-save/versions/87ebea803aa7d58801fbe7f6/mapping.json",
+      "size": 264,
+      "sha256": "3a49341116439155e34d07e58387b18f6be30528c5f2dcee15d3a5898aefaa75"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-text-save/versions/87ebea803aa7d58801fbe7f6/workflow.api.json",
+      "size": 397,
+      "sha256": "a76dbea5628045090406a32f15359ea91ad00d556d46e9fc2d5d4f8508b8f118"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-text-save/versions/87ebea803aa7d58801fbe7f6/workflow.json",
+      "size": 1813,
+      "sha256": "1286986c95afe975e4375ab39be48d91a067a4812c113f0802b347c8ae21cbd9"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-text-save/versions/baf015b149c9d7555d0dc5d1/mapping.json",
+      "size": 264,
+      "sha256": "3a49341116439155e34d07e58387b18f6be30528c5f2dcee15d3a5898aefaa75"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-text-save/versions/baf015b149c9d7555d0dc5d1/workflow.api.json",
+      "size": 292,
+      "sha256": "449ea7a9e77705be5bc42426e88921971201d674d357dc2f513bb1c40fab35ea"
+    },
+    {
+      "path": "source/resources/workflows/defaults/tool-text-save/versions/baf015b149c9d7555d0dc5d1/workflow.json",
+      "size": 1488,
+      "sha256": "abd43c15c1cbbbf70ff6d2ee9ca33d7fa7ff183b6c4fea83152e10ddc1b85741"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-i2v/current.json",
+      "size": 77,
+      "sha256": "0b85da27288bcd1192cd2d28a9115dcfe1af424c355b8130c31c8a0ac7bbbaec"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-i2v/versions/0fa6a95b4556f433f3fa4bf1/mapping.json",
+      "size": 1595,
+      "sha256": "a23332321bc6aaff9b82c3ba7c27f123767aa168188e2487d83573b3f5cb1413"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-i2v/versions/0fa6a95b4556f433f3fa4bf1/workflow.api.json",
+      "size": 4136,
+      "sha256": "c1e159683bcf9912158b350cbaed3e94251fe88c4cda13b15dd80db76664c8c1"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-i2v/versions/0fa6a95b4556f433f3fa4bf1/workflow.json",
+      "size": 15527,
+      "sha256": "14127434f243107bd8d236ecafbfb257e0496979a5360f6b36d5e876c29f40fd"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-i2v/versions/37654e151f5b6ba460d2b1bd/mapping.json",
+      "size": 1595,
+      "sha256": "a23332321bc6aaff9b82c3ba7c27f123767aa168188e2487d83573b3f5cb1413"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-i2v/versions/37654e151f5b6ba460d2b1bd/workflow.api.json",
+      "size": 4136,
+      "sha256": "c1e159683bcf9912158b350cbaed3e94251fe88c4cda13b15dd80db76664c8c1"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-i2v/versions/37654e151f5b6ba460d2b1bd/workflow.json",
+      "size": 15527,
+      "sha256": "40dc4a9b02ebb206f751f6aa345311876d1c5d3c4fa90c8662f77b8929aa5456"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-i2v/versions/6ba74fd8db2421377ceec168/mapping.json",
+      "size": 1595,
+      "sha256": "a23332321bc6aaff9b82c3ba7c27f123767aa168188e2487d83573b3f5cb1413"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-i2v/versions/6ba74fd8db2421377ceec168/workflow.api.json",
+      "size": 3173,
+      "sha256": "d9516b0eb6014206f06b2ae2b5838e0b32f5b839a90d71d90d1a4d373abd0bda"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-i2v/versions/6ba74fd8db2421377ceec168/workflow.json",
+      "size": 13593,
+      "sha256": "182a15e45cf6ec7bfffa2c0b32d12ee58a96e69a8b13ebed2cf54d73029a3fef"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-i2v/versions/dc3423ea11653bd1d58e22c4/mapping.json",
+      "size": 1595,
+      "sha256": "a23332321bc6aaff9b82c3ba7c27f123767aa168188e2487d83573b3f5cb1413"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-i2v/versions/dc3423ea11653bd1d58e22c4/workflow.api.json",
+      "size": 3134,
+      "sha256": "dd65df0451e3fa010616402fca742ef3b47f73b694f8be2469df8e375ddef14b"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-i2v/versions/dc3423ea11653bd1d58e22c4/workflow.json",
+      "size": 13593,
+      "sha256": "182a15e45cf6ec7bfffa2c0b32d12ee58a96e69a8b13ebed2cf54d73029a3fef"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-turbo/current.json",
+      "size": 77,
+      "sha256": "db6acd96ddac6175a736e46d9f826754f4257ce6d24c5143b87f35b6c94f4541"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-turbo/versions/0a99faaf74cc19b65d27a50e/mapping.json",
+      "size": 1386,
+      "sha256": "d035fedd79d777ed5e26bf497c6b08d8e22bef977b54619ae01322266fddf229"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-turbo/versions/0a99faaf74cc19b65d27a50e/workflow.api.json",
+      "size": 3933,
+      "sha256": "6b78ea2658f2f10228446724dc82c73a26c73b57ecc01c76389d56e361bc626f"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-turbo/versions/0a99faaf74cc19b65d27a50e/workflow.json",
+      "size": 14681,
+      "sha256": "1f4a41c3a736fe4e4a90eb54e1e7596c084c4df47877acdc39918eaf0be03754"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-turbo/versions/68ceb8403c74efabce64678b/mapping.json",
+      "size": 1386,
+      "sha256": "d035fedd79d777ed5e26bf497c6b08d8e22bef977b54619ae01322266fddf229"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-turbo/versions/68ceb8403c74efabce64678b/workflow.api.json",
+      "size": 2981,
+      "sha256": "6b4ae2eb6727751f87b88246e7ba5725c190097e61f8be2542299d803068b04a"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-turbo/versions/68ceb8403c74efabce64678b/workflow.json",
+      "size": 12759,
+      "sha256": "fd1909ed4535768ae95c7f9163be6b5ce4621443e2180b8a30e4e241df6c9966"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-turbo/versions/a4ec76dd46bee8cc560995b8/mapping.json",
+      "size": 1386,
+      "sha256": "d035fedd79d777ed5e26bf497c6b08d8e22bef977b54619ae01322266fddf229"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-turbo/versions/a4ec76dd46bee8cc560995b8/workflow.api.json",
+      "size": 3020,
+      "sha256": "054546dcd80f631d8f66ae674544eab1be5f933574400844084e03b26c798c15"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-turbo/versions/a4ec76dd46bee8cc560995b8/workflow.json",
+      "size": 12759,
+      "sha256": "fd1909ed4535768ae95c7f9163be6b5ce4621443e2180b8a30e4e241df6c9966"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-turbo/versions/eb41fbb1f415d6d17d41364e/mapping.json",
+      "size": 1386,
+      "sha256": "d035fedd79d777ed5e26bf497c6b08d8e22bef977b54619ae01322266fddf229"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-turbo/versions/eb41fbb1f415d6d17d41364e/workflow.api.json",
+      "size": 3933,
+      "sha256": "6b78ea2658f2f10228446724dc82c73a26c73b57ecc01c76389d56e361bc626f"
+    },
+    {
+      "path": "source/resources/workflows/defaults/video-h3-turbo/versions/eb41fbb1f415d6d17d41364e/workflow.json",
+      "size": 14681,
+      "sha256": "66e260d66c6f2f644d7aed62f2b90742702fe42b7d4dede8415113c84cfbab29"
+    },
+    {
+      "path": "source/resources/workflows/native-editor-bridge.js",
+      "size": 1093,
+      "sha256": "061c3b95114b3950bd89e3829cfda98f315178b8719faf25db322c329b1df14d"
+    },
+    {
+      "path": "source/scripts/add-image-edit-workflows.cjs",
+      "size": 1927,
+      "sha256": "3106f3d2d3b809b3de728bc02c2040636c9b3dab0a216cf4da2ba800721a38d7"
+    },
+    {
+      "path": "source/scripts/audit-local-workflows.cjs",
+      "size": 1713,
+      "sha256": "cdea5893f5344577f7258a88aa30522c2f5090f74bb4fc760b60d85991ebcb16"
+    },
+    {
+      "path": "source/scripts/build-brand-icons.cjs",
+      "size": 1382,
+      "sha256": "35187d87a9b5e88ec9c9f3638a2a8d47a9202ad6b50d570aca230851046fef8e"
+    },
+    {
+      "path": "source/scripts/build.cjs",
+      "size": 5657,
+      "sha256": "e55945e3af2282927146cc52c4a634eafa1875a424469005294090f1cd570d2a"
+    },
+    {
+      "path": "source/scripts/check-document-cold-start.cjs",
+      "size": 1329,
+      "sha256": "0381944d4fd7a642525991296066fb939e99f693fe925fb2bff0ebe98e396deb"
+    },
+    {
+      "path": "source/scripts/check.cjs",
+      "size": 666,
+      "sha256": "08c783a88930a36308128be1b3252b15a2c8066da25e1c029b11396f3393d61a"
+    },
+    {
+      "path": "source/scripts/configure-this-machine.cjs",
+      "size": 1748,
+      "sha256": "d43bbd171976e6cd4d1546e2c46c5569fe8a34a361ad97496e1d85a27ffe833f"
+    },
+    {
+      "path": "source/scripts/create-launch-shortcut.cjs",
+      "size": 922,
+      "sha256": "cfcfd84417a3ee1b37b4419acf9111a449a2616c94b54b72412d67697fb3d6fa"
+    },
+    {
+      "path": "source/scripts/diagnose-production-config.cjs",
+      "size": 1579,
+      "sha256": "bf2ea035c5b2a8239664216e97df8f1d42379a3499d3ab14dcd936e927abb29a"
+    },
+    {
+      "path": "source/scripts/install-specialized-workflows.cjs",
+      "size": 2557,
+      "sha256": "595e3a71955709576f7782a04b29411c31a091354baa045a7c152520a6164bc6"
+    },
+    {
+      "path": "source/scripts/package-example.cjs",
+      "size": 957,
+      "sha256": "2d8896184f40010ff7fdc8b4170696e4a334cfa1bdb0d9dcc8184790eca57112"
+    },
+    {
+      "path": "source/scripts/preserve-brand-update-resources.cjs",
+      "size": 2140,
+      "sha256": "73b957e34583721dfa2d5ecb32e767ba136287fc8a8f2570b4a000e7fce697ce"
+    },
+    {
+      "path": "source/scripts/provision-comfy-models.py",
+      "size": 6709,
+      "sha256": "eb3bbdc06fb21d1dfcc6c3c1e0c049abb96f4f9cd3d444a3dcedfa53b7c27ddf"
+    },
+    {
+      "path": "source/scripts/register-project-files.cjs",
+      "size": 959,
+      "sha256": "c1923b553516e9a83d6c9f5faeef022b18f00d50111d7c2d256f5a7e9b39b2d3"
+    },
+    {
+      "path": "source/scripts/repair-image-default.cjs",
+      "size": 1778,
+      "sha256": "b3000384d87fba491ccd10c6fded7c67e718e2cada0b068a530569345c90aed0"
+    },
+    {
+      "path": "source/scripts/repair-user-comfy-config.cjs",
+      "size": 4053,
+      "sha256": "a27d38ffe4cc44a66c037684a294c86936b9a596b55d99f98ccb0f868b79d223"
+    },
+    {
+      "path": "source/scripts/review-final.cjs",
+      "size": 3868,
+      "sha256": "615a75ba64fb28ab220bc7ec835c20ad38673166c6bcf37b4336a41093abff70"
+    },
+    {
+      "path": "source/scripts/review-package.cjs",
+      "size": 5253,
+      "sha256": "09b80ea9245918eecba396e6ce357223f1dc1f22b017ac3709973dc1136fbf00"
+    },
+    {
+      "path": "source/scripts/run-document-release-check.cjs",
+      "size": 1264,
+      "sha256": "5e77c496dea9df5948cc2c872183b0a9f21ebdceebbc52e6fd9458b7cb4e3d25"
+    },
+    {
+      "path": "source/scripts/start-user-local-check.cjs",
+      "size": 1502,
+      "sha256": "d5efd9e84266dd39ef06a9d80c45620a37778597d6fedb2efed670b0d1ab3e52"
+    },
+    {
+      "path": "source/scripts/test-canvas-gestures.cjs",
+      "size": 3747,
+      "sha256": "a698b7bc30b368ca078da3beffcc48d6daec433e2289a9429d3aa1dd39d4eb73"
+    },
+    {
+      "path": "source/scripts/test-native-mapping.cjs",
+      "size": 3433,
+      "sha256": "8eaa3ffd089078ce520f9d7eee899d06dcbc427415655df8fe84c52719ee55d0"
+    },
+    {
+      "path": "source/scripts/validate-review.cjs",
+      "size": 4148,
+      "sha256": "8af2cb67199628e1d3a844ffbbcc3af1aa66121f7897a2921b34a46bdbb839e4"
+    },
+    {
+      "path": "source/scripts/verify-brand-release.cjs",
+      "size": 1399,
+      "sha256": "2dfbd28b0a63d7c8d61fe582d82e034c4030ec00c2e96c180145fd6680f58de4"
+    },
+    {
+      "path": "source/scripts/verify-comfy-lifecycle.cjs",
+      "size": 1533,
+      "sha256": "9c7aaef43bb730f63474bd1e52c416f505979358e8f597907234346d01cf1265"
+    },
+    {
+      "path": "source/scripts/verify-image-inputs.cjs",
+      "size": 2980,
+      "sha256": "6241be3637e0e20823b5031147c39fa4803567ab77e3332249862981634283ef"
+    },
+    {
+      "path": "source/scripts/verify-lan-live.cjs",
+      "size": 14069,
+      "sha256": "1f25927dadb83cc15ce40302cbb327e266ae93a2db6a3d1f3b488c9d6f88ee41"
+    },
+    {
+      "path": "source/scripts/verify-live.cjs",
+      "size": 4520,
+      "sha256": "93465d7282d9bd1272742d8d0cef76989cf718fd744aa418f366649325ecd79d"
+    },
+    {
+      "path": "source/scripts/verify-local-cards.cjs",
+      "size": 6645,
+      "sha256": "0e3e1c69c55bf2d8d1942e185b638fe1f7187036be09592d1850300f99a2d18d"
+    },
+    {
+      "path": "source/scripts/verify-native-mapping-live.cjs",
+      "size": 4101,
+      "sha256": "0026a008e281b356db0796f6ca433c8195567fccf106aab80a1e1d996663d6b3"
+    },
+    {
+      "path": "source/scripts/verify-qwen-images.cjs",
+      "size": 5898,
+      "sha256": "4a233da1454517642f95398313f25777fd35992568924200a656ae6a26a35a6b"
+    },
+    {
+      "path": "source/scripts/verify-qwen-speech.cjs",
+      "size": 5406,
+      "sha256": "9ad8f97d65b864a87b50ad72da96847a1a302a44f871ec70aec43dcecd77004e"
+    },
+    {
+      "path": "source/scripts/verify-release.cjs",
+      "size": 5020,
+      "sha256": "f64f9327c7acc11a8aa06b24f10b33a0fb756039f3116062e398864e42669bc6"
+    },
+    {
+      "path": "source/scripts/verify-review-package.cjs",
+      "size": 1106,
+      "sha256": "15613e073f4601174ed2c378456028016db92f1d6b45abff43b424645452ddcd"
+    },
+    {
+      "path": "source/scripts/verify-specialized-native.cjs",
+      "size": 2417,
+      "sha256": "f8cb58fd0d0e8407d626734f3744d5c9487567a6219376a595304f8b45c7dc6f"
+    },
+    {
+      "path": "source/scripts/verify-text-save-live.cjs",
+      "size": 7358,
+      "sha256": "41499105298d4b8af0937bfdeee82a53183132c5525653a951fe7e333707b023"
+    },
+    {
+      "path": "source/scripts/verify-tool-ui-local.cjs",
+      "size": 15955,
+      "sha256": "267b9cfb437f28d2be8f7eb4b7b24f41c9d06693d221c741507277bb13fd5085"
+    },
+    {
+      "path": "source/tests/branding.test.cjs",
+      "size": 1646,
+      "sha256": "cc1693f7ded75b28a9db471df0ae879d125655236b57e0a2d68a83cc0178d825"
+    },
+    {
+      "path": "source/tests/chat-persistence.test.cjs",
+      "size": 12084,
+      "sha256": "49f16a1036bb3417e9bde26a5e73cc30ab5ab55294008af2fac9384a789ecfd9"
+    },
+    {
+      "path": "source/tests/chat-session.test.cjs",
+      "size": 4651,
+      "sha256": "54e523a4f8d82e5466c14247c8839a8977c57b519e6b6396743281d0a09c4ca3"
+    },
+    {
+      "path": "source/tests/collaboration-service.test.cjs",
+      "size": 6172,
+      "sha256": "970b235162522f56acb4c37cea96966b3e599cd0ce40212011604f4efcd907d2"
+    },
+    {
+      "path": "source/tests/collaboration.test.cjs",
+      "size": 14447,
+      "sha256": "755bb2593c215cc779903dde10875a8f38bc7c34b393952129fcfbe8e53f93cb"
+    },
+    {
+      "path": "source/tests/comfy-lane.test.cjs",
+      "size": 3547,
+      "sha256": "8220d3e3c2750d07dfb46156552b8e91fad06cbb38233808e2da2296bddc9a0b"
+    },
+    {
+      "path": "source/tests/creative.test.cjs",
+      "size": 26519,
+      "sha256": "b2c2af135e60ccf7de4df49de00f4f04565f719114836e13398e465072551c4d"
+    },
+    {
+      "path": "source/tests/desktop-controls.test.cjs",
+      "size": 22958,
+      "sha256": "2136cfe1116406570b06cf3199cf71d64dcc9eb0de44e05aed0c7acb31057e0f"
+    },
+    {
+      "path": "source/tests/execution-actions-providers.test.cjs",
+      "size": 13804,
+      "sha256": "1292a767d06e07c402b3068ee77ca2b229641188fb0c12a6bda49619e5102211"
+    },
+    {
+      "path": "source/tests/execution-actions.test.cjs",
+      "size": 13111,
+      "sha256": "b7cab7ce556263a481d278ee8e463d69f0475a555a7d05716b5aaa432e3e602f"
+    },
+    {
+      "path": "source/tests/exit-check.test.cjs",
+      "size": 1376,
+      "sha256": "31f0cfa0f87ed6fe9e9101f54edd90d08023af9798cb967a165f0f17d3321983"
+    },
+    {
+      "path": "source/tests/generation-batch-recovery.test.cjs",
+      "size": 11588,
+      "sha256": "25b25d3938fd1feccf7fe7ee67db4e717912b3c341f3414b8ab32b5e092c56bb"
+    },
+    {
+      "path": "source/tests/generation-consistency.test.cjs",
+      "size": 19009,
+      "sha256": "c2fe0517ff173b239c1f3ab4707af54d419fed840560cbf01c1d32bf0cf5e246"
+    },
+    {
+      "path": "source/tests/http-output-recovery.test.cjs",
+      "size": 10187,
+      "sha256": "fab5dade697090b2f62985295b37c35b0cfb1a88b0a0eb95ce35bcceb8445877"
+    },
+    {
+      "path": "source/tests/library-actions.test.cjs",
+      "size": 23150,
+      "sha256": "f10c575b32d03694ab304e3f30f9ca0c1c38fb8bf2f41cdeb37bfc1f19d98ba3"
+    },
+    {
+      "path": "source/tests/media-protocol.test.cjs",
+      "size": 1860,
+      "sha256": "1e0a754fcf0db1fefbcc438e1c6f4d9650a416e67a364a78f7b47f9ad0b8d8b2"
+    },
+    {
+      "path": "source/tests/media.test.cjs",
+      "size": 3156,
+      "sha256": "275300dafbf588fd2405c90718afd8c9427c7dc162ac1460a6a1181759750d8c"
+    },
+    {
+      "path": "source/tests/ports.test.cjs",
+      "size": 14278,
+      "sha256": "d89c06ed8bf2dfd9504f9e57fd9e78122b45772f2d2614f77a11869032db9384"
+    },
+    {
+      "path": "source/tests/project-document.test.cjs",
+      "size": 3218,
+      "sha256": "5093749d17577de8f3a417a33df5ba021890b5f30f4768e324b788812ad21ab3"
+    },
+    {
+      "path": "source/tests/providers.test.cjs",
+      "size": 30859,
+      "sha256": "e91826288ced3d6ba6d964c701a0a57b6582c39216c52acdd6ca1d2b604e75f6"
+    },
+    {
+      "path": "source/tests/queue.test.cjs",
+      "size": 13642,
+      "sha256": "2a25ae36474e5452ea02adb9ebd5e13bcf789d5ee7eb261513a5beb495bff128"
+    },
+    {
+      "path": "source/tests/reference-preflight.test.cjs",
+      "size": 732,
+      "sha256": "94980c847e062baf72004126d8740e57590883966cda3bcc2e3cb6a063b0804a"
+    },
+    {
+      "path": "source/tests/render-performance-fixture.cjs",
+      "size": 759,
+      "sha256": "d6da5e42513cc13867ea49b2bd8c475eae2679c1608941017f5acc3054f0c8fb"
+    },
+    {
+      "path": "source/tests/render-performance-probe.cjs",
+      "size": 7006,
+      "sha256": "ea9cf312cb8bdccecbbcde1f8c8175a2de64daeb6ecb81ba8a5a354a688e4a34"
+    },
+    {
+      "path": "source/tests/render-performance.test.cjs",
+      "size": 1034,
+      "sha256": "f3aec4dce3d0b13996084e581579b5b72b314b7d0bbb6399ee1ded3983cd0171"
+    },
+    {
+      "path": "source/tests/resource-upgrade.test.cjs",
+      "size": 1873,
+      "sha256": "56d979ad2cf7a4cc49c6b1b387399f717e18aaa5cedb0ebd8600179950d203a9"
+    },
+    {
+      "path": "source/tests/resources.test.cjs",
+      "size": 9318,
+      "sha256": "7d51bd08f131e2aef9dc5b96a1a9b597f9463d50c64a411c5d58e4d7e8776472"
+    },
+    {
+      "path": "source/tests/service.test.cjs",
+      "size": 26016,
+      "sha256": "455f23ef9511e86022e11074accb9e6f6bd5c4a50ee3468e36972f3b3873b283"
+    },
+    {
+      "path": "source/tests/shared-execution.test.cjs",
+      "size": 15593,
+      "sha256": "295fcab16348ffdd3d1f53461aff5b4e999510b8a2e915b3525b912ad8ce4da0"
+    },
+    {
+      "path": "source/tests/specialized-recipes.test.cjs",
+      "size": 3086,
+      "sha256": "7cf6eee581936511f100e656a3cb8ffbe40f7cb28c40112a916ff97d467f1ef2"
+    },
+    {
+      "path": "source/tests/state-merge.test.cjs",
+      "size": 7050,
+      "sha256": "e8840bedbe4b77baf39379da477a1b4989225fdb7d4c4593fca70e74ad1f96ba"
+    },
+    {
+      "path": "source/tests/storage-management.test.cjs",
+      "size": 1905,
+      "sha256": "871cec9a43b5fa0e6bfa396c8a8d9435a5d5c6415701d32d309b0e89a01a4016"
+    },
+    {
+      "path": "source/tests/storage.test.cjs",
+      "size": 15875,
+      "sha256": "8018e793af78cb6e96b9ce2542bd64d8df2b224f345edbac8c58e099ac04c31c"
+    },
+    {
+      "path": "source/tests/ui.test.cjs",
+      "size": 1570,
+      "sha256": "1e96788df03831b1939169de8910c7cb270b90475c4975cd6ca1d264ff2e25a7"
+    },
+    {
+      "path": "source/prototype/.gitignore",
+      "size": 13,
+      "sha256": "31875e2f5da2ee96c85b4e9abf8808443902e1d8f421f034c02fe8a1e0dd968d"
+    },
+    {
+      "path": "source/prototype/archive/main-canvas-v4.html",
+      "size": 53763,
+      "sha256": "3ee428e0500ccb1344892534ae2fee368fb5e10b327044ed1a82098abad0245f"
+    },
+    {
+      "path": "source/prototype/assets/mountain.svg",
+      "size": 1508,
+      "sha256": "b098b9dd375e1861e868accc5b93b7c2c78c6ed3e3146bae43f27f8aa66b13d8"
+    },
+    {
+      "path": "source/prototype/assets/traveler.svg",
+      "size": 1839,
+      "sha256": "93027a104ad390107f3cd3b4d94c18caa405622517125abab20c38eb2377ebe6"
+    },
+    {
+      "path": "source/prototype/canvas-dom.test.cjs",
+      "size": 8213,
+      "sha256": "e26e3328b784b06d5ea070b2425a294aad55e236efa033dd7dc4a04b5ff78f61"
+    },
+    {
+      "path": "source/prototype/canvas-model.js",
+      "size": 8755,
+      "sha256": "857c0cac4ceb7e25da46de3824256e50378efd88237c71886ea27aa5a1652e00"
+    },
+    {
+      "path": "source/prototype/canvas-model.test.cjs",
+      "size": 4213,
+      "sha256": "4ffc13f1448c8eeee16817b9fae1869e7105e0fca80d304831d7ea27831cbb5d"
+    },
+    {
+      "path": "source/prototype/canvas.css",
+      "size": 18902,
+      "sha256": "10b37f870d729021ba0e8715f7784c15eb41e401eef3636ce0a73367c75db7fc"
+    },
+    {
+      "path": "source/prototype/canvas.js",
+      "size": 54385,
+      "sha256": "65282fba2f162ac210ada3e416986a5c11db41f08062c110d62634e864352367"
+    },
+    {
+      "path": "source/prototype/main-canvas.html",
+      "size": 7072,
+      "sha256": "fd65d5faeffe2721a4669198ee12c048727557e01694901edbc01ec2a690c950"
+    },
+    {
+      "path": "source/prototype/README.md",
+      "size": 1957,
+      "sha256": "ea5c48466b0efe2df5fa14a9b56bfc282aaf71c5b43760fe1f5dbddec4b3cc87"
+    },
+    {
+      "path": "source/examples/实机验收工程/.createmore.json",
+      "size": 587,
+      "sha256": "d6a3e8604a9e03a9e1d9c6171f7cb2aa0f29c73548650ad1511080fc61cff9b7"
+    },
+    {
+      "path": "source/examples/实机验收工程/主画布/asset-index.json",
+      "size": 2457,
+      "sha256": "351b21a3a6e902a260055962500be2370b0939c824a76b486be80053acbf8bc1"
+    },
+    {
+      "path": "source/examples/实机验收工程/主画布/canvas.json",
+      "size": 9022,
+      "sha256": "e20d2b64dda88ca30a240e3f2e9bdd88b5ceee1b2fa315c096f95bd3cd1fec1d"
+    },
+    {
+      "path": "source/examples/实机验收工程/主画布/generation-history.json",
+      "size": 5874,
+      "sha256": "83a847e9355a9bda3112620dfea6c76d03b6e49830afd26a1a886c433318e0de"
+    },
+    {
+      "path": "source/examples/实机验收工程/主画布/image/55d6c5272a9f7665802d.png",
+      "size": 76826,
+      "sha256": "55d6c5272a9f7665802d7129c1a09a6da01000f6b7f575e42eaba8cfc0d660d0"
+    },
+    {
+      "path": "source/examples/实机验收工程/主画布/image/5c932ad3a8489a9b959f.png",
+      "size": 1915609,
+      "sha256": "5c932ad3a8489a9b959f2eb9de79aea5449a3967af653b63f19b6c69bb1b8f69"
+    },
+    {
+      "path": "source/examples/实机验收工程/主画布/image/a2dfee025630ca697585.png",
+      "size": 78929,
+      "sha256": "a2dfee025630ca697585d85a266f22995b96f422f3f3bfb2752e2f69a18aa7f3"
+    },
+    {
+      "path": "source/examples/实机验收工程/主画布/text/ec628cb940ab04cb1b8b.txt",
+      "size": 78,
+      "sha256": "ec628cb940ab04cb1b8b6537a14b8863eddd3af52ccf217b62b36536e1357d33"
+    },
+    {
+      "path": "source/examples/实机验收工程/主画布/video/b7f95c0d8b89acd1a98f.mp4",
+      "size": 62497,
+      "sha256": "b7f95c0d8b89acd1a98fa19daaa6f5fbcefe6f148ba2efa20be7b8cf15c1bbd4"
+    },
+    {
+      "path": "source/package.json",
+      "size": 738,
+      "sha256": "fd92da4000602c2b3a230cf7d1b3d67ccf2ad85a45ba1d0480938c95188c2d3c"
+    },
+    {
+      "path": "source/package-lock.json",
+      "size": 67767,
+      "sha256": "c08e4779af5665786bdb14fdf678fa53e1f5aefd8c5955ad36934d59bfb9c255"
+    },
+    {
+      "path": "source/README.md",
+      "size": 3944,
+      "sha256": "8798278d01a10ee5ad3437bbf7fe939c4a02aa61d3e77ac880fdf95cf444e0f6"
+    },
+    {
+      "path": "source/.gitignore",
+      "size": 119,
+      "sha256": "f42a47ff05ae79a800c0b6e3f6fa2e78affcea3fc3837f2c778bd7259cb9b26e"
+    }
+  ]
+}

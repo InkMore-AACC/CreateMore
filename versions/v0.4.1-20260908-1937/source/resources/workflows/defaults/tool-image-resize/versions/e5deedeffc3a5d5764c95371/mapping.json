@@ -1,0 +1,44 @@
+{
+  "inputs": [
+    {
+      "id": "image",
+      "label": "参考图片",
+      "source": "reference",
+      "nodeId": "1",
+      "input": "image",
+      "index": 0,
+      "required": true,
+      "mediaType": "image"
+    },
+    {
+      "id": "width",
+      "label": "width",
+      "source": "parameter",
+      "nodeId": "2",
+      "input": "width",
+      "type": "integer",
+      "default": 1024,
+      "min": 1,
+      "max": 8192
+    },
+    {
+      "id": "height",
+      "label": "height",
+      "source": "parameter",
+      "nodeId": "2",
+      "input": "height",
+      "type": "integer",
+      "default": 1024,
+      "min": 1,
+      "max": 8192
+    }
+  ],
+  "outputs": [
+    {
+      "id": "image",
+      "nodeId": "9",
+      "key": "images",
+      "type": "image"
+    }
+  ]
+}

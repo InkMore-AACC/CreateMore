@@ -1,0 +1,15 @@
+{
+  "format": "createmore-resource",
+  "version": 1,
+  "id": "builtin-restrained-film",
+  "kind": "skills",
+  "name": "克制电影风格",
+  "description": "自然光、可读空间、克制色彩与有目的的镜头表达。",
+  "category": "style",
+  "source": "builtin",
+  "revision": 1,
+  "enabled": true,
+  "cover": "cover.svg",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "updatedAt": "2026-09-07T00:00:00Z"
+}
