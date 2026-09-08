@@ -1,0 +1,157 @@
+{
+  "id": "845c85ab-91e0-4bca-a4d3-09dff0e1f5f9",
+  "revision": 0,
+  "last_node_id": 3,
+  "last_link_id": 2,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadAudio",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        320,
+        220
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "slot_index": 0,
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadAudio"
+      },
+      "widgets_values": [
+        "example.wav",
+        null,
+        ""
+      ],
+      "widgets_values_named": {
+        "audio": "example.wav",
+        "upload": ""
+      }
+    },
+    {
+      "id": 2,
+      "type": "AudioAdjustVolume",
+      "pos": [
+        370,
+        0
+      ],
+      "size": [
+        320,
+        220
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "slot_index": 0,
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "AudioAdjustVolume"
+      },
+      "widgets_values": [
+        0
+      ],
+      "widgets_values_named": {
+        "volume": 0
+      }
+    },
+    {
+      "id": 3,
+      "type": "SaveAudio",
+      "pos": [
+        740,
+        0
+      ],
+      "size": [
+        320,
+        220
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "slot_index": 0,
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveAudio"
+      },
+      "widgets_values": [
+        "CreateMore/audio-volume"
+      ],
+      "widgets_values_named": {
+        "filename_prefix": "CreateMore/audio-volume"
+      }
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      2,
+      0,
+      "AUDIO"
+    ],
+    [
+      2,
+      2,
+      0,
+      3,
+      0,
+      "AUDIO"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.7826087078209862,
+      "offset": [
+        556.6666606096949,
+        215.9999785373234
+      ]
+    },
+    "frontendVersion": "1.49.6"
+  },
+  "version": 0.4
+}

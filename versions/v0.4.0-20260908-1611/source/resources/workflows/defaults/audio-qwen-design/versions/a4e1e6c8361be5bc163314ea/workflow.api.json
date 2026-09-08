@@ -1,0 +1,26 @@
+{
+  "1": {
+    "class_type": "CreateMoreQwenTTS",
+    "inputs": {
+      "model": "Qwen3\\Qwen3-TTS-12Hz-1.7B-VoiceDesign\\Qwen3-TTS-12Hz-1.7B-VoiceDesign\\master",
+      "mode": "voice_design",
+      "text": "今天的风很轻，阳光正好。",
+      "instruction": "温暖自然，略带笑意。",
+      "speaker": "Vivian",
+      "language": "Chinese",
+      "seed": 42,
+      "max_new_tokens": 2048,
+      "reference_text": ""
+    }
+  },
+  "2": {
+    "class_type": "SaveAudio",
+    "inputs": {
+      "audio": [
+        "1",
+        0
+      ],
+      "filename_prefix": "CreateMore/speech-design"
+    }
+  }
+}

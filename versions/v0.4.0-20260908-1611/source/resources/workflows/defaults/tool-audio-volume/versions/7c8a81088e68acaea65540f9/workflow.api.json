@@ -1,0 +1,37 @@
+{
+  "1": {
+    "inputs": {
+      "audio": "example.wav"
+    },
+    "class_type": "LoadAudio",
+    "_meta": {
+      "title": "Load Audio"
+    }
+  },
+  "2": {
+    "inputs": {
+      "volume": 0,
+      "audio": [
+        "1",
+        0
+      ]
+    },
+    "class_type": "AudioAdjustVolume",
+    "_meta": {
+      "title": "Adjust Audio Volume"
+    }
+  },
+  "3": {
+    "inputs": {
+      "filename_prefix": "CreateMore/audio-volume",
+      "audio": [
+        "2",
+        0
+      ]
+    },
+    "class_type": "SaveAudio",
+    "_meta": {
+      "title": "Save Audio (FLAC) (DEPRECATED)"
+    }
+  }
+}

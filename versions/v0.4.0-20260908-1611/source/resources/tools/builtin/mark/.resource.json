@@ -1,0 +1,21 @@
+{
+  "format": "createmore-resource",
+  "version": 1,
+  "id": "builtin-tool-mark",
+  "kind": "tools",
+  "name": "标记",
+  "handler": "标记",
+  "mediaType": "image",
+  "outputType": "image",
+  "provider": "image2",
+  "icon": "pen",
+  "order": 4,
+  "enabled": true,
+  "batch": false,
+  "revision": 2,
+  "source": "builtin",
+  "description": "处理结果保存为新卡片，保留原素材。",
+  "workflowId": "default:tool-qwen-mark",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "updatedAt": "2026-09-08T07:45:00Z"
+}

@@ -1,0 +1,182 @@
+[
+  {
+    "id": "audio-h3-ambience",
+    "version": "ab9b400b89dcf31e3e5d3e38",
+    "path": "defaults/audio-h3-ambience/versions/ab9b400b89dcf31e3e5d3e38",
+    "label": "音频生成 · H3 环境音",
+    "kind": "audio",
+    "note": "使用已安装 H3 联合声画模型仅保存音轨，适合环境音/音效；不是精确语音配音，不保证逐字朗读。内部仍计算视频潜变量，属于重型本地任务。",
+    "validated": "native-roundtrip"
+  },
+  {
+    "id": "video-h3-turbo",
+    "version": "0a99faaf74cc19b65d27a50e",
+    "path": "defaults/video-h3-turbo/versions/0a99faaf74cc19b65d27a50e",
+    "label": "视频生成 · MiniMax H3 Turbo",
+    "kind": "video",
+    "note": "使用本机已有 H3 INT8 + Turbo LoRA，默认约5秒；重模型占用显存，不能与其他本地任务并发。",
+    "validated": "native-roundtrip"
+  },
+  {
+    "id": "video-h3-i2v",
+    "version": "0fa6a95b4556f433f3fa4bf1",
+    "path": "defaults/video-h3-i2v/versions/0fa6a95b4556f433f3fa4bf1",
+    "label": "图生视频 · MiniMax H3 Turbo",
+    "kind": "video",
+    "note": "参考图作为首帧。片段重拍的新视频可使用此流程；不自动替换、拼接原片。",
+    "validated": "native-roundtrip"
+  },
+  {
+    "id": "text-qwen3",
+    "version": "e1d6772911fe796cb1839f43",
+    "path": "defaults/text-qwen3/versions/e1d6772911fe796cb1839f43",
+    "label": "文本生成 · 本地 Qwen3 4B",
+    "kind": "text",
+    "note": "通过 ComfyUI 原生 TextGenerate 与本机 Qwen3 4B，需真实输出验证。",
+    "validated": "native-roundtrip"
+  },
+  {
+    "id": "tool-image-caption",
+    "version": "8347620556d4a90b758e6413",
+    "path": "defaults/tool-image-caption/versions/8347620556d4a90b758e6413",
+    "label": "图片工具 · 本地 Qwen3-VL 看图",
+    "kind": "text",
+    "note": "通过本机 Qwen3-VL 8B；反推提示词与图像分析使用同一底层能力。",
+    "validated": "native-roundtrip"
+  },
+  {
+    "id": "image-zimage",
+    "version": "77a4365cf053f70a3422ddd1",
+    "path": "defaults/image-zimage/versions/77a4365cf053f70a3422ddd1",
+    "label": "图片生成 · Z-Image Turbo",
+    "kind": "image",
+    "note": "已按本机官方 Z-Image Turbo 模板与实存模型构建。无参考图；有参考图时请选择图生图或 Image2。",
+    "validated": "native-roundtrip"
+  },
+  {
+    "id": "image-zimage-edit",
+    "version": "2f8d0eff68135d22c749e4db",
+    "path": "defaults/image-zimage-edit/versions/2f8d0eff68135d22c749e4db",
+    "label": "图片重绘 · Z-Image 图生图",
+    "kind": "image",
+    "note": "通用图生图，不声称具备精准局部编辑或角色锁定能力。",
+    "validated": "native-roundtrip"
+  },
+  {
+    "id": "tool-image-upscale",
+    "version": "2c538b51ab7bd7b899a3b3b4",
+    "path": "defaults/tool-image-upscale/versions/2c538b51ab7bd7b899a3b3b4",
+    "label": "图片工具 · UltraSharp 放大",
+    "kind": "image",
+    "note": "使用本机 4x-UltraSharp；大图占用更多显存。",
+    "validated": "native-roundtrip"
+  },
+  {
+    "id": "tool-image-resize",
+    "version": "e5deedeffc3a5d5764c95371",
+    "path": "defaults/tool-image-resize/versions/e5deedeffc3a5d5764c95371",
+    "label": "图片工具 · 尺寸调整",
+    "kind": "image",
+    "note": "本地插值尺寸调整，不是 AI 超分。",
+    "validated": "native-roundtrip"
+  },
+  {
+    "id": "tool-image-crop",
+    "version": "6d2c53f4da43f76ac755f071",
+    "path": "defaults/tool-image-crop/versions/6d2c53f4da43f76ac755f071",
+    "label": "图片工具 · 裁切",
+    "kind": "image",
+    "note": "结果独立保存，不覆盖原图。",
+    "validated": "native-roundtrip"
+  },
+  {
+    "id": "tool-text-save",
+    "version": "1783ff02e5f5959f2bc75a92",
+    "path": "defaults/tool-text-save/versions/1783ff02e5f5959f2bc75a92",
+    "label": "文本工具 · 保存文字",
+    "kind": "text",
+    "note": "文字保存，不冒充本地 LLM 生成。",
+    "validated": "native-roundtrip"
+  },
+  {
+    "id": "tool-audio-volume",
+    "version": "8fc88ce2393677c68d1d2c72",
+    "path": "defaults/tool-audio-volume/versions/8fc88ce2393677c68d1d2c72",
+    "label": "音频工具 · 音量调整",
+    "kind": "audio",
+    "note": "增益以分贝计，0 为不变；正数增大、负数降低。",
+    "validated": "native-roundtrip"
+  },
+  {
+    "id": "audio-qwen-design",
+    "version": "a4e1e6c8361be5bc163314ea",
+    "path": "defaults/audio-qwen-design/versions/a4e1e6c8361be5bc163314ea",
+    "label": "语音 · 音色设计",
+    "kind": "audio",
+    "note": "Qwen3 TTS 本地语音；音色、表达与逐字准确度需按实际输出试听。",
+    "validated": "environment"
+  },
+  {
+    "id": "audio-qwen-emotion",
+    "version": "96c537773d6a003ef2e046bc",
+    "path": "defaults/audio-qwen-emotion/versions/96c537773d6a003ef2e046bc",
+    "label": "语音 · 情绪配音",
+    "kind": "audio",
+    "note": "Qwen3 TTS 本地语音；音色、表达与逐字准确度需按实际输出试听。",
+    "validated": "environment"
+  },
+  {
+    "id": "audio-qwen-clone",
+    "version": "01b2d7dfb020397f095480be",
+    "path": "defaults/audio-qwen-clone/versions/01b2d7dfb020397f095480be",
+    "label": "语音 · 音色克隆",
+    "kind": "audio",
+    "note": "克隆你有权使用的参考声音；跟随参考表达，不支持独立的情绪指令。",
+    "validated": "environment"
+  },
+  {
+    "id": "tool-qwen-portrait",
+    "version": "64e75d5f2f2fb85b9943524e",
+    "path": "defaults/tool-qwen-portrait/versions/64e75d5f2f2fb85b9943524e",
+    "label": "图片 · 人像质感",
+    "kind": "image",
+    "note": "Qwen Image Edit 2511 专用图像编辑路径；按实际素材验收。",
+    "validated": "environment"
+  },
+  {
+    "id": "tool-qwen-angles",
+    "version": "64540aa2294d322cd0ec5c5f",
+    "path": "defaults/tool-qwen-angles/versions/64540aa2294d322cd0ec5c5f",
+    "label": "图片 · 多角度",
+    "kind": "image",
+    "note": "Qwen Image Edit 2511 专用图像编辑路径；按实际素材验收。",
+    "validated": "environment"
+  },
+  {
+    "id": "tool-qwen-lighting",
+    "version": "332d3dcee3ff865658310b7d",
+    "path": "defaults/tool-qwen-lighting/versions/332d3dcee3ff865658310b7d",
+    "label": "图片 · 打光",
+    "kind": "image",
+    "note": "Qwen Image Edit 2511 专用图像编辑路径；按实际素材验收。",
+    "validated": "environment"
+  },
+  {
+    "id": "tool-qwen-grid",
+    "version": "5590349908cfd39f42712f8d",
+    "path": "defaults/tool-qwen-grid/versions/5590349908cfd39f42712f8d",
+    "label": "图片 · 九宫格",
+    "kind": "image",
+    "note": "九次真实采样后拼成 3×3；并非一次生成九格。",
+    "validated": "environment"
+  },
+  {
+    "id": "tool-qwen-mark",
+    "version": "f39115849ca02520c4885548",
+    "path": "defaults/tool-qwen-mark/versions/f39115849ca02520c4885548",
+    "label": "图片 · 区域编辑",
+    "kind": "image",
+    "note": "原图、标注和遮罩分离；遮罩外合成回原始像素。",
+    "validated": "environment"
+  }
+]

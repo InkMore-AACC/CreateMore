@@ -1,0 +1,21 @@
+{
+  "format": "createmore-resource",
+  "version": 1,
+  "id": "builtin-tool-analysis",
+  "kind": "tools",
+  "name": "逐帧拉片",
+  "handler": "逐帧拉片",
+  "mediaType": "video",
+  "outputType": "text",
+  "provider": "storyboard",
+  "icon": "table",
+  "order": 22,
+  "enabled": true,
+  "batch": false,
+  "revision": 1,
+  "source": "builtin",
+  "description": "处理结果保存为新卡片，保留原素材。",
+  "workflowId": "default:tool-image-caption",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "updatedAt": "2026-09-07T00:00:00Z"
+}

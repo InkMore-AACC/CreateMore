@@ -1,0 +1,20 @@
+{
+  "format": "createmore-resource",
+  "version": 1,
+  "id": "builtin-tool-video-speed",
+  "kind": "tools",
+  "name": "变速",
+  "handler": "变速",
+  "mediaType": "video",
+  "outputType": "video",
+  "provider": "media",
+  "icon": "video",
+  "order": 18,
+  "enabled": true,
+  "batch": true,
+  "revision": 1,
+  "source": "builtin",
+  "description": "处理结果保存为新卡片，保留原素材。",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "updatedAt": "2026-09-07T00:00:00Z"
+}
