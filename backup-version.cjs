@@ -25,7 +25,7 @@ async function main(){
   if(path.resolve(source)!==path.resolve('C:/Users/O.oInkMore/Desktop/CreateMore'))throw new Error('Source location must be checked before using this machine-specific backup helper');
   const destination=path.join(repo,'versions',version);await fs.mkdir(path.dirname(destination),{recursive:true});await fs.mkdir(destination);
   const manifest=[],sourceDir=path.join(destination,'source');await fs.mkdir(sourceDir);
-  for(const entry of ['app','docs','resources','scripts','tests','prototype','examples','package.json','package-lock.json','README.md','.gitignore'])await copyTree(path.join(source,entry),path.join(sourceDir,entry),manifest,destination,entry);
+  for(const entry of ['app','docs','resources','scripts','tests','prototype','examples','package.json','package-lock.json','README.md','LICENSE','THIRD_PARTY_NOTICES.md','.gitignore'])await copyTree(path.join(source,entry),path.join(sourceDir,entry),manifest,destination,entry);
   const metadata={version,createdAt:new Date().toISOString(),scope:'software source, approved V5 sketch, default workflows, tests, docs and generated demonstration project; excludes credentials, runtime profiles and private working projects',files:manifest};
   await fs.writeFile(path.join(destination,'source-manifest.json'),JSON.stringify(metadata,null,2),{flag:'wx'});
   const localDir=path.join(destination,'local-only');await fs.mkdir(localDir);const localFiles=[];

@@ -1,6 +1,29 @@
-# CreateMore 版本备份
+# CreateMore — Windows 本地创作画布
 
-这是 CreateMore 的版本备份仓库。每个版本放在独立目录，旧版本不覆盖。
+CreateMore 是连接 ComfyUI 本地生成、Codex 和 Image2 的创作画布，采用 [MIT 许可证](LICENSE) 开源。当前处于交互重构和功能验收阶段，并非所有功能均已完成验证。
+
+本仓库按版本保存源码，每个版本放在独立目录，旧版本不覆盖。
+
+## 获取与运行
+
+最新源码：[v0.4.1](versions/v0.4.1-20260908-1946/source)。在安装 Node.js 和 npm 的 Windows 电脑上：
+
+```powershell
+git clone https://github.com/InkMore-AACC/CreateMore.git
+cd CreateMore/versions/v0.4.1-20260908-1946/source
+npm ci
+npm start
+```
+
+运行检查：`npm test`、`npm run check`。打包：`npm run build`，完整程序输出到 `dist/版本目录/Windows-app/`，需整体移动，不能只复制 EXE。本仓库暂未提供可下载的打包发行版。
+
+ComfyUI、Python、模型、第三方节点及 Codex/API 登录由每位用户自行配置，不随源码提供。历史文档中的本机路径、端口与测试记录不代表下载者已具备该环境。详细说明见对应版本的 README 和 docs。
+
+## 开源与反馈
+
+仓库根目录的 MIT 许可适用于作者拥有版权的 CreateMore 代码，包括这里保存的历史版本；旧快照中的 `UNLICENSED` 和“私有发布”文字是历史元数据，由本次明确授权取代，不改写备份内容和校验清单。第三方内容保持原许可，见 [第三方许可说明](THIRD_PARTY_NOTICES.md)。
+
+欢迎通过 [Issues](https://github.com/InkMore-AACC/CreateMore/issues) 报告问题或提交 Pull Request。请说明版本、复现步骤和预期行为；不要上传 API 密钥、账号信息或私人工程素材。
 
 ## 当前备份
 
@@ -24,4 +47,4 @@
 
 后续继续在原工作目录修改软件；要存新版本时新建另一个带版本号的目录，不覆盖本次备份。此仓库不会自动跟随原目录变化。
 
-本仓库采用私有发布。API 密钥、账号、聊天记录、运行数据、大型测试输出和当前私人画布工程不上传；不要取消 `local-only/` 的忽略规则。本地备份不能防电脑硬盘损坏，重要私人素材还应另存外接盘或你自己的网盘。
+本仓库采用公开发布。API 密钥、账号、聊天记录、运行数据、大型测试输出和当前私人画布工程不上传；不要取消 `local-only/` 的忽略规则。公开仓库不是私人素材备份位置。本地备份不能防电脑硬盘损坏，重要私人素材还应另存外接盘或你自己的网盘。
