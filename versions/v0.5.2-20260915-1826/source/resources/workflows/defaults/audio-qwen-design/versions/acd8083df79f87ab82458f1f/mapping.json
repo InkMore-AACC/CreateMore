@@ -1,0 +1,83 @@
+{
+  "inputs": [
+    {
+      "id": "prompt",
+      "label": "朗读文本",
+      "source": "prompt",
+      "nodeId": "1",
+      "input": "text",
+      "required": true
+    },
+    {
+      "id": "model",
+      "label": "本地模型",
+      "source": "parameter",
+      "nodeId": "1",
+      "input": "model",
+      "default": "Qwen3\\Qwen3-TTS-12Hz-1.7B-VoiceDesign\\Qwen3-TTS-12Hz-1.7B-VoiceDesign\\master",
+      "options": [
+        "Qwen3\\Qwen3-TTS-12Hz-1.7B-VoiceDesign\\Qwen3-TTS-12Hz-1.7B-VoiceDesign\\master"
+      ]
+    },
+    {
+      "id": "language",
+      "label": "语言",
+      "source": "parameter",
+      "nodeId": "1",
+      "input": "language",
+      "default": "Chinese",
+      "options": [
+        "Chinese",
+        "Auto",
+        "English",
+        "Japanese",
+        "Korean",
+        "German",
+        "French",
+        "Russian",
+        "Portuguese",
+        "Spanish",
+        "Italian"
+      ]
+    },
+    {
+      "id": "seed",
+      "label": "随机种子",
+      "source": "parameter",
+      "nodeId": "1",
+      "input": "seed",
+      "default": 42,
+      "type": "integer",
+      "min": 0,
+      "max": 2147483647
+    },
+    {
+      "id": "max_new_tokens",
+      "label": "最长语音令牌",
+      "source": "parameter",
+      "nodeId": "1",
+      "input": "max_new_tokens",
+      "default": 2048,
+      "type": "integer",
+      "min": 32,
+      "max": 4096
+    },
+    {
+      "id": "instruction",
+      "label": "音色与情绪描述",
+      "source": "parameter",
+      "nodeId": "1",
+      "input": "instruction",
+      "default": "温暖自然，略带笑意。",
+      "type": "string"
+    }
+  ],
+  "outputs": [
+    {
+      "id": "audio",
+      "nodeId": "2",
+      "key": "audio",
+      "type": "audio"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "format": "createmore-project",
+  "version": 1,
+  "id": "044cb994-be71-482b-8f66-b7c65dd63478",
+  "name": "CreateMore 实机验收",
+  "createdAt": "2026-09-07T00:29:46.974Z",
+  "updatedAt": "2026-09-07T00:29:46.974Z",
+  "canvases": [
+    {
+      "id": "a3d9d126-dc60-4a0d-8113-b1cce2475204",
+      "name": "主画布",
+      "directory": "主画布",
+      "createdAt": "2026-09-06T23:51:57.002Z",
+      "updatedAt": "2026-09-06T23:52:50.997Z",
+      "copiedFromCanvasId": "fa15e15e-03ee-4cc4-97dd-61d9a4843554"
+    }
+  ],
+  "packagedFrom": "33ae5df8-ac66-436e-b27f-e5d14e0d7acf"
+}

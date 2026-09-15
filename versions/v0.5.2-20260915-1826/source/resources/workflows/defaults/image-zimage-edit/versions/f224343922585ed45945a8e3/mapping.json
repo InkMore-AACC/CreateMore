@@ -1,0 +1,63 @@
+{
+  "inputs": [
+    {
+      "id": "prompt",
+      "label": "提示词",
+      "source": "prompt",
+      "nodeId": "4",
+      "input": "text",
+      "required": true
+    },
+    {
+      "id": "seed",
+      "label": "seed",
+      "source": "parameter",
+      "nodeId": "8",
+      "input": "seed",
+      "type": "integer",
+      "default": 42,
+      "min": 0,
+      "max": 9007199254740991
+    },
+    {
+      "id": "steps",
+      "label": "steps",
+      "source": "parameter",
+      "nodeId": "8",
+      "input": "steps",
+      "type": "integer",
+      "default": 8,
+      "min": 1,
+      "max": 30
+    },
+    {
+      "id": "image",
+      "label": "参考图片",
+      "source": "reference",
+      "nodeId": "11",
+      "input": "image",
+      "index": 0,
+      "required": true,
+      "mediaType": "image"
+    },
+    {
+      "id": "denoise",
+      "label": "重绘强度",
+      "source": "parameter",
+      "nodeId": "8",
+      "input": "denoise",
+      "type": "number",
+      "default": 0.55,
+      "min": 0,
+      "max": 1
+    }
+  ],
+  "outputs": [
+    {
+      "id": "image",
+      "nodeId": "10",
+      "key": "images",
+      "type": "image"
+    }
+  ]
+}

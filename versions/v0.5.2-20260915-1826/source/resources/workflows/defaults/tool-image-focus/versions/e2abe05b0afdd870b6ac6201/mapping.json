@@ -1,0 +1,88 @@
+{
+  "inputs": [
+    {
+      "id": "image",
+      "label": "参考图片",
+      "source": "reference",
+      "nodeId": "1",
+      "input": "image",
+      "index": 0,
+      "required": true,
+      "mediaType": "image"
+    },
+    {
+      "id": "cropWidth",
+      "label": "cropWidth",
+      "source": "parameter",
+      "nodeId": "2",
+      "input": "width",
+      "type": "integer",
+      "default": 512,
+      "min": 1,
+      "max": 8192
+    },
+    {
+      "id": "cropHeight",
+      "label": "cropHeight",
+      "source": "parameter",
+      "nodeId": "2",
+      "input": "height",
+      "type": "integer",
+      "default": 512,
+      "min": 1,
+      "max": 8192
+    },
+    {
+      "id": "x",
+      "label": "x",
+      "source": "parameter",
+      "nodeId": "2",
+      "input": "x",
+      "type": "integer",
+      "default": 0,
+      "min": 0,
+      "max": 8192
+    },
+    {
+      "id": "y",
+      "label": "y",
+      "source": "parameter",
+      "nodeId": "2",
+      "input": "y",
+      "type": "integer",
+      "default": 0,
+      "min": 0,
+      "max": 8192
+    },
+    {
+      "id": "outputWidth",
+      "label": "outputWidth",
+      "source": "parameter",
+      "nodeId": "5",
+      "input": "width",
+      "type": "integer",
+      "default": 2048,
+      "min": 1,
+      "max": 8192
+    },
+    {
+      "id": "outputHeight",
+      "label": "outputHeight",
+      "source": "parameter",
+      "nodeId": "5",
+      "input": "height",
+      "type": "integer",
+      "default": 2048,
+      "min": 1,
+      "max": 8192
+    }
+  ],
+  "outputs": [
+    {
+      "id": "image",
+      "nodeId": "9",
+      "key": "images",
+      "type": "image"
+    }
+  ]
+}

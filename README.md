@@ -6,11 +6,11 @@ CreateMore 是连接 ComfyUI 本地生成、Codex 和 Image2 的创作画布，�
 
 ## 获取与运行
 
-最新源码：[v0.5.1](versions/v0.5.1-20260915-1705/source)。在安装 Node.js 和 npm 的 Windows 电脑上：
+最新源码：[v0.5.2](versions/v0.5.2-20260915-1826/source)。在安装 Node.js 和 npm 的 Windows 电脑上：
 
 ```powershell
 git clone https://github.com/InkMore-AACC/CreateMore.git
-cd CreateMore/versions/v0.5.1-20260915-1705/source
+cd CreateMore/versions/v0.5.2-20260915-1826/source
 npm ci
 npm start
 ```
@@ -27,9 +27,9 @@ ComfyUI、Python、模型、第三方节点及 Codex/API 登录由每位用户�
 
 ## 当前备份
 
-`versions/v0.5.1-20260915-1705/`（最新标记、聚焦与页面交互版）；之前各版原样保留。该版完成直接点物体标记、稳定提示词链接、聚焦自定义比例与像素换算、全软件来源设置、普通／生成卡片分离和图片／视频比例自适应。360 项完整自动测试与 38 项正式 EXE 隔离界面回归通过；真实模型输出质量仍按版本内文档逐项验收。
+`versions/v0.5.2-20260915-1826/`（最新生成卡片交互修正版）；之前各版原样保留。该版将对象图钉改为不污染模型指令的界面芯片，补齐图钉双向删除、预设／自定义比例唯一选择与点空白应用、聚焦松手应用、固定屏幕尺寸生成框和独立可调提示词窗口。362 项完整自动测试通过，隔离 Edge 实际交互与视觉检查通过；当前自动化宿主的 Electron GPU 运行库故障使正式 EXE 窗口回归未启动，旧 v0.5.1 在同一宿主亦复现。真实模型输出质量仍按版本内文档逐项验收。
 
-本机 `local-only/` 还保存了当前“画布测试”工程的原样副本和可迁移副本；打包前按工程已存 SHA-256 找回了一张移动到 AAA 的同内容素材。私人项目和完整 Windows-app 仍受忽略规则保护，不上传 GitHub。
+本机各版本的 `local-only/` 保存对应完整 Windows-app；带工程备份的旧版本仍保留当时工程原样副本和可迁移副本。本次 v0.5.2 未复制私人项目。私人项目和完整 Windows-app 继续受忽略规则保护，不上传 GitHub。
 
 - `source/`：软件源码、已批准的 V5 草图、默认工作流、测试、说明和公开范围内的验收示例；同步到 GitHub。
 - `source-manifest.json`：每个源文件的大小和 SHA-256，用于检查备份是否完整。

@@ -1,0 +1,21 @@
+{
+  "format": "createmore-resource",
+  "version": 1,
+  "id": "builtin-tool-audio-volume",
+  "kind": "tools",
+  "name": "音量",
+  "handler": "音量",
+  "mediaType": "audio",
+  "outputType": "audio",
+  "provider": "comfyui",
+  "icon": "audio",
+  "order": 16,
+  "enabled": true,
+  "batch": false,
+  "revision": 1,
+  "source": "builtin",
+  "description": "处理结果保存为新卡片，保留原素材。",
+  "workflowId": "default:tool-audio-volume",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "updatedAt": "2026-09-07T00:00:00Z"
+}

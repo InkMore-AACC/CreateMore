@@ -1,0 +1,5 @@
+'use strict';
+const fs=require('node:fs/promises'),crypto=require('node:crypto'),path=require('node:path');
+const hash=v=>crypto.createHash('sha256').update(v).digest('hex'),stable=v=>Array.isArray(v)?v.map(stable):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,stable(v[k])])):v;
+async function main(){const file=path.resolve(process.argv[2]),packet=JSON.parse(await fs.readFile(file,'utf8')),digest=packet.package_digest;delete packet.package_digest;if(hash(JSON.stringify(stable(packet)))!==digest)throw new Error('Package digest mismatch');if(hash(JSON.stringify(packet.artifacts))!==packet.artifact_hash)throw new Error('Artifact list hash mismatch');for(const artifact of packet.artifacts)if(hash(await fs.readFile(artifact.path))!==artifact.hash)throw new Error('Changed frozen artifact: '+artifact.path);process.stdout.write(JSON.stringify({package_id:packet.package_id,artifact_hash:packet.artifact_hash,package_digest:digest,files:packet.artifacts.length,verified:true},null,2)+'\n');}
+main().catch(error=>{process.stderr.write(error.stack+'\n');process.exitCode=1;});

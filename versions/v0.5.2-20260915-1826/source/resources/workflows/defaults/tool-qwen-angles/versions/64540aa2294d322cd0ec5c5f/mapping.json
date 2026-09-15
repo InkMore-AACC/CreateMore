@@ -1,0 +1,117 @@
+{
+  "inputs": [
+    {
+      "id": "image",
+      "label": "原始参考图",
+      "source": "reference",
+      "nodeId": "1",
+      "input": "image",
+      "required": true,
+      "mediaType": "image"
+    },
+    {
+      "id": "prompt",
+      "label": "修改说明",
+      "source": "prompt",
+      "nodeId": "18",
+      "input": "extra",
+      "required": true
+    },
+    {
+      "id": "seed",
+      "label": "seed",
+      "source": "parameter",
+      "nodeId": "14",
+      "input": "seed",
+      "default": 42,
+      "type": "integer",
+      "min": 0,
+      "max": 9007199254740991
+    },
+    {
+      "id": "steps",
+      "label": "采样步数",
+      "source": "parameter",
+      "nodeId": "14",
+      "input": "steps",
+      "default": 4,
+      "type": "integer",
+      "min": 4,
+      "max": 12
+    },
+    {
+      "id": "azimuth",
+      "label": "环绕机位",
+      "source": "parameter",
+      "nodeId": "18",
+      "input": "azimuth",
+      "default": "front-right quarter view",
+      "options": [
+        "front view",
+        "front-right quarter view",
+        "right side view",
+        "back-right quarter view",
+        "back view",
+        "back-left quarter view",
+        "left side view",
+        "front-left quarter view"
+      ],
+      "optionLabels": {
+        "front view": "正面 · 0°",
+        "front-right quarter view": "右前方 · 45°",
+        "right side view": "右侧 · 90°",
+        "back-right quarter view": "右后方 · 135°",
+        "back view": "背面 · 180°",
+        "back-left quarter view": "左后方 · 225°",
+        "left side view": "左侧 · 270°",
+        "front-left quarter view": "左前方 · 315°"
+      }
+    },
+    {
+      "id": "elevation",
+      "label": "俯仰机位",
+      "source": "parameter",
+      "nodeId": "18",
+      "input": "elevation",
+      "default": "eye-level shot",
+      "options": [
+        "low-angle shot",
+        "eye-level shot",
+        "elevated shot",
+        "high-angle shot"
+      ],
+      "optionLabels": {
+        "low-angle shot": "仰拍 · −30°",
+        "eye-level shot": "平视 · 0°",
+        "elevated shot": "轻俯拍 · 30°",
+        "high-angle shot": "高角度俯拍 · 60°"
+      }
+    },
+    {
+      "id": "distance",
+      "label": "景别",
+      "source": "parameter",
+      "nodeId": "18",
+      "input": "distance",
+      "default": "medium shot",
+      "options": [
+        "close-up",
+        "medium shot",
+        "wide shot"
+      ],
+      "optionLabels": {
+        "close-up": "特写",
+        "medium shot": "中景",
+        "wide shot": "远景"
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "id": "image",
+      "nodeId": "16",
+      "key": "images",
+      "type": "image"
+    }
+  ]
+}

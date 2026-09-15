@@ -1,0 +1,21 @@
+{
+  "format": "createmore-resource",
+  "version": 1,
+  "id": "builtin-tool-upscale",
+  "kind": "tools",
+  "name": "高清",
+  "handler": "高清",
+  "mediaType": "image",
+  "outputType": "image",
+  "provider": "comfyui",
+  "icon": "expand",
+  "order": 5,
+  "enabled": true,
+  "batch": true,
+  "revision": 1,
+  "source": "builtin",
+  "description": "处理结果保存为新卡片，保留原素材。",
+  "workflowId": "default:tool-image-upscale",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "updatedAt": "2026-09-07T00:00:00Z"
+}
