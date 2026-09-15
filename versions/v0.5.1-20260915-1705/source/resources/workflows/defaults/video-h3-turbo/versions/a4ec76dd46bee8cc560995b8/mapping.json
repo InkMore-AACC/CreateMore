@@ -1,0 +1,75 @@
+{
+  "inputs": [
+    {
+      "id": "prompt",
+      "label": "视频描述",
+      "source": "prompt",
+      "nodeId": "7",
+      "input": "prompt",
+      "required": true
+    },
+    {
+      "id": "width",
+      "label": "width",
+      "source": "parameter",
+      "nodeId": "7",
+      "input": "width",
+      "type": "integer",
+      "default": 512,
+      "min": 128,
+      "max": 1344
+    },
+    {
+      "id": "height",
+      "label": "height",
+      "source": "parameter",
+      "nodeId": "7",
+      "input": "height",
+      "type": "integer",
+      "default": 512,
+      "min": 128,
+      "max": 1344
+    },
+    {
+      "id": "length",
+      "label": "length",
+      "source": "parameter",
+      "nodeId": "7",
+      "input": "length",
+      "type": "integer",
+      "default": 124,
+      "min": 5,
+      "max": 362
+    },
+    {
+      "id": "seed",
+      "label": "seed",
+      "source": "parameter",
+      "nodeId": "8",
+      "input": "noise_seed",
+      "type": "integer",
+      "default": 42,
+      "min": 0,
+      "max": 9007199254740991
+    },
+    {
+      "id": "steps",
+      "label": "steps",
+      "source": "parameter",
+      "nodeId": "10",
+      "input": "steps",
+      "type": "integer",
+      "default": 6,
+      "min": 1,
+      "max": 30
+    }
+  ],
+  "outputs": [
+    {
+      "id": "video",
+      "nodeId": "16",
+      "key": "images",
+      "type": "video"
+    }
+  ]
+}

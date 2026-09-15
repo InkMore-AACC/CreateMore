@@ -1,0 +1,21 @@
+{
+  "format": "createmore-resource",
+  "version": 1,
+  "id": "builtin-tool-storyboard",
+  "kind": "tools",
+  "name": "剧本转分镜",
+  "handler": "剧本转分镜",
+  "mediaType": "text",
+  "outputType": "text",
+  "provider": "codex",
+  "icon": "table",
+  "order": 11,
+  "enabled": true,
+  "batch": false,
+  "revision": 1,
+  "source": "builtin",
+  "description": "处理结果保存为新卡片，保留原素材。",
+  "workflowId": "default:text-qwen3",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "updatedAt": "2026-09-07T00:00:00Z"
+}

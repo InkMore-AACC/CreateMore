@@ -1,0 +1,20 @@
+{
+  "format": "createmore-resource",
+  "version": 1,
+  "id": "builtin-tool-extract-audio",
+  "kind": "tools",
+  "name": "抽音轨",
+  "handler": "抽音轨",
+  "mediaType": "video",
+  "outputType": "audio",
+  "provider": "media",
+  "icon": "audio",
+  "order": 21,
+  "enabled": true,
+  "batch": true,
+  "revision": 1,
+  "source": "builtin",
+  "description": "处理结果保存为新卡片，保留原素材。",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "updatedAt": "2026-09-07T00:00:00Z"
+}

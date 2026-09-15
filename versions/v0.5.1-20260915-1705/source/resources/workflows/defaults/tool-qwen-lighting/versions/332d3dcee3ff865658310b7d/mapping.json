@@ -1,0 +1,51 @@
+{
+  "inputs": [
+    {
+      "id": "image",
+      "label": "原始参考图",
+      "source": "reference",
+      "nodeId": "1",
+      "input": "image",
+      "required": true,
+      "mediaType": "image"
+    },
+    {
+      "id": "prompt",
+      "label": "修改说明",
+      "source": "prompt",
+      "nodeId": "9",
+      "input": "prompt",
+      "required": true
+    },
+    {
+      "id": "seed",
+      "label": "seed",
+      "source": "parameter",
+      "nodeId": "14",
+      "input": "seed",
+      "default": 42,
+      "type": "integer",
+      "min": 0,
+      "max": 9007199254740991
+    },
+    {
+      "id": "steps",
+      "label": "采样步数",
+      "source": "parameter",
+      "nodeId": "14",
+      "input": "steps",
+      "default": 4,
+      "type": "integer",
+      "min": 4,
+      "max": 12
+    }
+  ],
+  "outputs": [
+    {
+      "id": "image",
+      "nodeId": "16",
+      "key": "images",
+      "type": "image"
+    }
+  ]
+}

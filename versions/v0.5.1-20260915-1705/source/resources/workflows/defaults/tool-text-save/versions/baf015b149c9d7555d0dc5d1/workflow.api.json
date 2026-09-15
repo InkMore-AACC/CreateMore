@@ -1,0 +1,19 @@
+{
+  "1": {
+    "class_type": "PrimitiveStringMultiline",
+    "inputs": {
+      "value": "CreateMore"
+    }
+  },
+  "2": {
+    "class_type": "SaveText",
+    "inputs": {
+      "text": [
+        "1",
+        0
+      ],
+      "filename_prefix": "CreateMore/text",
+      "format": "txt"
+    }
+  }
+}

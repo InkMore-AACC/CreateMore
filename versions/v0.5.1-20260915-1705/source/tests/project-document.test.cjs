@@ -1,0 +1,35 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs/promises'),path=require('node:path'),os=require('node:os');
+const {ProjectStore}=require('../app/core/storage.cjs');
+const state=()=>({version:5,nodes:[],edges:[],groups:[],assets:[],view:{x:0,y:0,k:1},seq:0});
+test('new documents: direct project/canvas open, renamed files, folder move, package, old format rejection',async t=>{
+  const root=await fs.mkdtemp(path.join(os.tmpdir(),'createmore-document-'));t.after(()=>fs.rm(root,{recursive:true,force:true}));
+  const store=new ProjectStore({dataDir:path.join(root,'profile')}),dir=path.join(root,'中文 project');
+  const project=await store.createProject(dir,'设计工程'),first=await store.createCanvas(dir,'主画布',state()),second=await store.createCanvas(dir,'分镜',state());
+  assert.equal(project.version,2);assert.equal(first.version,2);
+  assert.equal((await store.resolveDocument(path.join(dir,'项目.createmore'))).canvasId,null);
+  assert.equal((await store.resolveDocument(path.join(second.canvasDir,'画布.createmore'))).canvasId,second.id);
+  await fs.rename(path.join(dir,'项目.createmore'),path.join(dir,'设计工程.createmore'));
+  await fs.rename(path.join(first.canvasDir,'画布.createmore'),path.join(first.canvasDir,'主画布.createmore'));
+  await store.saveCanvas(dir,first.id,state());
+  assert.equal((await store.resolveDocument(path.join(first.canvasDir,'主画布.createmore'))).canvasId,first.id);
+  assert.equal((await store.listRecent())[0].exists,true);
+  const moved=path.join(root,'搬移后的工程');await fs.rename(dir,moved);
+  assert.equal((await store.resolveDocument(path.join(moved,'主画布','主画布.createmore'))).projectDir,moved);
+  await store.saveCanvas(moved,first.id,state());
+  const output=path.join(root,'打包');await store.packageProject(moved,output);
+  assert.equal((await store.openProject(output)).version,2);
+  const old=path.join(root,'old');await fs.mkdir(old);await fs.writeFile(path.join(old,'.createmore.json'),JSON.stringify({...project,version:1}));
+  await assert.rejects(store.openProject(old));await assert.rejects(store.createProject(old,'不会覆盖'),{code:'PROJECT_EXISTS'});
+  await fs.writeFile(path.join(old,'项目.createmore'),JSON.stringify({...project,version:1}));
+  await assert.rejects(store.resolveDocument(path.join(old,'项目.createmore')),{code:'INVALID_DOCUMENT'});
+  await fs.copyFile(path.join(moved,'主画布','主画布.createmore'),path.join(moved,'分镜','画布.createmore'));
+  await assert.rejects(store.resolveDocument(path.join(moved,'分镜','画布.createmore')),{code:'CANVAS_NOT_FOUND'});
+});
+test('Windows registration quotes paths and touches only CreateMore extension and per-user class',()=>{
+  const {entries}=require('../app/file-association.cjs'),rows=entries('C:\\设计 目录\\CreateMore.exe','C:\\设计 目录\\oo-project.ico');
+  assert.equal(rows[2][2],'"C:\\设计 目录\\CreateMore.exe" "%1"');
+  assert.ok(rows.every(r=>r[0].startsWith('HKCU\\Software\\Classes\\')));
+  assert.ok(rows.every(r=>!r[0].includes('.json')&&!r[0].includes('UserChoice')));
+  assert.throws(()=>entries('C:\\bad".exe','C:\\icon.ico'));
+});

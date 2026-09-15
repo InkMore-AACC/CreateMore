@@ -1,0 +1,21 @@
+{
+  "format": "createmore-resource",
+  "version": 1,
+  "id": "builtin-tool-resize",
+  "kind": "tools",
+  "name": "尺寸调整",
+  "handler": "尺寸调整",
+  "mediaType": "image",
+  "outputType": "image",
+  "provider": "comfyui",
+  "icon": "expand",
+  "order": 6,
+  "enabled": true,
+  "batch": false,
+  "revision": 1,
+  "source": "builtin",
+  "description": "处理结果保存为新卡片，保留原素材。",
+  "workflowId": "default:tool-image-resize",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "updatedAt": "2026-09-07T00:00:00Z"
+}

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.runtime/
+.test-output/
+testing-output/
+chat-image-probe/
+prototype/.validation/
+*.log
+*.tmp
+*.bak

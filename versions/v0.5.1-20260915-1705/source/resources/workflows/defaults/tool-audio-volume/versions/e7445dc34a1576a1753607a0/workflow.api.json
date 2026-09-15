@@ -1,0 +1,28 @@
+{
+  "1": {
+    "class_type": "LoadAudio",
+    "inputs": {
+      "audio": "example.wav"
+    }
+  },
+  "2": {
+    "class_type": "AudioAdjustVolume",
+    "inputs": {
+      "audio": [
+        "1",
+        0
+      ],
+      "volume": 1
+    }
+  },
+  "3": {
+    "class_type": "SaveAudio",
+    "inputs": {
+      "audio": [
+        "2",
+        0
+      ],
+      "filename_prefix": "CreateMore/audio-volume"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "inputs": [
+    {
+      "id": "prompt",
+      "label": "指令",
+      "source": "prompt",
+      "nodeId": "2",
+      "input": "prompt",
+      "required": true
+    },
+    {
+      "id": "max_length",
+      "label": "max_length",
+      "source": "parameter",
+      "nodeId": "2",
+      "input": "max_length",
+      "type": "integer",
+      "default": 256,
+      "min": 1,
+      "max": 2048
+    }
+  ],
+  "outputs": [
+    {
+      "id": "text",
+      "nodeId": "3",
+      "key": "text",
+      "type": "text"
+    }
+  ]
+}

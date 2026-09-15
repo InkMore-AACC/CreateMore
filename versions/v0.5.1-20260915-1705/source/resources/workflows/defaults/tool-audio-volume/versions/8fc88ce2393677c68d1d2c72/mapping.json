@@ -1,0 +1,31 @@
+{
+  "inputs": [
+    {
+      "id": "audio",
+      "source": "reference",
+      "nodeId": "1",
+      "input": "audio",
+      "required": true,
+      "mediaType": "audio"
+    },
+    {
+      "id": "volume",
+      "label": "增益（dB）",
+      "source": "parameter",
+      "nodeId": "2",
+      "input": "volume",
+      "type": "integer",
+      "default": 0,
+      "min": -100,
+      "max": 100
+    }
+  ],
+  "outputs": [
+    {
+      "id": "audio",
+      "nodeId": "3",
+      "key": "audio",
+      "type": "audio"
+    }
+  ]
+}

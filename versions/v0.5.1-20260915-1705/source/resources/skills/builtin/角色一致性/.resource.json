@@ -1,0 +1,15 @@
+{
+  "format": "createmore-resource",
+  "version": 1,
+  "id": "builtin-character-continuity",
+  "kind": "skills",
+  "name": "角色一致性",
+  "description": "梳理跨镜头必须保持的身份、服装、道具和状态。",
+  "category": "general",
+  "source": "builtin",
+  "revision": 1,
+  "enabled": true,
+  "cover": "cover.svg",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "updatedAt": "2026-09-07T00:00:00Z"
+}

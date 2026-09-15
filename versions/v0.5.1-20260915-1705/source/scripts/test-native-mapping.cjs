@@ -1,0 +1,22 @@
+'use strict';
+const {app,BrowserWindow}=require('electron');
+const assert=require('node:assert/strict');
+const {installNativeMapping}=require('../app/providers/native-mapping.cjs');
+app.whenReady().then(async()=>{let window;try{
+  window=new BrowserWindow({show:false,webPreferences:{sandbox:true,contextIsolation:true,nodeIntegration:false}});
+  await window.loadURL('data:text/html,<html><body>Native mapping UI test</body></html>');
+  await window.webContents.executeJavaScript(`window.fetch=async()=>({ok:true,json:async()=>({Sampler:{input:{required:{steps:['INT',{min:1,max:50}],enabled:['BOOLEAN',{}]}}},SaveImage:{output_node:true,input:{required:{images:['IMAGE',{}]}}}})});window.testApp={graph:{getNodeById:id=>window.testNodes[id]},canvas:{selected_nodes:{},selectNode(node){this.selected_nodes={[node.id]:node}},centerOnNode(){}},graphToPrompt:async()=>({output:{'1':{class_type:'Sampler',inputs:{steps:8,enabled:true}},'2':{class_type:'SaveImage',inputs:{images:['1',0]}}}})};window.testNodes={'1':{id:1,title:'采样器',type:'Sampler'},'2':{id:2,title:'保存图片',type:'SaveImage'}};(${installNativeMapping.toString()})(window.testApp,{inputs:[],outputs:[]});`);
+  const exec=code=>window.webContents.executeJavaScript(code);
+  const wait=async predicate=>{for(let i=0;i<60;i++){if(await exec(predicate))return;await new Promise(r=>setTimeout(r,100));}throw new Error('UI state timeout: '+predicate);};
+  await exec(`testApp.canvas.selectNode(testNodes['1']);`);await wait(`document.querySelector('#createmore-mapping').shadowRoot.querySelector('#parameter')?.value==='steps'`);
+  await exec(`window.root=document.querySelector('#createmore-mapping').shadowRoot;root.querySelector('[name=id]').value='steps';root.querySelector('#mapping-form').requestSubmit();`);
+  let mapping=await exec('window.__createMoreMapper.state.mapping');assert.equal(mapping.inputs[0].type,'integer');assert.equal(mapping.inputs[0].min,1);assert.equal(mapping.inputs[0].max,50);assert.equal(mapping.inputs[0].default,8);
+  await exec(`root.querySelector('#parameter').value='enabled';root.querySelector('#parameter').dispatchEvent(new Event('change'));root.querySelector('[name=default]').value='false';root.querySelector('#mapping-form').requestSubmit();`);
+  mapping=await exec('window.__createMoreMapper.state.mapping');assert.equal(mapping.inputs[1].default,false);
+  await exec(`testApp.canvas.selectNode(testNodes['2']);`);await wait(`document.querySelector('#createmore-mapping').shadowRoot.querySelector('#selected').textContent.includes('保存图片')`);
+  await exec(`root.querySelector('#direction').value='outputs';root.querySelector('#direction').dispatchEvent(new Event('change'));root.querySelector('[name=primary]').checked=true;root.querySelector('#mapping-form').requestSubmit();`);
+  mapping=await exec('window.__createMoreMapper.state.mapping');assert.equal(mapping.outputs[0].nodeId,'2');assert.equal(mapping.outputs[0].key,'images');assert.equal(mapping.outputs[0].primary,true);
+  await exec(`root.querySelector('[data-remove="0"][data-kind="inputs"]').click();`);assert.equal((await exec('window.__createMoreMapper.state.mapping')).inputs.length,1);
+  console.log(JSON.stringify({ok:true,checks:['native selection drives panel','integer definition and bounds','boolean widget','output mapping','remove exposure']}));
+  window.destroy();app.exit(0);
+}catch(e){console.error(e);window?.destroy();app.exit(1);}});

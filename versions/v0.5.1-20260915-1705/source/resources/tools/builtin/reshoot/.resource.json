@@ -1,0 +1,21 @@
+{
+  "format": "createmore-resource",
+  "version": 1,
+  "id": "builtin-tool-reshoot",
+  "kind": "tools",
+  "name": "片段重拍",
+  "handler": "片段重拍",
+  "mediaType": "video",
+  "outputType": "video",
+  "provider": "comfyui",
+  "icon": "video",
+  "order": 23,
+  "enabled": true,
+  "batch": false,
+  "revision": 1,
+  "source": "builtin",
+  "description": "处理结果保存为新卡片，保留原素材。",
+  "workflowId": "default:video-h3-i2v",
+  "createdAt": "2026-09-07T00:00:00Z",
+  "updatedAt": "2026-09-07T00:00:00Z"
+}
